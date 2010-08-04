@@ -1,0 +1,46 @@
+<html>
+	<head>
+        <script type="text/javascript" src="o3.js"></script>
+	</head>
+	<body>
+        <button onClick="createTestDir()">start test</button>
+        <button onClick="removeTestDir()">remove test dir</button>
+		<br></br>
+		<textarea name="log" id="log" cols="40" rows="5">
+		</textarea>
+	</body>
+	<script>
+        var o3obj;
+        // creating an o3 instance, we need the UID and the name of the product
+        // the o3.js file will take care of all the details
+        o3obj = o3.create("8A66ECAC-63FD-4AFA-9D42-3034D18C88F4", { 
+            oninstallprompt : function(){ alert("can't find o3 plugin");},
+            product : 'O3Demo'     
+        } );
+
+		var loaded = function() {
+			alert("components loaded");
+		}
+		
+		var progress = function(prog) {
+			document.getElementById("log").innerText = prog.fileName 
+				+ '\n' + prog.readyState + '\n' + prog.bytesReceived;				
+		}
+		
+		
+        function createTestDir() {
+			var wnd = o3obj.window;
+			alert(wnd);
+			o3obj.mouseTo(wnd.clientX, wnd.clientY, wnd);			
+        }
+        
+        function removeTestDir() {
+            var fsRoot = o3obj.fs;
+            if (fsRoot) {
+                var dir = fsRoot.get('testDir');
+                dir.remove(true);
+            }
+        }
+        
+    </script>
+</html>

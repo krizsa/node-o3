@@ -1,0 +1,329 @@
+<a:window 
+  title     = "Worknet Files"
+  icon      = ""
+  render    = "runtime"
+  width     = "508"
+  height    = "257" skin="change_photo">
+    <a:datagrid anchors="0 0 50 0"
+      options         = "size"
+      caching         = "false"
+      prerender       = "false"
+      model           = "[mdlWorknet::files]"
+      empty-message   = "Empty Message."
+      loading-message = "Calculating...">
+        <a:expanded match="[node()[@expand]]" />
+        <a:column caption="Name" value="[@name]" width="100%" icon="{[@icon] || 'documents_folder.png'}" tree="true" />
+        <a:column caption="Last Modified" value="[@lastmod]" width="175" editor="textbox" />
+        <a:column caption="User" value="[@user]" width="75"/>
+        <a:each match="[dir|file]" />
+    </a:datagrid>
+
+    <a:divider skin="del_conn_divider" bottom="30" left="9" right="9" />
+    <a:button bottom="4" left="9" width="105" class="ui-btn-green">Upload a file</a:button>
+    <a:button bottom="4" left="122" width="68" class="ui-btn-red">Delete</a:button>
+    <a:button right="9" bottom="4" width="68">Close</a:button>
+</a:window>
+
+<a:window
+  id        = "winInvitePeople"
+  title     = "Invite people"
+  icon      = ""
+  center    = "true"
+  visible   = "false"
+  render    = "runtime"
+  width     = "512"
+  height    = "465" skin="change_photo">
+    <div style="padding:10px;">
+        <a:script><![CDATA[
+            acg1.addEventListener("afterchange", function(e) {
+                var s1 = e.value == "s1";
+
+                var oHtml1 = s1 ? invite_acc_box1 : invite_acc_box2;
+                var oHtml2 = s1 ? invite_acc_box2 : invite_acc_box1;
+
+                apf.tween.multi(oHtml1, {
+                    steps    : apf.isIE ? 10 : 15,
+                    anim     : apf.tween.EASEOUT,
+                    interval : 3,
+                    tweens : [{
+                        type : s1 ? "scrollheight" : "height",
+                        from : 0,
+                        to   : s1 ? 241 : 242
+                    },{
+                        type  : s1 ? "height" : "scrollheight",
+                        from  : s1 ? 242 : 241,
+                        to    : 0,
+                        oHtml : oHtml2
+                    }]
+                });
+            });
+        ]]></a:script>
+        <a:script><![CDATA[
+            function invitePeopes() {
+                switch(acg1.value) {
+                    case "s1":
+                        var checked = dgSearchForUsers.getChecked();
+                        var users_ids = [];
+                        
+                        for (var i = 0, l = checked.length; i < l; i++) {
+                            users_ids.push(checked[i].getAttribute("id"))
+                        }
+                        if (users_ids.length > 0) {
+                            commRDB.inviteInternal(users_ids, apf.storage.get('username'), 'Message - there is no place to specify it');
+                            //here should be shown some window with "Congratulations"
+                        }
+                        break;
+                    case "s2":
+                        if (vgInviteUserByMail.validate()) {
+                            commRDB.inviteExternal(txtIUInvitedUser.value, apf.storage.get('username'), txtIUSendMessage.value);
+                            //here should be shown some window with "Congratulations"
+                        }
+                        break;
+                }
+            }
+        ]]></a:script>
+        <a:group id="acg1">
+            <a:radiobutton skin="accordion_rbtn" icon="invite-plus.png" value="s1" checked="true">Invite Someone From Worknets</a:radiobutton>
+            <a:bar id="invite_acc_box1" class="settings23" height="241">
+                <div class="settings24">Enter the Name, Username or Email address of the person or
+                organisation you wish to add.</div>
+                <a:textbox 
+                  skin    = "txt_searchbox"
+                  width   = "266"
+                  class   = "wn_txt_icon"
+                  onkeyup = "worknetsApp.searchUsers(this)"
+                  initial-message="Type the name of a contact"></a:textbox>
+                <div class="settings30">
+                    <a:datagrid id="dgSearchForUsers" skin="dgcheck" mode="check"
+                      multiselect   = "true"
+                      empty-message = "No users matching your criteria"
+                      model         = "mdlSearchUsers"
+                      options       = "sort|size"
+                      width         = "387"
+                      height        = "158">
+                        <a:each match="[person]">
+                            <a:column width="40%" caption="Full name" value="[@name]" check="true" sorted="true" />
+                            <a:column width="30%" value="[@user]" caption="Username" />
+                            <!--a:column width="30%" value="[@org]" caption="Organisation" /-->
+                            <a:checked value="[@check]" />
+                        </a:each>
+                    </a:datagrid>
+
+                    <a:scrollbar for="dgSearchForUsers" height="130" top="24" right="5" />
+                </div>
+            </a:bar>
+
+            <a:divider skin="del_conn_divider" />
+
+            <a:radiobutton skin="accordion_rbtn" icon="invite-envelope.png" value="s2">...or Invite Someone Through Email</a:radiobutton>
+            <a:bar id="invite_acc_box2" class="settings23" height="0" validgroup="vgInviteUserByMail">
+                <a:textbox id="txtIUInvitedUser" skin="txt_searchbox" required="true" width="266" initial-message="Type an Email address" ></a:textbox>
+                <a:textbox id="txtIUSendMessage" skin="invite_msg" width="387" height="203" margin="10 0 0 0" value="Hi there! 
+
+I would like to invite you to join Worknets.com so we can collaborate on projects. My username is {apf.storage.get('username')} 
+
+In case you didn't know yet Worknets is a online networking, communication and collaboration tool. And because it's all online you don't need to install anything. Sign up is fast and free!
+
+I hope to see you there!"></a:textbox>
+            </a:bar>
+        </a:group>
+    </div>
+
+    <a:divider skin="del_conn_divider" bottom="30" left="5" right="5" />
+    <a:hbox bottom="4" left="0" right="10" pack="end">
+        <a:button margin="0 10 0 0" class="ui-btn-green" onclick="invitePeopes()">Send Request</a:button>
+        <a:button onclick="winInvitePeople.hide()">Cancel</a:button>
+    </a:hbox>
+</a:window>
+
+<a:window
+  id        = "winRemoveContact"
+  title     = "Remove Contact?"
+  icon      = ""
+  center    = "true"
+  render    = "runtime"
+  width     = "512"
+  height    = "185" skin="change_photo">
+    <div class="settings21">
+        <h3>Are you sure you want to remove this contact?</h3>
+    </div>
+    <div class="settings22">Once your removed a contact direct messages are not possible anymore.</div>
+    <a:divider skin="del_conn_divider" bottom="30" left="5" right="5" />
+    <a:hbox bottom="4" left="0" right="10" pack="end">
+        <a:button margin="0 10 0 0" class="ui-btn-red">Remove</a:button>
+        <a:button onclick="winRemoveContact.hide()">Cancel</a:button>
+    </a:hbox>
+</a:window>
+
+
+<a:window 
+  title     = "Add request sent confirmation"
+  icon      = ""
+  center    = "true"
+  render    = "runtime"
+  width     = "512"
+  height    = "185" skin="change_photo">
+    <div class="settings21">
+        <h3>Your add request was sent successfull</h3>
+    </div>
+    <div class="settings22">Once your request has been accepted, you will receive a confirmation.</div>
+    <a:divider skin="del_conn_divider" bottom="30" left="5" right="5" />
+    <a:button bottom="4" right="5">Close window</a:button>
+</a:window>
+
+<a:window
+  id        = "winDelConfirm"
+  title     = "Are you sure ?"
+  icon      = ""
+  center    = "true"
+  render    = "runtime"
+  width     = "512"
+  height    = "200" skin="change_photo">
+    <div class="settings11" />
+    <div class="settings12">
+        <h3>Delete the internet?</h3>
+    </div>
+    <div class="settings13">Are you sure you want to do this? All websites and their 
+content will be deleted. This cannot be undone.</div>
+    <a:divider skin="del_conn_divider" bottom="30" left="5" right="5" />
+    <a:button right="78" bottom="4" onclick="winDelConfirm.hide()">Cancel</a:button>
+    <a:button bottom="4" right="5" class="ui-btn-red">Delete</a:button>
+</a:window>
+
+<a:window id="winChangePhoto"
+  title   = "Change your Photo"
+  icon    = ""
+  center  = "true"
+  render  = "runtime"
+  width   = "508"
+  onshow  = "uplPhoto.setAttribute('target', 'upload/icon/' + worknetsApp.pageId)"
+  height  = "277" skin="change_photo">
+    <a:hbox edge="0" padding="13">
+        <a:vbox edge="13 0 0 10" padding="0" width="120">
+            <a:img id="previewPhoto" skin="idcard_img" value="icon/{worknetsApp.pageId}/86x86.png"></a:img>
+            <a:hbox padding="0" edge="0 0 0 3">
+                <a:button skin="view_allresults" class="centered" width="110" onclick="worknetsApp.updateUplImage('icon', 'delete')">Reset to default</a:button>
+            </a:hbox>
+        </a:vbox>
+        <a:vbox padding="0" edge="0" width="340">
+            <a:vbox edge="25 0 0 0" padding="0">
+                <div>A representative photo is important for your contacts so that they can easily put a face to a name.</div>
+                <a:hbox padding="2" edge="15 0 0 0">
+                    <a:hbox padding="0" edge="5 0 0 0" align="start">
+                        <img src="style/images/blue_left_arrow.png" alt="" style="width:10px;height:9px;" />
+                    </a:hbox>
+                    <div>This is your current photo.</div>
+                </a:hbox>
+                <a:hbox padding="7" edge="15 0 0 0">
+                    <a:button id="btnUploadPhotoBrowse">Select a photo</a:button>
+                    <a:upload id="uplPhoto"
+                      button        = "btnUploadPhotoBrowse"
+                      onafterbrowse = "uplPhoto.start()"
+                      onreceive     = "btnDoneUplPhoto.enable()"
+                      target        = "upload" />
+                    <a:label skin="label_gray" class="settings19">no file selected</a:label>
+                </a:hbox>
+            </a:vbox>
+            <a:label skin="label_gray">png or jpg, max 3MB</a:label>
+        </a:vbox>
+    </a:hbox>
+    <a:divider skin="del_conn_divider" bottom="30" left="5" right="5" />
+    <a:hbox bottom="4" left="0" right="10" pack="end">
+        <a:button id="btnDoneUplPhoto" disabled="true" margin="0 10 0 0" width="70" class="ui-btn-green" onclick="worknetsApp.updateUplImage('icon', 'accept')">Done</a:button>
+        <a:button onclick="winChangePhoto.hide();">Cancel</a:button>
+    </a:hbox>
+</a:window>
+
+<a:window
+  id      = "winChangeHeaderBg"
+  title   = "Change header background picture"
+  icon    = ""
+  center  = "true"
+  render  = "runtime"
+  width   = "508"
+  onshow  = "uplBg.setAttribute('target', 'upload/banner/' + worknetsApp.pageId)"
+  height  = "250" skin="change_photo">
+    <a:vbox padding="0" edge="28 10 0 20">
+        <div>Please make sure your image is 980x135 pixels in size or you might experience unexpected results.</div>
+        <a:hbox padding="7" edge="20 0 0 24">
+            <a:button id="btnUploadBgBrowse">Select an image</a:button>
+            <a:upload id="uplBg"
+              button        = "btnUploadBgBrowse"
+              onafterbrowse = "uplBg.start()"
+              onreceive     = "btnDoneUplBanner.enable()"
+              target        = "upload" />
+            <a:label skin="label_gray" class="settings19">no file selected</a:label>
+        </a:hbox>
+        <a:label skin="label_gray" class="settings20">png or jpg, max 3MB</a:label>
+    </a:vbox>
+    <a:divider skin="del_conn_divider" bottom="30" left="5" right="5" />
+    <a:hbox bottom="4" left="0" right="10" pack="start">
+        <a:button skin="view_allresults" margin="4 0 0 10" width="110" onclick="worknetsApp.updateUplImage('banner', 'delete')">Reset to default</a:button>
+        <a:filler/>
+        <a:button id="btnDoneUplBanner" disabled="true" margin="0 10 0 0" width="70" class="ui-btn-green"  onclick="worknetsApp.updateUplImage('banner', 'accept')">Done</a:button>
+        <a:button onclick="winChangeHeaderBg.hide();">Cancel</a:button>
+    </a:hbox>
+</a:window>
+
+<a:window
+  id      = "winCreateWorknet"
+  title   = "Create a Worknet"
+  icon    = ""
+  render  = "runtime"
+  center  = "true"
+  width   = "500"
+  height  = "250" skin="change_photo" validgroup="vgNewWorknet">
+    <a:vbox padding="8" edge="10 10 0 10">
+        <a:vbox padding="4" edge="0 0 0 0" align="stretch">
+            <a:label skin="label_gray_forms">Title (required)</a:label>
+            <a:textbox id="cnw_title"
+              skin="status_textarea" 
+              height="30" 
+              minlength="3"
+              maxlength="60" 
+              required="true" 
+              initial-message="Give your Worknet a clear title (max 70 characters)"
+              invalidmsg="A title for your worknet is required" />
+        </a:vbox>
+        <a:vbox padding="4" edge="0 0 0 0" align="stretch">
+            <a:label skin="label_gray_forms">Tag line</a:label>
+            <a:textbox id="cnw_tags"
+              skin="status_textarea" 
+              height="30" 
+              maxlength="80" 
+              initial-message="A tag line is optional" />
+        </a:vbox>
+    </a:vbox>
+    
+    <a:divider skin="del_conn_divider" bottom="30" left="5" right="5" />
+    <a:hbox bottom="4" left="0" right="10" pack="end">
+        <a:button 
+          margin  = "0 10 0 0" 
+          width   = "70" 
+          class   = "ui-btn-green" 
+          onclick = "if (vgNewWorknet.validate()) {commRDB.createWorknet(cnw_title.value, cnw_tags.value, 'rdb://worknets.com/101/dashboard')}">Create</a:button>
+        <a:button onclick="winCreateWorknet.hide();">Cancel</a:button>
+    </a:hbox>
+</a:window>
+
+<a:window id="winSendMessage"
+  icon    = ""
+  render  = "runtime"
+  center  = "true"
+  popup   = "true"
+  width   = "550"
+  height  = "226">
+    <a:vbox padding="0" edge="0 0 0 12">
+        <a:label id="winMsgTitle" style="color:#999999">In reply to: Marcos de Campos Leite - Just Married</a:label>
+        <a:textarea id="taMsg" style="border: 1px solid #a3a3a3;" onafterchange="checkMsg(this)" onkeyup="msgBoxKeyHandler(event)"
+            realtime="true" width="411" height="138" value="Coming soon"></a:textarea>
+    </a:vbox>
+    
+    <a:hbox bottom="0" right="10" pack="start">
+        <div style="font-family:Trebuchet MS;color:#a3a3a3;position:relative;left:10px;">Characters left:</div>
+        <a:label id="lblCharLeft" caption="{260-taMsg.value.length}" style="color:red;position:relative;top:1px;left:14px;"></a:label>
+        <a:filler />
+        <a:button margin="0 10 0 0" disabled="true" width="90" class="ui-btn-green" onclick="sendMessage(taMsg.getValue())">Send</a:button>
+        <a:button onclick="winSendMessage.hide()">Cancel</a:button>
+    </a:hbox>
+</a:window>

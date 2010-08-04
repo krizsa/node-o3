@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<script type="text/javascript" src="debug.js"></script>
+	</head>
+	<body>
+        <button onClick="test()">start test</button>        
+		<br></br>
+		<textarea name="log" id="log" cols="40" rows="5">
+		</textarea>
+	</body>
+	<script>
+		var msg = 'global';
+		var obj = {
+				method: function(){
+					var b = this.msg + debugFunction(this.msg);
+					
+					
+					
+					log(b);		
+				},
+				msg: 'message inside'
+			};
+			
+		function test(){
+			obj.method();
+			var blah = obj.method;
+			blah();	
+		}
+
+        function log(text) {
+			var prev;
+			if (document.all) {
+				prev = document.getElementById('log').innerText;
+				document.getElementById('log').innerText = prev + text;
+			} else {
+				prev = document.getElementById('log').textContent;
+				document.getElementById('log').textContent = prev + text;
+			}
+		}
+    </script>
+</html>

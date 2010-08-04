@@ -1,0 +1,117 @@
+<html>
+	<head>
+        <!-- o3.js is a helper file for loading the o3 object, the script file is appened 
+                to the exe file as a resource, it can be accessed via the o3 protocol: -->
+        <script type="text/javascript" src="o3://o3.js"></script>
+        <style type="text/css" media="all">
+            html {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                height: 100%;
+            }
+
+            <!-- appended resource files lilke the background image can be accessed
+                    by the o3 protocol in css styles as well:   -->
+            body {
+                margin: 0 auto 0 auto;
+                padding: 0;
+                border: 0;
+                height: 100%;
+                width: 100%;
+                min-height: 100%;
+                background: #082a42 url(o3://body_backg.png) repeat-y top left;
+                font-family: Arial, Helvetica, sans-serif, Tahoma, Verdana;
+            }
+        </style>
+	</head>
+	<body>
+        <!-- or anywhere else in the html...-->    
+        <img src="o3://logo.gif" onClick='linkClicked()' /></a>                 
+	</body>
+	<script>                               
+        document.body.style.overflow = 'hidden';
+        // let's instantiate an o3 object. In the o3.js file there is a helper funcion for this, so you don't have to care about
+        // the differences of the operating systems and browsers, all you need is a GUID of the o3 plugin you want to use.
+        // Furthermore, on windows for this site specific browser, there is an embedded o3 within the application, so there is         
+        // no need to install the plugin if you use the site specific browser instead of the regular one.
+        // oninstallprompt is an optional callback function, that will be called if the plugin can not be found 
+        var o3obj = o3.create("AAAAAAAA-1111-BBBB-1111-CCCCCCCCCCCC", {oninstallprompt : function(){alert("can't find o3 plugin");}} ),
+            // let's grab the window component of the o3 object, via this object the application window can be manipulated
+            ssbWnd = o3obj.window;
+            width = 330;
+            height = 340;
+                  
+        // for example, you can set an icon for your ssb, logo.ico is the name of an icon file appended to the executable as resource
+        ssbWnd.icon = "logo.ico"; 
+        // you can turn on/off the close/fullscreen/minimalize buttons of the window
+        ssbWnd.showButtons = false;
+        // or set its caption
+        ssbWnd.caption = "Ajax.org O3 SSB Demo"  
+        // or its size
+        ssbWnd.height = height;
+        ssbWnd.width = width;             
+        
+        // let's move the window around on the screen
+        var intervalID = setInterval('tick(ssbWnd)', 10);
+        
+        var loopTime = 0,
+            steps = 200;
+        function tick(_window) {
+            loopTime = (loopTime+1)%steps;
+            animateWindow(_window);
+        }
+        
+        var prevX,prevY,
+            // you can get the screen size
+            centerX = (o3obj.screen.width-width) / 2,
+            centerY = (o3obj.screen.height-height) / 2,
+            radius = 800;
+        
+        // let's set the starting position of the window
+        ssbWnd.x = centerX + 800;
+        ssbWnd.y = centerY;
+        ssbWnd.visible = true;
+        function animateWindow(_window) {
+            if (radius > 0) {
+                radius -= 5;
+                // move the window in each step around and toward the center of the screen
+                _window.x = centerX + radius * Math.cos(loopTime * 2 * Math.PI / steps);
+                _window.y = centerY + radius * Math.sin(loopTime * 2 * Math.PI / steps);        
+            
+            }
+            else
+                // if we reached the center of the screen than let's stop the animation
+                clearInterval(intervalID);            
+        }        
+        
+        // if the user clicks on the image another animation will be started, and finally
+        // we navigate to the o3 site
+        var intervalID2, steps2 = 100,
+            time = 0;
+        
+        function linkClicked() {   
+            clearInterval(intervalID);
+            intervalID2 = setInterval('resizeWindow(ssbWnd)', 10);                       
+        }
+        
+        var h,w,ph,pw;
+        function resizeWindow(_window) {
+            if ((time=time+2)>steps2){
+                // let's show the basic window buttons again, so the user can close the window
+                _window.showButtons = true;            
+                clearInterval(intervalID2);              
+                window.location.href = 'http://www.ajax.org/#o3';
+            } else {                          
+                ph = _window.height;
+                pw = _window.width;
+                 
+                h = _window.height = ph - (ph - 470)/steps2 * time;
+                w = _window.width = pw - (pw - 1025)/steps2 * time;
+                
+                _window.x = _window.x - (w-pw)/2;                
+            }                    
+        }
+
+	</script>
+</html>

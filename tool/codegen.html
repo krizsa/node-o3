@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:j="http://www.javeline.com/2005/jml" xmlns="http://www.w3.org/1999/xhtml"  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <head>
+    <!--?import namespace="v" implementation="#default#VML" ?-->
+  	<meta http-equiv="Content-Type" content="text/html; utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />    
+  	<title>O3 codegen</title>  	
+	<script type="text/javascript" src="o3.js"></script>
+    <script type="text/javascript" src="o3_Parser.js"></script>
+    <script type="text/javascript" src="o3_Generator.js"></script>
+    <script type="text/javascript" src="o3_Reporter.js"></script>
+    <script>//<![CDATA[
+ 
+window.onload=function(){
+    var o3obj = o3.create("8A66ECAC-63FD-4AFA-9D42-3034D18C88F4", { 
+            oninstallprompt : function(){ alert("can't find o3 plugin");},
+            product : 'O3Demo'     
+        } ), result, glueName, sourceName, sourceFile,
+        driveC = o3obj.cwd.get('../../..'),
+        sourceFile = driveC.get('Development/scannerMergeTo/include/image/o3_cImage1.h');
+        //source = sourceFile.data,
+        sourceName = sourceFile.name;
+        glueName = sourceName.substr(0,3) + 'scr_' + sourceName.substr(3);        
+        Reporter.logWriter = Reporter.errorWriter = logw;
+        preparsed = Lexer.scan(source),
+        classes = Parser.parse(preparsed.tree);
+        result = Generator.run(classes[0].struct, classes[0].traits);
+        logw(result);
+        sourceFile.parent.get(glueName).data = result;
+        
+}; // onLoad
+        
+        var ts=[],ti;
+        function logw(txt){
+            var e = document.getElementById('dbgLog');
+            if (!e) {
+              if (txt === undefined)
+                  return txt;
+              ts.push(txt, "\n");
+              window.setTimeout("logw()", 100);
+              return txt;
+            }
+            if (txt === undefined) {
+                if (!ts) return txt;
+                txt = ts.join('');
+                ts  = null;
+            }
+            var t = txt + "";
+            e.insertAdjacentHTML("beforeend", t.replace(/ /g, "&nbsp;")
+                .replace(/\</g, "&lt;").replace(/\>/g, "&gt;")
+                .replace(/\n/g, "<br/>").replace(/\t/g, "&nbsp;&nbsp;&nbsp;")
+                + "<br/>");
+            e.scrollTop = e.scrollHeight;
+            return txt;
+        };
+        
+var source = "#ifndef O3_CO3_SH_H\n\
+#define O3_CO3_SH_H\n\
+\n\
+namespace o3 {\n\
+\n\
+struct cO3 : cScr {\n\
+    tVec<Str> m_args;\n\
+    o3_prop int m_some_var;\n\
+	o3_name(\"renamedVar\") o3_get int m_some_other_var;\n\
+	o3_set int m_third_var;\n\
+\n\
+    o3_begin_class(cScr)\n\
+    o3_end_class()\n\
+\n\
+    #include \"o3_scr_cO3.h\"\n\
+    \n\
+    cO3(int argc = 0, char** argv = 0) \n\
+    {\n\
+        for (int i = 0; i < argc; i++)\n\
+        {\n\
+            m_args.push(Str(*(argv++)));\n\
+        }\n\
+    }\n\
+\n\
+    cO3(const tVec<Str>& args) \n\
+        : m_args(args)\n\
+    {        \n\
+    }\n\
+\n\
+		o3_fun siScr __self__() \n\
+		{\n\
+			o3_trace3 trace;\n\
+			return o3_new(cImage1)();\n\
+		}\n\
+\n\
+		o3_fun siScr __self__(size_t w, size_t h, const Str &mode = Str(\"argb\") )\n\
+		{\n\
+			return o3_new(cImage1)(w,h,mode);\n\
+		}\n\
+\n\
+    o3_get virtual tVec<Str> args()\n\
+    {\n\
+        return m_args;\n\
+    }\n\
+    \n\
+    o3_fun void print(const char*)\n\
+    {\n\
+        printf(\"%s\n\", str);\n\
+    }\n\
+\n\
+    o3_fun void out(const char* str)\n\
+    {\n\
+        return print(str);\n\
+    }\n\
+\n\
+    o3_fun void out(int blah, bool blah2)\n\
+    {\n\
+        return print(blah);\n\
+    }\n\
+\n\
+    o3_fun void out(int blah, const char* blah2)\n\
+    {\n\
+        return print(blah);\n\
+    }\n\
+\n\
+    o3_fun void out(const Buf& blah)\n\
+    {\n\
+        return print(blah);\n\
+    }\n\
+\n\
+    o3_fun void out(iStream* blah)\n\
+    {\n\
+        return print(blah);\n\
+    }\n\
+\n\
+    o3_fun void wait(iCtx* ctx, int timeout)\n\
+    {\n\
+        ctx->loop()->wait(timeout);\n\
+    }\n\
+    \n\
+    o3_get int test()\n\
+    {\n\
+        return 42;\n\
+    }\n\
+	o3_name(\"renamedFun\") o3_fun bool loadModules(iCtx* ctx, Var* argv, int argc, siEx* ex) \n\
+	{\n\
+		o3_trace3 trace;\n\
+\n\
+		return ctx->mgr()->loadModule(name);\n\
+	}\n\
+\n\
+    o3_get Str versionInfo()\n\
+    {\n\
+        Str version(\"v\");\n\
+        version.appendf(\"%d.%d\", o3_version_major, o3_version_minor);\n\
+        return version;\n\
+    }\n\
+    static o3_ext(\"toExtend\") o3_get Str extFun(o3_tgt iScr* tgt, int a = 0)\n\
+    {\n\
+        return 10;\n\
+    }\n\
+};\n\
+\n\
+} // namespace o3\n\
+\n\
+#endif // O3_CO3_SH_H\n";
+
+  
+
+        //]]>
+  </script>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body mode="xml" style="background-color:silver;display:block;cursor:default;">  	
+  <div id='src' style="display:none">
+  
+</div>
+  <div id='dbgLog' style="width:100%;height:500px;overflow-y:scroll;overflow-x:scroll;white-space:break-word;background-color:black;color:gray;font-family:courier;font-size:8pt;">
+  </div>
+  </body>
+</html>

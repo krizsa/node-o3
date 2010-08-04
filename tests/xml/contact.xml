@@ -1,0 +1,271 @@
+<a:hbox pack="end" edge="15 0 25 0" class="home_header">
+    <a:vbox padding="5">
+        <a:bar class="mainTopNav" style="float:right">
+            <a:hbox id="mainMenu" padding="10" edge="2">
+                <a href="javascript:void(0);" onclick="worknetsApp.util.toggleDashboard()" class="mnu_dashboard">My Dashboard<span class="dash_icon" /></a>
+                <a href="#org" class="mnu_help">Help</a>
+                <a href="#profile" class="mnu_language">Language</a>
+                <a href="javascript:void(0);" onclick="myXMPP.disconnect();" class="mnu_signout" >Sign out</a>
+            </a:hbox>
+        </a:bar>
+        <br clear="all" />
+        <a:bar class="infoBarTop">
+            unread emails: <strong>25</strong>  reminders: <strong>1</strong>  invitations: <strong>3</strong>
+        </a:bar>
+        <a:bar class="searchBarTop">
+            Search for public worknets, organisations or people:
+            <a:textbox height="25" style="margin-left:10px;" initial-message="Search" class="mainSearch"/>
+        </a:bar>
+    </a:vbox>
+</a:hbox>
+
+<a:bar id="profileBar" style="padding:15px">
+    <a:hbox padding="10">
+        <a:bar skin="useBar" class="greenBar" width="240" height="110" model="mdlMe">
+                <a:hbox edge="0">
+                    <img src="[image]" alt="" class="imgPersonId" />
+                    <a:vbox>
+                        <a href="#" style="display:block;">WorkMail</a>
+                        <a href="#">Chat</a>
+                        <a href="#">Upload a file</a>
+                    </a:vbox>
+                </a:hbox>
+                <a:dropdown skin="db_simple" value="preview" top="60" right="12" width="135" class="dbGreen">
+                    <a:item value="preview">Preview profile</a:item>
+                    <a:item value="bla">bla profile</a:item>
+                </a:dropdown>
+                <div class="ConnLinks">
+                    <div class="org_disconnect_btn"></div>
+                    <a href="#">Connect</a>
+                    |
+                    <a href="#">Block</a>
+                </div>
+                
+            </a:bar>
+        <a:bar skin="basic" class="profileTitleBar" width="690" height="110">
+            <h1>Dhr. Aard Huizing</h1>
+            <h4>Sales manager, father and allround family man</h4>
+        </a:bar>
+    </a:hbox>
+    <a:hbox padding="10" edge="0">
+        <a:bar width="240">
+            <a:bar skin="widgetBar" class="profileWdg2">
+                <div class="bird"></div>
+                <div class="message">
+                    I'm at Radio 538<br />
+                    Hilversum, the Netherlands
+                </div>
+                Last updated: april 30, 2010
+                <span class="btn_markgeo2"><img src="style/images/icon_markgeo.png" /></span>
+            </a:bar>
+
+            <a:bar skin="widgetBar" class="profileWdg tagCloud" model="testtagcloud"><?lm
+                each([tag]){
+                    <span class="tagCloud[size]">[name]</span>
+                }
+            ?></a:bar>
+
+            <a:bar skin="widgetBar" class="profileWdg textWdg" model="mdlContactInfo" liveedit="true"><?lm
+                <h3>CONTACT INFORMATION</h3>
+                each([section]) {
+                    <h4>{worknetsApp.fieldsLut[[@name]]}</h4>{
+                        if([@type] == 'text') {
+                            <p>[text()]</p>
+                        }
+                        else if([@type] == 'list'){
+                            <ul>{
+                                each([element]){
+                                    <li>[text()]</li>
+                                }
+                            }</ul>
+                        }
+                    }
+                }
+                <a href="#" class="addField">+ Add a field</a>
+                <div class="whiteContainer">
+                    View details
+                </div>
+            ?></a:bar>
+            <!--a:bar skin="widgetBar" class="profileWdg">
+                <h3>SHARED CALENDAR</h3>
+                <img src="temp_data/profile_calendar.png" />
+            </a:bar-->
+        </a:bar>
+
+        <a:bar width="430">
+            <a:tab style="margin-top:-35px;">
+                <a:page caption="Profile Details">
+                    <div class="searchFieldWallLine"> </div>
+                    <a:bar class="profileDetails" model="mdlProfileInfo" liveedit="true"><?lm
+                        local([public]) {
+                            <h2>PUBLIC INFORMATION</h2>
+                            <h3>visible to everyone</h3>{
+                                each([section]) {
+                                    <h4 class="profileDetailsTitle">{worknetsApp.fieldsLut[[@name]]}</h4>
+                                    <div class="rows">{
+                                    if([@type] == 'text') {
+                                        [text()]
+                                    }
+                                    else {
+                                        each([element]){
+                                            <div class="columL"><strong>{worknetsApp.fieldsLut[[@name]]}</strong></div>
+                                            <div class="columR">[text()]</div>
+                                        }
+                                    }
+                                    }</div>
+                                }
+                            }
+                        }
+                        local([private]) {
+                            <h2>PRIVATE INFORMATION</h2>
+                            <h3>By default invisible to the public</h3>{
+                                each([section]) {
+                                    <h4 class="profileDetailsTitle">{worknetsApp.fieldsLut[[@name]]}</h4>
+                                    <div class="rows">{
+                                    if([@type] == 'text') {
+                                        [text()]
+                                    }
+                                    else {
+                                        each([element]){
+                                            <div class="columL"><strong>{worknetsApp.fieldsLut[[@name]]}</strong></div>
+                                            <div class="columR">[text()]</div>
+                                        }
+                                    }
+                                    }</div>
+                                }
+                            }
+                        }
+                    ?></a:bar>
+                    <a:bar skin="widgetBar" class="textBox">
+                        <h3>Tips &amp; Tricks</h3>
+                        Drag drop individual items up or down to make them visible or hidden to people and organisations you are not connected to.
+                    </a:bar>
+                </a:page>
+                <a:page caption="Activity Wall">
+                    <a:bar class="searchFieldWall" height="70">
+                        <a:textbox id="tweetTxb" initial-message="What are you working on?" height="25" width="410" />
+                        <a:hbox edge="3 0 3 0">
+                            <a:button align="right" skin="widget_btn" class="greenBtn" onclick="worknetsApp.tweet.add();" width="70">Share</a:button>
+                            <br clear="all"/>
+                        </a:hbox>
+                    </a:bar>
+                    <a:list id="lstActionWall" skin="actionlist" caching="false" class="lstActionwall"
+                            multiselect="false" model="mdlWall" style="margin-top:5px;"
+                            autoselect="false">
+                        <a:each match="[requests]">
+                            <a:caption><?lm
+                                <img class="visual" src="[image]" alt="" />
+                                <a href="#" class="wallPostTitle">[name]</a>
+                                <p class="normal_p">[dsc]</p>
+                                <p class="meta">[time] &bull; <a href="#">[comnents]</a></p>
+                                <div class="dividerLine"> </div>
+                            ?></a:caption>
+                        </a:each>
+                    </a:list>
+                </a:page>
+            </a:tab>
+        </a:bar>
+
+        <a:bar width="250">
+            <a:bar skin="widgetBar" class="profileWdg">
+                <h3>WORKNETS</h3>
+                <a:list id="lstProfileWorknets" skin="wdg_list" caching="false"
+                    multiselect="false" model="mdlWorknets"
+                    autoselect="false" bindings="bdnProfileWorknets_1">
+                </a:list>
+                <a:bindings id="bdnProfileWorknets_1">
+                    <a:each match="[requests]" />
+                    <a:caption><?lm
+                         <img width="25" height="25" src="[image]" alt="Carmen Popescu" class="visual">
+                         <a href="#">[name]</a>
+                    ?></a:caption>
+                </a:bindings>
+                <a:bindings id="bdnProfileWorknets_2">
+                    <a:each match="[requests]" />
+                    <a:caption><?lm
+                        <img class="visual" alt="" src="[image]" width="50" height="50" />
+                    ?></a:caption>
+                </a:bindings>
+                <div class="whiteContainer mgGlass">
+                    <a:hbox edge="0" padding="5">
+                        <a href="javascript:void(0);" align="right" onclick="" class="wdgSort">Sorting</a>
+                        <a href="javascript:void(0);" align="right" onclick="" class="wdgViewGrid"></a>
+                        <a href="javascript:void(0);" align="right" onclick="" class="wdgViewList"></a>
+                        <br clear="all"/>
+                    </a:hbox>
+                </div>
+            </a:bar>
+
+            <a:bar skin="widgetBar" class="profileWdg">
+                <h3>ORGANIZATIONS</h3>
+                <a:list id="lstProfileOrgs" skin="wdg_list" caching="false"
+                    multiselect="false" model="testReq"
+                    autoselect="false" bindings="bdnProfileOrgs_1">
+                </a:list>
+                <a:bindings id="bdnProfileOrgs_1">
+                    <a:each match="[requests]" />
+                    <a:caption><?lm
+                         <img width="25" height="25" src="[image]" alt="Carmen Popescu" class="visual">
+                         <a href="#">[name]</a>
+                    ?></a:caption>
+                </a:bindings>
+                <a:bindings id="bdnProfileOrgs_2">
+                    <a:each match="[requests]" />
+                    <a:caption><?lm
+                        <img class="visual" alt="" src="[image]" width="50" height="50" />
+                    ?></a:caption>
+                </a:bindings>
+                <div class="whiteContainer mgGlass">
+                    <a:hbox edge="0" padding="5">
+                        <a href="javascript:void(0);" align="right" onclick="" class="wdgSort">Sorting</a>
+                        <a href="javascript:void(0);" align="right" onclick="" class="wdgViewGrid"></a>
+                        <a href="javascript:void(0);" align="right" onclick="" class="wdgViewList"></a>
+                        <br clear="all"/>
+                    </a:hbox>
+                </div>
+            </a:bar>
+
+            <a:bar skin="widgetBar" class="profileWdg">
+                <h3>CONTACTS</h3>
+                <a:list id="lstProfileContacts" skin="wdg_list" caching="false"
+                    multiselect="false" model="mdlContacts"
+                    autoselect="false" bindings="bdnProfileContacts_1">
+                </a:list>
+                <a:bindings id="bdnProfileContacts_1">
+                    <a:each match="[contact]" />
+                    <a:caption><?lm
+                         <img width="25" height="25" src="[image]" alt="Carmen Popescu" class="visual">
+                         <a href="#">[name]</a>
+                    ?></a:caption>
+                    <a:css match="[status]" value="online_user" />
+                </a:bindings>
+                <a:bindings id="bdnProfileContacts_2">
+                    <a:each match="[contact]" />
+                    <a:caption><?lm
+                        <img class="visual" alt="" src="[image]" width="50" height="50" />
+                    ?></a:caption>
+                </a:bindings>
+                <div class="whiteContainer mgGlass">
+                    <a:hbox edge="0" padding="5">
+                        <a href="javascript:void(0);" align="right" onclick="" class="wdgSort">Sorting</a>
+                        <a href="javascript:void(0);" align="right" onclick="" class="wdgViewGrid"></a>
+                        <a href="javascript:void(0);" align="right" onclick="" class="wdgViewList"></a>
+                        <br clear="all"/>
+                    </a:hbox>
+                </div>
+            </a:bar>
+            <!--a href="#org"><div class="right_panels" /></a-->
+            
+            <!--a:bar skin="widgetBar" class="profileWdg tweetWdg" style="margin-left:3px;">
+                <h3 style="margin:2px 0 0 4px;">ADD NOTE</h3>
+                <div class="whiteContainer" style="height:50px;margin:8px 4px 0 4px;">
+                    Note goes here...
+                </div>
+                <div style="border:0;">
+                    <a:textbox initial-message="Attach file" skin="note" /> <span> + Add file</span>
+                </div>
+                <div class="submit_button" />
+            </a:bar-->
+        </a:bar>
+    </a:hbox>
+</a:bar>

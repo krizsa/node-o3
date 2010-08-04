@@ -1,0 +1,13 @@
+<html>
+	<head>
+        <title>o3 demo</title>
+        <script type="text/javascript" src="onedit.js"></script>
+	</head>
+	<body onload="onedit.init('AAAAAAAA-1111-BBBB-1111-CCCCCCCCCCCC', {
+		oninstallprompt:function(url){alert(url);},
+		onafterupload:function(){alert('uploaded!!!')}})">
+		<!--embed width="256" height="256" type="application/o3-XXXXXXXX"></embed-->
+		<button onclick="onedit.open('http://www.ajax.org/o3test/dav_files/test2.doc')">Open file</button>
+		<p id="content"></p>
+	</body>
+</html>

@@ -1,0 +1,391 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:a="http://ajax.org/2005/aml">
+	<head>
+		<title>NBD-online: Productinformatie en leveranciersinformatie voor de bouw </title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="description" content=" Op www.NBD-online.nl vindt u productinformatie en leveranciersinformatie over bouwproducten en installatieproducten. Op NBD vindt u technische specificaties, (Stabu-)bestekspecificaties, verwerkingsvoorschriften, referentieprojecten, CAD-bestanden. U kunt producten in een vergelijkend overzicht plaatsen."/>
+		<meta name="keywords" content="daken,gevels,liften,installaties,bouwmateriaal,vloeren,trappen,plafonds,deuren,ramen"/>
+		<link href="/feed/news" rel="alternate" type="application/rss+xml" title="Productnieuws"/>
+		<link href="/feed/products" rel="alternate" type="application/rss+xml" title="Laatst toegevoegde producten op NBD"/>
+		<link href="style/nbd.css" rel="stylesheet" type="text/css"/>
+		<!--script type="text/javascript" src="../../../../platform/source/trunk/apf.js"></script-->
+		<!--script type="text/javascript" src="../../../../javeline/platform/source/trunk/apf.js"></script-->
+		<script type="text/javascript" src="js/apf_release_nbd.js"></script>
+		<script type="text/javascript" src="scripts/base.js"></script>
+		<script type="text/javascript">
+        apf.require("js/nbd.js");
+    </script>
+		<!-- Google Website Optimizer Control Script -->
+		<!--script type="text/javascript">
+        function utmx_section(){}function utmx(){}
+        (function(){var k='2469938551',d=document,l=d.location,c=d.cookie;function f(n){
+        if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.indexOf(';',i);return c.substring(i+n.
+        length+1,j<0?c.length:j)}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;
+        d.write('<sc'+'ript src="'+
+        'http'+(l.protocol=='https:'?'s://ssl':'://www')+'.google-analytics.com'
+        +'/siteopt.js?v=1&utmxkey='+k+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='
+        +new Date().valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+        '" type="text/javascript" charset="utf-8"></sc'+'ript>')})();
+    </script>
+    <script type="text/javascript">
+        utmx("url",'A/B');
+    </script-->
+		<!-- End of Google Website Optimizer Control Script -->
+	</head>
+	<body style="display: none">
+		<noscript>
+			<div id="noscript">
+				<p><strong>Javascript is uitgeschakeld voor uw internetbrowser.</strong><br/><br/>
+            Deze website maakt gebruik van javascript.<br/>
+            Om gebruik te maken van NBD-Online dient u javascript in te schakelen.
+            </p>
+			</div>
+		</noscript>
+		<a:appsettings name="nbd" debug="false" disable-right-click="false" disable-space="true" auto-hide-loading="true" allow-select="true" allow-blur="true" resize-outline="{apf.isIE and apf.isIE lt 8 and !apf.isIE7Emulate}" iepngfix-selectors="#tooltipDownHeader, #tooltipContent_down, #tooltipDownFooter, #tooltipUpHeader, #tooltipContent_up, #tooltipUpFooter" initdelay="false" loading-message="Laden..." empty-message="Laden..." baseurl="{apf.host ? apf.host + '/' : 'http://www.nbd.isdu.javeline.com:8083/'}" baseurl2="{apf.host ? apf.host + '/' : 'http://localhost/mock/'}"></a:appsettings>
+		<a:skin src="style/skins.xml" media-path="style/skinimg/" icon-path="style/icons/"/>
+		<a:loader>
+			<div id="loadscreen">
+            Bezig met laden...
+        </div>
+		</a:loader>
+		<div class="headerWrapper">
+			<div class="NBDLogo">
+				<a href="#home" title="">
+					<img src="style/images/nbd-logo.png" width="452" height="69" alt="NBD" title="NBD"/>
+					<span class="headerMoto" model="search/show-webtext.php?reference=flexibele_subkoptekst"><?lm ~~c1~~ ?></span>
+				</a>
+			</div>
+			<div class="pagesSiteNav" id="pagesSiteNav">
+				<ul>
+					<li class="gohome"><a href="#home" title=""><img src="style/images/home-icn.png" width="19" height="15" alt="NBD Homepage" title="NBD Homepage"/></a></li>
+					<li><a href="#news" title="">Productnieuws</a></li>
+					<li><a href="#productenoverzicht" title="">Producten &amp; leveranciers</a></li>
+					<li><a href="#bestekencad" title="">Bestekinformatie &amp; CAD-details</a></li>
+					<!--li><a href="#whitepapers" title="">Whitepapers</a></li>
+                <li><a href="#themas" title="">Thema’s</a></li-->
+					<li><a href="#page/kennistools" title="">Kennistools</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="navWrapper">
+			<div class="navSubWrapper">
+				<div class="navBody">
+					<div class="formWrapper">
+						<!-- START home extra -->
+						<p class="cntTitle">Zoek naar productinformatie</p>
+						<!-- END home extra -->
+						<a:textbox id="txtSearch" tabindex="100" initial-message="Type trefwoord, product of leverancier" width="300" style="float:left"/>
+						<a:dropdown id="ddSearch" model="mdlSearchCats" each="[category]" caption="[text()]" selected="[category[@default='true']]" eachvalue="[@name]" style="float:left"/>
+						<a href="javascript:void(0)" onclick="nbdApp.doSearch()" class="imgBtn" title=""><img src="style/images/btns/btn-search.png" name="search"/></a>
+						<span class="searchCounter" id="searchtime" rel="txtSearch">
+						</span>
+						<!-- START home extra -->
+						<div class="categoriesTreeWrapper">
+							<p class="cntTitle">Blader per categorie</p>
+							<div class="categoriesTreeBody">
+								<div class="treeOverlay">
+									<div class="to" id="homeTreeCont">
+										<a:tree id="treeHomeCats1" each="[category[1]|category[2]|category[3]|category[4]|category[5]]" model="mdlCategories" autoselect="false" prerender="false" openonadd="true" canrename="false" onafterselect="if (this.selected) nbdApp.navigateTo('search/' + this.selected.getAttribute('name') + '-1-1-products/0')" onexpand="nbdApp.homeCollapse(1, event)" oncollapse="nbdApp.homeCollapse(-1, event)">
+											<a:caption><?lm 
+                                            <a href="javascript:void(0)">[@name]</a>
+                                            if (%[@products])
+                                                <em>([@products])</em>
+                                         ?></a:caption>
+											<a:insert match="[category[not(@leaf)]]" get="{comm.getCategories([@id])}"/>
+										</a:tree>
+										<a:tree id="treeHomeCats2" each="[category[6]|category[7]|category[8]|category[9]|category[10]]" model="mdlCategories" autoselect="false" prerender="false" openonadd="true" canrename="false" onafterselect="if (this.selected) nbdApp.navigateTo('search/' + this.selected.getAttribute('name') + '-1-1-products/0')" onexpand="nbdApp.homeCollapse(1, event)" oncollapse="nbdApp.homeCollapse(-1, event)">
+											<a:caption><?lm 
+                                            <a href="javascript:void(0)">[@name]</a>
+                                            if (%[@products])
+                                                <em>([@products])</em>
+                                         ?></a:caption>
+											<a:insert match="[category[not(@leaf)]]" get="{comm.getCategories([@id])}"/>
+										</a:tree>
+										<a:tree each="[category[11]]" model="mdlCategories" autoselect="false" prerender="false" openonadd="true" canrename="false" onafterselect="if (this.selected) nbdApp.navigateTo('search/' + this.selected.getAttribute('name') + '-1-1-products/0')">
+											<a:caption><?lm 
+                                            <a href="javascript:void(0)">[@name]</a>
+                                            if (%[@products])
+                                                <em>([@products])</em>
+                                         ?></a:caption>
+											<a:insert match="[category[not(@leaf)]]" get="{comm.getCategories([@id])}"/>
+										</a:tree>
+									</div>
+									<div id="closeOverlay">
+										<a href="javascript:void(0)" onclick="nbdApp.homeCollapse()" title="" class="close">Sluiten</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- END home extra -->
+					</div>
+					<!-- START home extra -->
+					<div class="homeAdvert"><img src="style/images/cnt/home-bn.png" alt="" title=""/></div>
+					<div class="siteNav">
+						<ul>
+							<li class="direction"><span>Direct naar:</span></li>
+							<li><a href="#news" title="">Productnieuws</a></li>
+							<li><a href="#productenoverzicht" title="">Producten &amp; leveranciers</a></li>
+							<li><a href="#bestekencad" title="">Bestekinformatie &amp; CAD-details</a></li>
+							<!--li><a href="#whitepapers" title="">Whitepapers</a></li>
+                        <li><a href="#themas" title="">Thema’s</a></li-->
+							<li><a href="#page/kennistools" title="">Kennistools</a></li>
+						</ul>
+					</div>
+					<!-- END home extra -->
+				</div>
+			</div>
+		</div>
+		<div class="contentWrapper">
+			<div class="bredcrumbsWrapper">
+				<ul id="breadcrumb">
+					<li><a href="#home" title="">home</a></li>
+				</ul>
+			</div>
+			<div class="contentSubWrapper">
+				<a:pages id="pgSite" src="pages/{nbdApp.page}.xml" onerror="nbdApp.navigateTo('page/nbd404');return false;"/>
+			</div>
+		</div>
+		<div class="footerWrapper">
+			<div class="footerLinksWrapper">
+				<div class="footerLinksBody">
+					<div class="footerLinks">
+						<dl>
+							<dt>Nieuwsbrieven</dt>
+							<dd>
+								<ul>
+									<li><a href="#page/nieuwsbrief" title="">NBD Bouwproducten</a></li>
+									<li><a href="#page/nieuwsbrief" title="">NBD installatieproducten</a></li>
+									<li><a href="#" title="">de Architect</a></li>
+									<li><a href="#" title="">Cobouw</a></li>
+									<li><a href="#" title="">Vastgoedmarkt</a></li>
+								</ul>
+							</dd>
+						</dl>
+						<dl>
+							<dt>RSS</dt>
+							<dd>
+								<ul>
+									<li><a href="#" title="">NBD (productnieuws)</a></li>
+									<li><a href="#" title="">de Architect (nieuws)</a></li>
+									<li><a href="#" title="">Cobouw (nieuws)</a></li>
+									<li><a href="#" title="">Wat is RSS?</a></li>
+								</ul>
+							</dd>
+						</dl>
+						<dl>
+							<dt>Abonnementen</dt>
+							<dd>
+								<ul>
+									<li><a href="#" title="">de Architect</a></li>
+									<li><a href="#" title="">Cobouw</a></li>
+									<li><a href="#" title="">GAWALO</a></li>
+									<li><a href="#" title="">Installatie Journaal</a></li>
+									<li><a href="#" title="">NBD Magazine</a></li>
+								</ul>
+							</dd>
+						</dl>
+						<dl>
+							<dt>Over NBD</dt>
+							<dd>
+								<ul>
+									<li><a href="#page/adverteren" title="">Adverteren</a></li>
+									<li><a href="#page/colofon" title="">Colofon</a></li>
+									<li><a href="#page/contact" title="">Contact</a></li>
+									<li><a href="#page/faq" title="">FAQ</a></li>
+									<li><a href="#page/sitemap" title="">Sitemap</a></li>
+								</ul>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+			<div class="footerInfoWrapper">
+				<div class="footerInfoBody">
+					<div class="footerInfo">
+						<span class="btmLogo"><a href="#" title=""><img src="style/images/sdu-logo.png" alt="" title=""/></a></span>
+						<ul>
+							<li class="ttl">Ook uitgever van:</li>
+							<li><a href="http://dearchitect.sdu.nl" target="_blank">De Architect</a></li>
+							<li><a href="http://www.cobouw.nl" target="_blank">Cobouw</a></li>
+							<li><a href="http://www.gawalo.nl/" target="_blank">Gawalo</a></li>
+							<li><a href="http://www.installatiejournaal.nl/" target="_blank">Installatiejournaal</a></li>
+							<li><a href="http://www.vastgoedmarkt.nl" target="_blank">Vastgoedmarkt</a></li>
+						</ul>
+						<ul class="cop">
+							<li class="ttl">2010 NBD</li>
+							<li><a href="#page/privacy" title="">Privacy</a></li>
+							<li><a href="#page/disclaimer" title="">Disclaimer</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a:comment>
+			<a href="/products.html" style="display:block;margin:1000px 0 0 0;">NBD producten</a>
+			<a href="/suppliers.html" style="display:block;">NBD leveranciers</a>
+			<a href="/news.html" style="display:block;">NBD nieuws</a>
+			<a href="/pages.html" style="display:block;">NBD pagina's</a>
+		</a:comment>
+		<a:rpc id="comm" protocol="cgi">
+			<a:method name="count" url="search/count.php" receive="nbdApp.processCount">
+				<a:variable name="search"/>
+				<a:variable name="search_on"/>
+			</a:method>
+			<a:method name="searchProduct" url="search/search.php" receive="nbdApp.search.process">
+				<a:variable name="search"/>
+				<a:variable name="page_product"/>
+				<a:variable name="city"/>
+				<a:variable name="category"/>
+				<a:variable name="properties"/>
+				<a:variable name="supplier"/>
+				<a:variable name="attachment_types"/>
+				<a:variable name="search_supplier"/>
+				<a:variable name="search_on"/>
+				<a:variable name="calc_filters" default="1"/>
+				<a:variable name="search_id"/>
+				<a:variable name="search_product" value="1"/>
+				<a:variable name="search_textbanner" value="1"/>
+				<a:variable name="project"/>
+				<a:variable name="limit"/>
+			</a:method>
+			<a:method name="searchSupplier" url="search/search.php" receive="nbdApp.search.process">
+				<a:variable name="search"/>
+				<a:variable name="page_supplier"/>
+				<a:variable name="city"/>
+				<a:variable name="category"/>
+				<a:variable name="properties"/>
+				<a:variable name="supplier"/>
+				<a:variable name="attachment_types"/>
+				<a:variable name="search_product"/>
+				<a:variable name="search_on"/>
+				<a:variable name="calc_filters" default="1"/>
+				<a:variable name="search_id"/>
+				<a:variable name="search_supplier" value="1"/>
+				<a:variable name="search_textbanner" value="1"/>
+				<a:variable name="project"/>
+				<a:variable name="limit"/>
+			</a:method>
+			<a:method name="searchNews" url="search/search.php" receive="nbdApp.search.process">
+				<a:variable name="search"/>
+				<a:variable name="page_news"/>
+				<a:variable name="city"/>
+				<a:variable name="category"/>
+				<a:variable name="properties"/>
+				<a:variable name="supplier"/>
+				<a:variable name="attachment_types"/>
+				<a:variable name="search_product"/>
+				<a:variable name="search_on"/>
+				<a:variable name="calc_filters" default="1"/>
+				<a:variable name="search_id"/>
+				<a:variable name="search_supplier" value="0"/>
+				<a:variable name="search_news" value="1"/>
+				<a:variable name="search_textbanner" value="1"/>
+				<a:variable name="project"/>
+				<a:variable name="limit"/>
+			</a:method>
+			<a:method name="searchAttachment" url="search/search.php?filter\[attachment_type_id\]\[\]=1&amp;filter\[attachment_type_id\]\[\]=2&amp;filter\[attachment_type_id\]\[\]=4&amp;filter\[attachment_type_id\]\[\]=5&amp;filter\[attachment_type_id\]\[\]=6" receive="nbdApp.search.process">
+				<a:variable name="search"/>
+				<a:variable name="page_attachment"/>
+				<a:variable name="city"/>
+				<a:variable name="category"/>
+				<a:variable name="properties"/>
+				<a:variable name="supplier"/>
+				<a:variable name="attachment_types"/>
+				<a:variable name="search_product"/>
+				<a:variable name="search_on"/>
+				<a:variable name="calc_filters" default="1"/>
+				<a:variable name="search_id"/>
+				<a:variable name="search_textbanner" value="1"/>
+				<a:variable name="project"/>
+				<a:variable name="limit"/>
+				<a:variable name="search_product_attachment" default="0"/>
+				<a:variable name="search_supplier_attachment" default="1"/>
+			</a:method>
+			<a:method name="loadProduct" url="search/show-product.php" cache="true" type="xml">
+				<a:variable name="id"/>
+				<a:variable name="search_id"/>
+			</a:method>
+			<a:method name="loadSupplier" url="search/show-supplier.php" cache="true" type="xml">
+				<a:variable name="id"/>
+				<a:variable name="search_id"/>
+			</a:method>
+			<a:method name="getCategories" url="search/categories.php">
+				<a:variable name="id"/>
+				<a:variable name="profile"/>
+				<a:variable name="count" value="product"/>
+			</a:method>
+			<a:method name="getNews" url="search/news.php" receive="nbdApp.news.process">
+				<a:variable name="page" default="1"/>
+				<a:variable name="limit" default="10"/>
+				<a:variable name="content" value="lead"/>
+			</a:method>
+			<a:method name="getNewsItem" url="search/show-news.php" receive="nbdApp.news.processItem">
+				<a:variable name="id"/>
+			</a:method>
+			<a:method name="getPage" url="search/show-webtext.php" cache="true" type="xml">
+				<a:variable name="reference"/>
+			</a:method>
+			<!-- Captcha -->
+			<a:method name="checkCaptcha" url="securimage/securimage_check.php">
+				<a:variable name="captcha"/>
+			</a:method>
+		</a:rpc>
+		<a:model id="mdlMainNews" src="search/show-news.php" cache="search/show-news.php"/>
+		<a:model id="mdlNews"/>
+		<a:model id="mdlNewsMostRead" src="search/news.php?cmd=most_visited_news&amp;limit=5" cache="search/news.php?cmd=most_visited_news&amp;limit=5"/>
+		<a:model id="mdlEditorsNews" src="search/news.php?limit=6&amp;editors_choice=1" cache="search/news.php?limit=6&amp;editors_choice=1"/>
+		<a:model id="mdlRecentProducts" src="search/search.php?cmd=most_recent_products&amp;limit=2" cache="search/search.php?cmd=most_recent_products&amp;limit=2"/>
+		<a:model id="mdlSearchCats">
+			<categories xmlns="">
+				<category name="products" default="true">Producten</category>
+				<category name="suppliers">Leveranciers</category>
+				<category name="news">Productnieuws</category>
+				<category name="bestekcad">Bestekken &amp; CAD</category>
+				<!--category name="whitepapers">Whitepapers</category>
+            <category name="themes">Thema's</category>
+            <category name="wholesite">Hele Website</category-->
+			</categories>
+		</a:model>
+		<a:model id="mdlVideos" src="{'' + (location.href.match(/preview/)?'videos_staging.xml':'videos.xml')}" cache="videos.xml"/>
+		<a:model id="mdlSupplier"/>
+		<a:model id="mdlFilters"/>
+		<a:model id="mdlSearch">
+			<search xmlns="">
+				<products/>
+				<suppliers/>
+				<news/>
+				<attachments/>
+			</search>
+		</a:model>
+		<a:model id="mdlSearchResults"/>
+		<a:model id="mdlSupplierSearch"/>
+		<a:model id="mdlBanners"/>
+		<a:model id="mdlNewsItem"/>
+		<a:model id="mdlFilter" saveoriginal="true">
+			<data xmlns=""/>
+		</a:model>
+		<a:model id="mdlCategories" cache="search/categories.php">
+			<categories xmlns="">
+				<category id="556" name="Constructies en materiaal"/>
+				<category id="833" name="Gevels"/>
+				<category id="382" name="Binnenwanden/plafonds"/>
+				<category id="2090" name="Vloeren en trappen"/>
+				<category id="580" name="Daken"/>
+				<category id="1547" name="Ramen en deuren"/>
+				<category id="1181" name="Transport"/>
+				<category id="971" name="Inrichting"/>
+				<category id="123120" name="W-installaties"/>
+				<category id="982" name="E-installaties"/>
+				<category id="485" name="Buitenruimte"/>
+			</categories>
+		</a:model>
+		<a:model id="mdlDoorsturen" saveoriginal="true" submission="url.post:mijn-nbd/tellafriend.php" onsubmitsuccess="pageTracker._trackPageview('/doorsturen_nbd'); alert('Uw bericht is verstuurd');" onsubmiterror="nbdApp.util.showAlert('Error bij het versturen van uw bericht')">
+			<data xmlns=""/>
+		</a:model>
+		<!--a:include src="windows.xml" /-->
+		<a:modalwindow id="winAlert" onshow="nbdApp.util.alertText()" visible="false" title="Alert" buttons="close" modal="true" width="220" height="180" center="true" render="runtime" popout="true">
+			<div id="winAlertMsg">
+			</div>
+			<a:button id="btnAlert" right="8" bottom="0" caption="OK" onclick="winAlert.hide()"/>
+		</a:modalwindow>
+	</body>
+</html>

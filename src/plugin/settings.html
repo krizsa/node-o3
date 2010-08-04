@@ -1,0 +1,64 @@
+<html<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml"	xml:lang="en">
+
+	<head>
+        <script type="text/javascript" src="o3.js"></script>        
+	</head>
+	<body>
+		<form id=settings name=settings>		
+		</form>
+		<br></br>
+		<button type="button" onclick="saveSettings(settings)">Save settings</button>
+	</body>
+	<script>
+		var o3obj;
+        // creating an o3 instance, we need the UID and the name of the product
+        // the o3.js file will take care of all the details
+        o3obj = o3.create("AAAAAAAA-1111-BBBB-1111-CCCCCCCCCCCC", { 
+            oninstallprompt : function(){ alert("can't find o3 plugin");}    
+        } );
+
+		var settings = o3obj.settings,
+			elems = settings.match(/[\w\.]+\([\w\=\,]+\);/g),
+			form = document.getElementById('settings');
+		
+		function addSite(form, str){
+			var name = str.match(/[\w\.]+/)[0],
+				components = str.match(/[\w]+\=[\d]+/g),
+				html = '\n<br>'+name+':</br>',
+				e,comp,val;
+			
+			
+			for (var i=0; i<components.length; i++) {
+				comp = components[i];
+				e = comp.indexOf('=');
+				val = comp.substring(e+1);
+				comp = comp.substring(0,e);				
+				html += comp + '<input type="checkbox" fileName ="' + name + '" name="' + comp + '"' + (parseInt(val)>0 ? 'checked="yes"' : '') + '/>\n';
+			}	
+			
+			form.innerHTML = html + form.innerHTML;
+		}
+
+		
+		for (var i=0; elems && i < elems.length; i++) {
+			addSite(form, elems[i]);
+		}
+					
+		function saveSettings(form) {
+			var newSettings = {}, f, s=[];
+			for (var i=0; i<form.length; i++){
+				f = form[i];
+				(newSettings[f.fileName] ? newSettings[f.fileName] : newSettings[f.fileName] = []).push(f.name + '=' + (f.checked ? 1 : 0));
+			}
+			for (var v in newSettings)
+				s.push(v,'(',newSettings[v].join(','),',);');
+			
+			o3obj.settings = s.join('');	
+		}		
+					
+		//o3obj.settings = settings;				
+		//var chkbox = document.getElementById('settings').fs;	
+	
+    </script>
+</html>

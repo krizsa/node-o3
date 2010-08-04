@@ -1,0 +1,278 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{475BCB3E-DE6D-4860-B1E2-9AE4B00D4BC7}"
+	ProjectSection(SolutionItems) = preProject
+		..\include\core\o3_Buf.h = ..\include\core\o3_Buf.h
+		..\include\core\o3_cMgr.h = ..\include\core\o3_cMgr.h
+		..\include\core\o3_cO3.h = ..\include\core\o3_cO3.h
+		..\include\core\o3_config.h = ..\include\core\o3_config.h
+		..\include\core\o3_core.h = ..\include\core\o3_core.h
+		..\include\core\o3_crypto.h = ..\include\core\o3_crypto.h
+		..\include\core\o3_cScr.h = ..\include\core\o3_cScr.h
+		..\include\core\o3_cScrBuf.h = ..\include\core\o3_cScrBuf.h
+		..\include\core\o3_cStream.h = ..\include\core\o3_cStream.h
+		..\include\core\o3_cStream_posix.h = ..\include\core\o3_cStream_posix.h
+		..\include\core\o3_cStream_win32.h = ..\include\core\o3_cStream_win32.h
+		..\include\core\o3_cStreamBase.h = ..\include\core\o3_cStreamBase.h
+		..\include\core\o3_cSys.h = ..\include\core\o3_cSys.h
+		..\include\core\o3_cSys_posix.h = ..\include\core\o3_cSys_posix.h
+		..\include\core\o3_cSys_win32.h = ..\include\core\o3_cSys_win32.h
+		..\include\core\o3_cSysBase.h = ..\include\core\o3_cSysBase.h
+		..\include\core\o3_cUnk.h = ..\include\core\o3_cUnk.h
+		..\include\core\o3_debug.h = ..\include\core\o3_debug.h
+		..\include\core\o3_iAlloc.h = ..\include\core\o3_iAlloc.h
+		..\include\core\o3_iBuf.h = ..\include\core\o3_iBuf.h
+		..\include\core\o3_iCtx.h = ..\include\core\o3_iCtx.h
+		..\include\core\o3_iFs.h = ..\include\core\o3_iFs.h
+		..\include\core\o3_iHttp.h = ..\include\core\o3_iHttp.h
+		..\include\core\o3_iImage.h = ..\include\core\o3_iImage.h
+		..\include\core\o3_iMgr.h = ..\include\core\o3_iMgr.h
+		..\include\core\o3_iScr.h = ..\include\core\o3_iScr.h
+		..\include\core\o3_iStream.h = ..\include\core\o3_iStream.h
+		..\include\core\o3_iSys.h = ..\include\core\o3_iSys.h
+		..\include\core\o3_iUnk.h = ..\include\core\o3_iUnk.h
+		..\include\core\o3_math.h = ..\include\core\o3_math.h
+		..\include\core\o3_pub_key.h = ..\include\core\o3_pub_key.h
+		..\include\core\o3_scr_cO3.h = ..\include\core\o3_scr_cO3.h
+		..\include\core\o3_scr_cScr.h = ..\include\core\o3_scr_cScr.h
+		..\include\core\o3_scr_cScrBuf.h = ..\include\core\o3_scr_cScrBuf.h
+		..\include\core\o3_scr_cStream_posix.h = ..\include\core\o3_scr_cStream_posix.h
+		..\include\core\o3_scr_cStream_win32.h = ..\include\core\o3_scr_cStream_win32.h
+		..\include\core\o3_scr_cStreamBase.h = ..\include\core\o3_scr_cStreamBase.h
+		..\include\core\o3_tList.h = ..\include\core\o3_tList.h
+		..\include\core\o3_tMap.h = ..\include\core\o3_tMap.h
+		..\include\core\o3_tools.h = ..\include\core\o3_tools.h
+		..\include\core\o3_tools_atomic.h = ..\include\core\o3_tools_atomic.h
+		..\include\core\o3_tools_atomic_apple.h = ..\include\core\o3_tools_atomic_apple.h
+		..\include\core\o3_tools_atomic_linux.h = ..\include\core\o3_tools_atomic_linux.h
+		..\include\core\o3_tools_atomic_win32.h = ..\include\core\o3_tools_atomic_win32.h
+		..\include\core\o3_tools_chr.h = ..\include\core\o3_tools_chr.h
+		..\include\core\o3_tools_mem.h = ..\include\core\o3_tools_mem.h
+		..\include\core\o3_tools_str.h = ..\include\core\o3_tools_str.h
+		..\include\core\o3_tScrVec.h = ..\include\core\o3_tScrVec.h
+		..\include\core\o3_tScrVec_scr.h = ..\include\core\o3_tScrVec_scr.h
+		..\include\core\o3_tStr.h = ..\include\core\o3_tStr.h
+		..\include\core\o3_tVec.h = ..\include\core\o3_tVec.h
+		..\include\core\o3_types.h = ..\include\core\o3_types.h
+		..\include\core\o3_types_posix.h = ..\include\core\o3_types_posix.h
+		..\include\core\o3_types_win32.h = ..\include\core\o3_types_win32.h
+		..\include\core\o3_Var.h = ..\include\core\o3_Var.h
+	EndProjectSection
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sh", "sh\sh.vcproj", "{A909D85D-3EB5-433B-8C13-2A698B6E354D}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plugin", "plugin\plugin.vcproj", "{54048B17-8201-4503-AAC7-B8652228519D}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ssb", "ssb\ssb.vcproj", "{93E2AEBD-1B72-4158-A668-5E2A52AE5806}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "installer", "installer\installer.vcproj", "{9791C227-C0E7-45D1-93C9-BF65862F4032}"
+	ProjectSection(ProjectDependencies) = postProject
+		{54048B17-8201-4503-AAC7-B8652228519D} = {54048B17-8201-4503-AAC7-B8652228519D}
+	EndProjectSection
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "blob", "blob\blob.vcproj", "{E9AE6049-A82A-4982-B023-A413CA6C9478}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console", "console\console.vcproj", "{6CC7D769-96C4-43EB-AB1A-10FECBFE1308}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "barcode", "barcode\barcode.vcproj", "{37A9CB1A-886D-4ECD-B4B6-CD3D880498FF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fs", "fs\fs.vcproj", "{B023F9C0-670C-4B8B-AE45-DDA964F7EE61}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "http", "http\http.vcproj", "{74F85E44-B917-4BEF-84F9-7F9615266C17}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "image", "image\image.vcproj", "{943CA6D8-9461-4F07-897E-DC1DD2FA015F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "js", "js\js.vcproj", "{A65F0875-1D15-4FD3-95CD-7E5B1F6225A6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "process", "process\process.vcproj", "{D6EFB3A4-7868-43F6-A9C5-193901238D0F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "protocol", "protocol\protocol.vcproj", "{08017CCB-C167-436A-A50E-21F574C2F8F6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "resource", "resource\resource.vcproj", "{0BE9BD1D-EE15-4BE2-AFD3-463F3C887210}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "screen", "screen\screen.vcproj", "{732A1D88-5137-4BFB-B8C6-E2FF34067546}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tools", "tools\tools.vcproj", "{A9551FB0-78DA-42DB-8709-0CA389CA78F7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "window", "window\window.vcproj", "{9F21D542-3FD1-4FAA-8008-D328A05E7080}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xml", "xml\xml.vcproj", "{E9D76031-7521-45E3-B397-DBE1E7F57BFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{E190BAD3-A698-45AF-9B6C-95E03D776584}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{B1323F70-C4B5-4008-8589-71D5EBFC244D}"
+	ProjectSection(SolutionItems) = preProject
+		..\include\shared\o3_cdroptarget.h = ..\include\shared\o3_cdroptarget.h
+		..\include\shared\o3_CSink.h = ..\include\shared\o3_CSink.h
+		..\include\shared\o3_glue.h = ..\include\shared\o3_glue.h
+		..\include\shared\o3_glue_idispatch.h = ..\include\shared\o3_glue_idispatch.h
+		..\include\shared\o3_scr_glue.h = ..\include\shared\o3_scr_glue.h
+		..\include\shared\o3_tools_win32.h = ..\include\shared\o3_tools_win32.h
+		..\include\shared\o3_zip_tools.h = ..\include\shared\o3_zip_tools.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rsa", "rsa", "{1E12F863-6944-45C0-A3DD-7E64B9532857}"
+	ProjectSection(SolutionItems) = preProject
+		..\include\rsa\o3_cRSA1.h = ..\include\rsa\o3_cRSA1.h
+		..\include\rsa\o3_rsa.h = ..\include\rsa\o3_rsa.h
+		..\include\rsa\o3_scr_cRSA1.h = ..\include\rsa\o3_scr_cRSA1.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "md5", "md5", "{22467238-3D1B-424A-81B4-AEA3EC165CA8}"
+	ProjectSection(SolutionItems) = preProject
+		..\include\md5\o3_cMD5Hash1.h = ..\include\md5\o3_cMD5Hash1.h
+		..\include\md5\o3_md5.h = ..\include\md5\o3_md5.h
+		..\include\md5\o3_scr_cMD5Hash1.h = ..\include\md5\o3_scr_cMD5Hash1.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sha1", "sha1", "{28B2F03A-5DE2-492C-95A8-E2AE60088A89}"
+	ProjectSection(SolutionItems) = preProject
+		..\include\sha1\o3_cSHA1Hash1.h = ..\include\sha1\o3_cSHA1Hash1.h
+		..\include\sha1\o3_scr_cSHA1Hash1.h = ..\include\sha1\o3_scr_cSHA1Hash1.h
+		..\include\sha1\o3_sha1.h = ..\include\sha1\o3_sha1.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "zip", "zip", "{6F09CF9A-A76C-46E5-8E9F-27D87E8D21E3}"
+	ProjectSection(SolutionItems) = preProject
+		..\include\zip\o3_cZip1.h = ..\include\zip\o3_cZip1.h
+		..\include\zip\o3_zip.h = ..\include\zip\o3_zip.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "socket", "socket", "{50C011B8-A82D-4BFC-840D-47183A80E9D8}"
+	ProjectSection(SolutionItems) = preProject
+		..\include\socket\o3_cSocket1.h = ..\include\socket\o3_cSocket1.h
+		..\include\socket\o3_cSocket1_libevent.h = ..\include\socket\o3_cSocket1_libevent.h
+		..\include\socket\o3_cSocket1_posix.h = ..\include\socket\o3_cSocket1_posix.h
+		..\include\socket\o3_cSocket1_win32.h = ..\include\socket\o3_cSocket1_win32.h
+		..\include\socket\o3_cSocket1Base.h = ..\include\socket\o3_cSocket1Base.h
+		..\include\socket\o3_scr_cSocket1_posix.h = ..\include\socket\o3_scr_cSocket1_posix.h
+		..\include\socket\o3_scr_cSocket1_win32.h = ..\include\socket\o3_scr_cSocket1_win32.h
+		..\include\socket\o3_scr_cSocket1Base.h = ..\include\socket\o3_scr_cSocket1Base.h
+		..\include\socket\o3_socket.h = ..\include\socket\o3_socket.h
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A909D85D-3EB5-433B-8C13-2A698B6E354D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A909D85D-3EB5-433B-8C13-2A698B6E354D}.Debug|Win32.Build.0 = Debug|Win32
+		{A909D85D-3EB5-433B-8C13-2A698B6E354D}.Release|Win32.ActiveCfg = Release|Win32
+		{A909D85D-3EB5-433B-8C13-2A698B6E354D}.Release|Win32.Build.0 = Release|Win32
+		{54048B17-8201-4503-AAC7-B8652228519D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{54048B17-8201-4503-AAC7-B8652228519D}.Debug|Win32.Build.0 = Debug|Win32
+		{54048B17-8201-4503-AAC7-B8652228519D}.Release|Win32.ActiveCfg = Release|Win32
+		{54048B17-8201-4503-AAC7-B8652228519D}.Release|Win32.Build.0 = Release|Win32
+		{93E2AEBD-1B72-4158-A668-5E2A52AE5806}.Debug|Win32.ActiveCfg = Debug|Win32
+		{93E2AEBD-1B72-4158-A668-5E2A52AE5806}.Debug|Win32.Build.0 = Debug|Win32
+		{93E2AEBD-1B72-4158-A668-5E2A52AE5806}.Release|Win32.ActiveCfg = Release|Win32
+		{93E2AEBD-1B72-4158-A668-5E2A52AE5806}.Release|Win32.Build.0 = Release|Win32
+		{9791C227-C0E7-45D1-93C9-BF65862F4032}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9791C227-C0E7-45D1-93C9-BF65862F4032}.Debug|Win32.Build.0 = Debug|Win32
+		{9791C227-C0E7-45D1-93C9-BF65862F4032}.Release|Win32.ActiveCfg = Release|Win32
+		{9791C227-C0E7-45D1-93C9-BF65862F4032}.Release|Win32.Build.0 = Release|Win32
+		{E9AE6049-A82A-4982-B023-A413CA6C9478}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E9AE6049-A82A-4982-B023-A413CA6C9478}.Debug|Win32.Build.0 = Debug|Win32
+		{E9AE6049-A82A-4982-B023-A413CA6C9478}.Release|Win32.ActiveCfg = Release|Win32
+		{E9AE6049-A82A-4982-B023-A413CA6C9478}.Release|Win32.Build.0 = Release|Win32
+		{6CC7D769-96C4-43EB-AB1A-10FECBFE1308}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6CC7D769-96C4-43EB-AB1A-10FECBFE1308}.Debug|Win32.Build.0 = Debug|Win32
+		{6CC7D769-96C4-43EB-AB1A-10FECBFE1308}.Release|Win32.ActiveCfg = Release|Win32
+		{6CC7D769-96C4-43EB-AB1A-10FECBFE1308}.Release|Win32.Build.0 = Release|Win32
+		{37A9CB1A-886D-4ECD-B4B6-CD3D880498FF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{37A9CB1A-886D-4ECD-B4B6-CD3D880498FF}.Debug|Win32.Build.0 = Debug|Win32
+		{37A9CB1A-886D-4ECD-B4B6-CD3D880498FF}.Release|Win32.ActiveCfg = Release|Win32
+		{37A9CB1A-886D-4ECD-B4B6-CD3D880498FF}.Release|Win32.Build.0 = Release|Win32
+		{B023F9C0-670C-4B8B-AE45-DDA964F7EE61}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B023F9C0-670C-4B8B-AE45-DDA964F7EE61}.Debug|Win32.Build.0 = Debug|Win32
+		{B023F9C0-670C-4B8B-AE45-DDA964F7EE61}.Release|Win32.ActiveCfg = Release|Win32
+		{B023F9C0-670C-4B8B-AE45-DDA964F7EE61}.Release|Win32.Build.0 = Release|Win32
+		{74F85E44-B917-4BEF-84F9-7F9615266C17}.Debug|Win32.ActiveCfg = Debug|Win32
+		{74F85E44-B917-4BEF-84F9-7F9615266C17}.Debug|Win32.Build.0 = Debug|Win32
+		{74F85E44-B917-4BEF-84F9-7F9615266C17}.Release|Win32.ActiveCfg = Release|Win32
+		{74F85E44-B917-4BEF-84F9-7F9615266C17}.Release|Win32.Build.0 = Release|Win32
+		{943CA6D8-9461-4F07-897E-DC1DD2FA015F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{943CA6D8-9461-4F07-897E-DC1DD2FA015F}.Debug|Win32.Build.0 = Debug|Win32
+		{943CA6D8-9461-4F07-897E-DC1DD2FA015F}.Release|Win32.ActiveCfg = Release|Win32
+		{943CA6D8-9461-4F07-897E-DC1DD2FA015F}.Release|Win32.Build.0 = Release|Win32
+		{A65F0875-1D15-4FD3-95CD-7E5B1F6225A6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A65F0875-1D15-4FD3-95CD-7E5B1F6225A6}.Debug|Win32.Build.0 = Debug|Win32
+		{A65F0875-1D15-4FD3-95CD-7E5B1F6225A6}.Release|Win32.ActiveCfg = Release|Win32
+		{A65F0875-1D15-4FD3-95CD-7E5B1F6225A6}.Release|Win32.Build.0 = Release|Win32
+		{D6EFB3A4-7868-43F6-A9C5-193901238D0F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D6EFB3A4-7868-43F6-A9C5-193901238D0F}.Debug|Win32.Build.0 = Debug|Win32
+		{D6EFB3A4-7868-43F6-A9C5-193901238D0F}.Release|Win32.ActiveCfg = Release|Win32
+		{D6EFB3A4-7868-43F6-A9C5-193901238D0F}.Release|Win32.Build.0 = Release|Win32
+		{08017CCB-C167-436A-A50E-21F574C2F8F6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{08017CCB-C167-436A-A50E-21F574C2F8F6}.Debug|Win32.Build.0 = Debug|Win32
+		{08017CCB-C167-436A-A50E-21F574C2F8F6}.Release|Win32.ActiveCfg = Release|Win32
+		{08017CCB-C167-436A-A50E-21F574C2F8F6}.Release|Win32.Build.0 = Release|Win32
+		{0BE9BD1D-EE15-4BE2-AFD3-463F3C887210}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0BE9BD1D-EE15-4BE2-AFD3-463F3C887210}.Debug|Win32.Build.0 = Debug|Win32
+		{0BE9BD1D-EE15-4BE2-AFD3-463F3C887210}.Release|Win32.ActiveCfg = Release|Win32
+		{0BE9BD1D-EE15-4BE2-AFD3-463F3C887210}.Release|Win32.Build.0 = Release|Win32
+		{732A1D88-5137-4BFB-B8C6-E2FF34067546}.Debug|Win32.ActiveCfg = Debug|Win32
+		{732A1D88-5137-4BFB-B8C6-E2FF34067546}.Debug|Win32.Build.0 = Debug|Win32
+		{732A1D88-5137-4BFB-B8C6-E2FF34067546}.Release|Win32.ActiveCfg = Release|Win32
+		{732A1D88-5137-4BFB-B8C6-E2FF34067546}.Release|Win32.Build.0 = Release|Win32
+		{A9551FB0-78DA-42DB-8709-0CA389CA78F7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A9551FB0-78DA-42DB-8709-0CA389CA78F7}.Debug|Win32.Build.0 = Debug|Win32
+		{A9551FB0-78DA-42DB-8709-0CA389CA78F7}.Release|Win32.ActiveCfg = Release|Win32
+		{A9551FB0-78DA-42DB-8709-0CA389CA78F7}.Release|Win32.Build.0 = Release|Win32
+		{9F21D542-3FD1-4FAA-8008-D328A05E7080}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9F21D542-3FD1-4FAA-8008-D328A05E7080}.Debug|Win32.Build.0 = Debug|Win32
+		{9F21D542-3FD1-4FAA-8008-D328A05E7080}.Release|Win32.ActiveCfg = Release|Win32
+		{9F21D542-3FD1-4FAA-8008-D328A05E7080}.Release|Win32.Build.0 = Release|Win32
+		{E9D76031-7521-45E3-B397-DBE1E7F57BFD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E9D76031-7521-45E3-B397-DBE1E7F57BFD}.Debug|Win32.Build.0 = Debug|Win32
+		{E9D76031-7521-45E3-B397-DBE1E7F57BFD}.Release|Win32.ActiveCfg = Release|Win32
+		{E9D76031-7521-45E3-B397-DBE1E7F57BFD}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6CC7D769-96C4-43EB-AB1A-10FECBFE1308} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{37A9CB1A-886D-4ECD-B4B6-CD3D880498FF} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{B023F9C0-670C-4B8B-AE45-DDA964F7EE61} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{74F85E44-B917-4BEF-84F9-7F9615266C17} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{943CA6D8-9461-4F07-897E-DC1DD2FA015F} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{A65F0875-1D15-4FD3-95CD-7E5B1F6225A6} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{D6EFB3A4-7868-43F6-A9C5-193901238D0F} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{08017CCB-C167-436A-A50E-21F574C2F8F6} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{0BE9BD1D-EE15-4BE2-AFD3-463F3C887210} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{732A1D88-5137-4BFB-B8C6-E2FF34067546} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{A9551FB0-78DA-42DB-8709-0CA389CA78F7} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{9F21D542-3FD1-4FAA-8008-D328A05E7080} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{E9D76031-7521-45E3-B397-DBE1E7F57BFD} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{E9AE6049-A82A-4982-B023-A413CA6C9478} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{1E12F863-6944-45C0-A3DD-7E64B9532857} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{22467238-3D1B-424A-81B4-AEA3EC165CA8} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{28B2F03A-5DE2-492C-95A8-E2AE60088A89} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{6F09CF9A-A76C-46E5-8E9F-27D87E8D21E3} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{50C011B8-A82D-4BFC-840D-47183A80E9D8} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+	EndGlobalSection
+EndGlobal

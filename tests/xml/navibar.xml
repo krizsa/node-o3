@@ -1,0 +1,55 @@
+<!-- Currently not used, but don't remove it -->
+<!--a:menu id="mnuWebsiteTop" skin="viewmode_menu" style="margin-left:-90px;margin-top:-7px;">
+    <a:item value="listview">list view</a:item>
+    <a:item value="thumbnailview">thumbnail view</a:item>
+    <a:divider/>
+    <a:item value="sortname">Sort by name</a:item>
+    <a:item value="sortstatus">Sort by online/offline</a:item>
+    <a:item value="sortactivity">Sort by amount of activity</a:item>
+</a:menu-->
+<a:bar skin="navi_bar" width="357" class="settings1" top="20" right="20">
+        <!--div class="nbtn_icon" style="background-image:url(style/icons/[@icon]);"></div-->
+    
+    <a:button class="{#[mdlDashboard::worknetfeeds/worknetfeed] == 0 ? '' : 'large'} red" skin="navibutton" tooltip="Worknet Activity" 
+      icon="navibar_icon_activity.png" model="[mdlDashboard::navibtns/navibtn[1]]" caption="{#[mdlDashboard::worknetfeeds/worknetfeed] || '0'}"
+      onclick="btnDashboard.showMenu();tbDashboard.setAttribute('activepagenr', 0)">
+    </a:button>
+    <a:button id="topmenu_btn_messages" class="{#[mdlDashboard::messages/folder[@type='inbox']/message[@msg_status='unread']] == 0 ? '' : 'large'} red" skin="navibutton" tooltip="Messages" 
+      icon="navibar_icon_messages.png" model="[mdlDashboard::navibtns/navibtn[2]]" caption="{#[mdlDashboard::messages/folder[@type='inbox']/message[@msg_status='unread']] || '0'}"
+      onclick="btnDashboard.showMenu();tbDashboard.setAttribute('activepagenr', 1)">
+    </a:button>
+    <!-- @todo replace [@value] by number of chat messages -->
+    <a:button class="{[@value] == 0 ? '' : 'large'} blue" skin="navibutton" tooltip="Profile" 
+      icon="navibar_icon_profile.png" model="[mdlDashboard::navibtns/navibtn[3]]" caption="[@value]"
+      onclick="btnDashboard.showMenu();tbDashboard.setAttribute('activepagenr', 1)">
+    </a:button>
+    
+    <a:hbox padding="15" edge="0" right="0" align="center">
+        <a:button skin="navitxtbutton" onclick="btnDashboard.showMenu()">Dashboard</a:button>
+        <a:button skin="navitxtbutton" onclick="worknetsApp.navigateTo('profile')">My profile</a:button>
+        <a:button skin="navitxtbutton" action="logout">Sign out</a:button>
+    </a:hbox>
+</a:bar>
+<!-- @todo why a bar AND an hbox?? -->
+<a:bar skin="searchbox_container" width="313" right="0" bottom="0">
+    <a:hbox edge="2 0 0 4" padding="0">
+        <a:dropdown id="dbSearchType"
+          skin  = "searchbox_dropdown"
+          value = "person"
+          width = "100">
+            <a:item value="person">People</a:item>
+            <a:item value="worknet">Worknets</a:item>
+            <a:item value="org">Organizations</a:item>
+        </a:dropdown>
+        <a:textbox id="txtSearch"
+          width           = "200"
+          skin            = "searchbox_textbox_square"
+          initial-message = ""
+          onkeydown       = "worknetsApp.txtSearchKeyDown(event)"
+          onkeyup         = "worknetsApp.txtSearchKeyUp(event)"
+          onclear         = "worknetsApp.txtSearchClear()"/>
+    </a:hbox>
+</a:bar>
+<a:bar skin="searchbox_container" class="sbc_right_side_corner" width="220" height="31" left="0" bottom="0">
+    <a:button skin="you_are_here_btn" icon="you_are_here.png" submenu2="menu3" left="9" onclick="">Where are you now? (Coming soon!)</a:button>
+</a:bar>

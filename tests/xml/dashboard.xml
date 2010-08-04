@@ -1,0 +1,439 @@
+<a:bar id="statusbar" visible="{pgSite.activepage != 'home'}">
+    <a:menu id="dashboard_menu" skin="dashboard_window" bottom="30" left="0" right="0" zindex="9000"
+      anim="{!(apf.isIE and apf.isIE lt 9)}" onpopuphide="hideCurtain()" autohide="false" visible="false" render="runtime">
+        <a:bar skin="dashboard_header">
+            <span class="title">My Dashboard</span>
+            <!--a:button skin="dashboard_credits" top="14" right="170">5200</a:button>
+            <a:button skin="dashboard_premium" top="14" right="40">Upgrade to Premium</a:button-->
+            <a:button skin="dashboard_close" top="14" right="1" onclick="btnDashboard.hideMenu()"></a:button>
+        </a:bar>
+
+        <a:tab id="tbDashboard" skin="dashboard_tab" anchors="36 0 0 0" activepagenr="1">
+            <a:page caption="Activity" icon="dashboard_button_activity.png"> 
+                <a:bar skin="agenda" class="agenda_lighter" anchors="0 300 0 10">
+                    <h3 style="margin: 9px 0 0 15px" class="stronger2">WorkNet Activity</h3>
+                    <a:list id="lstWNActivity"
+                      skin        = "activity_list"
+                      caching     = "false"
+                      height      = "298"
+                      model       = "mdlDashboard"
+                      anchors     = "40 27 0 12"
+                      autoselect  = "true"
+                      multiselect = "false">
+                        <a:each match="[worknetfeeds/worknetfeed]" sort="[@title]">
+                            <a:caption><?lm
+                                <div class="act_icon"><img src="icon/[@id]/38x38.png" alt="" /></div>
+                                <div class="act_title">[@name]</div>
+                                <div class="act_status">{
+                                    if ([@unreaded] > 0)
+                                        "<span class='act_hl'>[@unreaded]</span> Unread messages"
+                                    if ([@pending] > 0)
+                                        "&nbsp;&nbsp;<span class='act_hl'>[@pending]</span> Rending requests"
+                                    if ([@active] > 0)
+                                        "&nbsp;&nbsp;<span class='act_hl'>[@active]</span> Active sessions"
+                                }</div>
+                            ?></a:caption>
+                        </a:each>
+                    </a:list>
+                    <a:scrollbar top="40" right="5"
+                      for    = "lstWNActivity" 
+                      width  = "17" 
+                      height = "298" />
+                    <a:bar skin="agenda_bronze" bottom="-8" left="-8" right="-8" height="52">
+                        <a:hbox padding="0" edge="13 0 0 0" pack="center" >
+                            <a:group id="cg1" onafterchange="cg1_change()">
+                                <a:radiobutton 
+                                  class   = "first"
+                                  checked = "true"
+                                  value   = "date"
+                                  skin    = "agenda_radiobtn">Most recent updated</a:radiobutton>
+                                <a:radiobutton 
+                                  value = "title"
+                                  width = "93"
+                                  skin  = "agenda_radiobtn">A-z</a:radiobutton>
+                                <a:radiobutton 
+                                  class = "last"
+                                  width = "116"
+                                  value = "join_date"
+                                  skin  = "agenda_radiobtn">Join date</a:radiobutton>
+                            </a:group>
+                        </a:hbox>
+                    </a:bar>
+                </a:bar>
+                <a:bar skin="agenda"
+                  class  = "agenda_lighter bronze"
+                  width  = "280"
+                  top    = "0"
+                  right  = "10"
+                  bottom = "0"
+                  model  = "{lstWNActivity.selected}">
+                    <a:img value="style/images/logo84x84.png" width="84" height="84" top="8" left="8" />
+                    <a:bar top="17" left="99">
+                        <a:button 
+                        skin="dashboard_green_small"
+                        width="84"
+                        height="16"
+                        onclick="dashboard_menu.hide();worknetsApp.navigateTo(lstWNActivity.selected.getAttribute('id'))">
+                            view worknet
+                        </a:button>
+                        <!--a:button skin="dashboard_green_small" width="93" height="16">view dashboard</a:button-->
+                    </a:bar>
+                    <a:bar top="111" left="10" width="230" height="265"><?lm
+                        <h3>[@name]</h3>
+                        <div style="font-family: Trebuchet MS;font-size:11px;line-height:25px;">Creation date: {worknetsApp.util.human_date([@created])}</div>
+                        <div style="font-family: Trebuchet MS;font-size:11px;margin-top:20px;">[text()]</div>
+                        <div style="font-family: Trebuchet MS;font-size:11px;" bottom="0">
+                            <br/>
+                            <strong>Worknet Stats:</strong><br/>
+                            {if([@members]) {
+                                'Members: ' [@members] '<br/>'
+                            }
+                            if([@partners]) {
+                                'Partners: ' [@partners] '<br/>'
+                            }
+                            if([@active]) {
+                                'Total Sessions: ' [@active]
+                            }}
+                        </div>
+                    ?></a:bar>
+                </a:bar>
+                
+            </a:page> 
+            <a:divider />
+            <!--a:page caption="Agenda" icon="dashboard_button_agenda.png">
+                
+            </a:page-->
+            <a:page caption="Messages" icon="dashboard_button_messages.png"> 
+                <a:script><![CDATA[
+                    var ownerID = 101;
+                    var lastSelectedOption = 'inbox';
+                    
+                    function messageFilter(type) {
+                        type = type == undefined ? 'inbox' : type;
+                        
+                        return 'messages/folder[@type = \''+ type +'\']/message' + (chbUnread.checked ? '[@msg_status=\'unread\']' : '');
+                    }
+                    
+                    function deleteMessage(xmlNodes) {
+                        xmlNodes = !xmlNodes.length ? [xmlNodes] : xmlNodes;
+                        
+                        //If is already in trash
+                        if (lstMsgFolders.value == 'trash') {
+                            apf.xmldb.removeNodeList(xmlNodes);
+                        }
+                        else {
+                            var dashboardModel = lstAllMessages.getModel().data;
+                            var xmlTrash       = dashboardModel.selectSingleNode('messages/folder[@type = \'trash\']');
+                            
+                            for (var i = 0, l = xmlNodes.length; i < l; i++) {
+                                apf.xmldb.moveNode(xmlTrash, xmlNodes[i]);
+                            }
+                        }
+                    }
+                    
+                    function undeleteMessage(xmlNodes) {
+                        var dashboardModel = lstAllMessages.getModel().data;
+                        var xmlInbox       = dashboardModel.selectSingleNode('messages/folder[@type = \'inbox\']');
+                        var xmlSent        = dashboardModel.selectSingleNode('messages/folder[@type = \'sent\']');
+                        
+                        for (var i = 0, l = xmlNodes.length; i < l; i++) {
+                            apf.xmldb.moveNode(xmlNodes[i].getAttribute("from_id") == ownerID ? xmlSent : xmlInbox, xmlNodes[i]);
+                        }
+                    }
+                    
+                    function inverseSelection() {
+                        var chNodes = lstAllMessages.getTraverseNodes();
+                        
+                        for (var i = 0, l = chNodes.length; i < l; i++) {
+                            lstAllMessages.checkToggle(chNodes[i]);
+                        }
+                    }
+                    
+                    mdlDashboard.addEventListener("update", function() {
+                        lstAllMessages.each = messageFilter(lstMsgFolders.value);
+                        lstAllMessages.reload();
+                    });
+                ]]></a:script>
+                <a:bar skin="agenda" class="messages" width="220" left="10" top="0">
+                    <h3 style="margin: 7px 0 0 14px" class="stronger2">Messages center</h3>
+                    <a:list id="lstMsgFolders"
+                      skin          = "message_list"
+                      model         = "mdlDashboard"
+                      style         = "padding:10px 0 0 0;"
+                      onafterchange ="lstAllMessages.each = messageFilter(this.value);lstAllMessages.reload();">
+                        <a:each match="[messages/folder]">
+                            <a:value match="[@type]"/>
+                            <a:caption match="{[@type] == 'inbox'}">
+                                [@name] (#[message[@msg_status='unread']])
+                            </a:caption>
+                            <a:caption >
+                                [@name] (#[message])
+                            </a:caption>
+                            <a:icon match="[@icon]"/>
+                        </a:each>
+                    </a:list>
+                </a:bar>
+                <a:bar skin="agenda" class="agenda_lighter bronze" right="10" left="241" top="0">
+                    <h3 class="settings8">All Messages</h3>
+                    <a:button skin="new_messages"
+                      icon    = "green_cross.png"
+                      width   = "108"
+                      right   = "38" top="5"
+                      onclick = "winSendMessage.show();winMsgTitle.setAttribute('caption','New Message')">New Message</a:button>
+                    <a:list id="lstAllMessages"
+                      top        = "41"
+                      left       = "7"
+                      right      = "27"
+                      height     = "305"
+                      mode       = "check"
+                      skin       = "dashboard_list"
+                      empty-message="No messages"
+                      caching    = "false"
+                      model      = "mdlDashboard"
+                      autoselect = "false">
+                        <a:each match="[messages/folder[@type='inbox']/message]">
+                            <a:caption><?lm
+                                <div class="drdl_image"><img src="icon/[@from_id]/38x38.png" /></div>
+                                <div class="drdl_row1">
+                                    <span class="drdl_login">
+                                        <span class="drdl_status"></span>
+                                        [@from]
+                                    </span>
+                                    <span class="drdl_title">[@subject]</span>
+                                </div>
+                                <div class="drdl_row2">
+                                    <span class="drdl_date">{worknetsApp.util.human_date([@timesent])}</span>
+                                    <span class="drdl_body">[text()]</span>
+                                </div>
+                                
+                                <span class="drdl_reply" onclick = "
+                                  winSendMessage.show();
+                                  winMsgTitle.setAttribute('caption','Reply to...');">REPLY</span>
+                                <span class="drdl_delete" onclick="deleteMessage(lstAllMessages.selected)"></span>
+                            ?></a:caption>
+                            <a:css match="[node()[@msg_status='unread']]" value="unreadMsg"/>
+                        </a:each>
+                    </a:list>
+                    
+                    <a:scrollbar 
+                      right  = "1"
+                      top    = "41"
+                      for    = "lstAllMessages" 
+                      width  = "17" 
+                      height = "307" />
+                    
+                    <a:bar skin="agenda_bronze" right="-8" bottom="-8" left="-8" height="42">
+                        <a:hbox edge="3 0 0 0" padding="10">
+                            <a:hbox edge="5 0 0 0" padding="5">
+                                <a:button 
+                                  skin    = "agenda_silver"
+                                  width   = "103"
+                                  onclick = "
+                                    if(lstAllMessages.checklength > 0) {
+                                        var chNodes = lstAllMessages.getChecked();
+                                        for(var i = 0, l = chNodes.length; i &lt; l; i++) {
+                                            apf.xmldb.setAttribute(chNodes[i], 'msg_status', 'read');
+                                        }
+                                    }
+                                  ">Mark as Read</a:button>
+                                <a:button 
+                                  skin    = "agenda_silver"
+                                  width   = "115"
+                                  onclick = "
+                                    if(lstAllMessages.checklength > 0) {
+                                        var chNodes = lstAllMessages.getChecked();
+                                        for(var i = 0, l = chNodes.length; i &lt; l; i++) {
+                                            apf.xmldb.setAttribute(chNodes[i], 'msg_status', 'unread');
+                                        }
+                                    }
+                                  ">Mark as Unread</a:button>
+                                <a:button 
+                                  skin    = "agenda_silver"
+                                  width   = "67"
+                                  onclick = "
+                                    if (lstAllMessages.checklength > 0) {
+                                        deleteMessage(lstAllMessages.getChecked())
+                                    }
+                                  ">Delete</a:button>
+                                <a:button 
+                                  skin    = "agenda_silver"
+                                  width   = "80"
+                                  visible = "{lstMsgFolders.value == 'trash'}"
+                                  onclick = "
+                                    if (lstAllMessages.checklength > 0) {
+                                        undeleteMessage(lstAllMessages.getChecked());
+                                    }
+                                  ">Undelete</a:button>
+                            </a:hbox>
+                            <a:hbox edge="10 0 0 0" padding="0">
+                                <div class="settings6">Mark:</div>
+                                <a:button skin="agenda_txt_btn" onclick="lstAllMessages.checkAll()">All</a:button>
+                                <div class="settings6">,</div>
+                                <a:button skin="agenda_txt_btn" onclick="lstAllMessages.clearChecked()">None</a:button>
+                                <div class="settings6">,</div>
+                                <a:button skin="agenda_txt_btn"
+                                  onclick="inverseSelection()">Inverse selection</a:button>
+                            </a:hbox>
+                        </a:hbox>
+                        <a:checkbox id="chbUnread"
+                          skin          = "dashboard_checkbox"
+                          class         = "chbx_white"
+                          top           = "12"
+                          right         = "10"
+                          onafterchange = "
+                            lstAllMessages.each = messageFilter(lstMsgFolders.value);
+                            lstAllMessages.reload();
+                          ">
+                            Show unread only
+                        </a:checkbox>
+                    </a:bar>
+                </a:bar>
+            </a:page> 
+            <!--a:page caption="Notes" icon="dashboard_button_notes.png">
+                
+            </a:page>
+            <a:page caption="Files" icon="dashboard_button_files.png"> 
+                
+            </a:page> 
+            <a:divider />
+            <a:page caption="Requests" icon="dashboard_button_requests.png"> 
+                
+            </a:page-->
+            <a:page caption="Settings" class="settings15" disabled="true" icon="dashboard_button_settings.png">
+                
+            </a:page>
+            <a:page caption="Privacy" class="settings15" disabled="true" icon="dashboard_button_privacy.png">
+                
+            </a:page>
+            <a:divider class="settings15" />
+            <a:page caption="Other WorkNets" disabled="true" class="dbdd_btn_big settings15" icon="dashboard_button_other_worknets.png"> 
+                
+            </a:page>
+        </a:tab> 
+    </a:menu>
+    
+    <a:bar skin="footer_status">
+        <a:hbox edge="0" padding="600">
+            <a:button id="btnDashboard"
+              top     = "-5" 
+              submenu = "dashboard_menu" 
+              skin    = "fs_mb_dash_menu" 
+              icon    = "dashboard_clock.png">Dashboard</a:button>
+            <a:hbox edge="5" padding="5">
+                <!--a:button skin="fs_toolbarbutton" icon="chat_status.png">21 Online Contacts</a:button>
+                <a:button skin="fs_tbb_chat">Ruben Daniëls</a:button-->
+            </a:hbox>
+        </a:hbox>
+    </a:bar>
+    <a:script><![CDATA[
+        dashboard_menu.addEventListener("prop.visible", function(e) {
+            if (e.value)
+                showCurtain();
+            else 
+                hideCurtain()
+        });
+
+        //var lastOverflow;
+        
+        function showCurtain() {
+            var curtain = document.getElementById("black_curtain");
+
+            /*lastOverflow = document.documentElement.style.overflow == "hidden"
+                ? "auto"
+                : document.documentElement.style.overflow;
+
+            document.documentElement.style.overflow = "hidden";*/
+
+            curtain.style.display = "block";
+            //document.body.style.paddingRight = "16px";
+        }
+        
+        function hideCurtain() {
+            var curtain = document.getElementById("black_curtain");
+            //document.documentElement.style.overflow = lastOverflow;
+            curtain.style.display = "none";
+            //document.body.style.paddingRight = 0;
+        }
+    ]]></a:script>
+</a:bar>
+
+<a:bar id="barSearch"
+  skin    = "searchbar"
+  right   = "425"
+  top     = "121"
+  width   = "300"
+  zindex  = "10000"
+  visible = "false"
+  render2  = "runtime">
+    <h3>SEARCH RESULTS (<?lm #[mdlSearch::node()[local-name()]] ?>)</h3>
+    <a:toolbar skin="toolbar_documents_gray" style="margin:9px -2px 0 0;">
+        <a:bar>
+            <a:hbox padding="0" edge="0 5 0 8" pack="end">
+                <a:button
+                  skin        = "toolbarbutton3"
+                  icon        = "documents_ico2.png"
+                  class       = "docg_arrow"
+                  submenu     = "viewmode_menu"
+                  onmousedown = "worknetsApp.widgetpanel.curList = lstProfileWorknets" />
+            </a:hbox>
+        </a:bar>
+    </a:toolbar>
+    <a:hbox edge="5 0 0 0" padding="0" minheight="76" maxheight="220">
+        <a:list id="lstSearch"
+          skin    = "lstDblPic"
+          class   = "searchList"
+          width   = "262"
+          caching = "false"
+          model   = "mdlSearch"
+          autoselect    = "false"
+          minheight     = "76"
+          maxheight     = "220"
+          bindings      = "bndListNoDsc2"
+          vmlistbind    = "bndListNoDsc2"
+          multiselect   = "false"
+          onkeydown     = "worknetsApp.lstSearchKeyDown"
+          onafterselect = "worknetsApp.navigateTo(event.selected.getAttribute('id'));">
+            <a:each match="worknet|org|person" />
+        </a:list>
+        <a:scrollbar
+          for    = "lstSearch"
+          width  = "17" />
+    </a:hbox>
+    <a:bindings id="bndListNoDsc2">
+       <a:caption><?lm
+            <div class="details singleImg">
+                <div class="imgBox">
+                    <img class="imgBig" src="icon/[@id]/38x38.png" alt="" width="21" height="21" />
+                </div>
+                <span class="caption only">[@name]</span>
+            </div>
+        ?></a:caption>
+    </a:bindings>
+</a:bar>
+<a:script>//<!--
+    function checkMsg(textarea) {
+        var val;
+        if ((val = textarea.getValue()).length > 260)
+            textarea.setAttribute('value', val.substr(0,260));
+    }
+    
+    function msgBoxKeyHandler(e) {
+        if (e.ctrlKey && (e.keyCode == 13 || e.keyCode == 83))
+            sendMessage(e.currentTarget.getValue());
+    }
+    
+    function sendMessage(val) {
+        if (!val || val.trim() == "") {
+            alert("You can't send an empty message.");
+            return;
+        }
+        alert("@todo send message");    
+    }
+    
+    function cg1_change(e) {
+        if(e.value == 'date')
+            lstWNActivity.setAttribute("sort-method", "data-type");
+        lstWNActivity.setAttribute("sort", "[@" + e.value + "]");
+        lstWNActivity.reload();
+    }
+//--></a:script>

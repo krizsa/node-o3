@@ -1,0 +1,345 @@
+<a:include src="pages/widgetpanel.xml" />
+<div class="wn_main_section settings3">
+    <div id="orgBanner" class="wn_header" style="background-image : url(style/images/header-organization-profile.jpg)">
+        <a:include src="pages/header.xml" />
+        <a:include src="pages/navibar.xml" />
+   </div>
+</div>
+<div class="wn_main_section gradient_bg" model="mdlOrg">
+    <a:hbox padding="10" edge="20 15 20 15" width="100%">
+        <a:bar width="241">
+            <a:bar skin="idcard_panel" class="wn_idcard_loggedin_organization">
+                <a:label id="changepic_label4" class="cpl_idcard" skin="changepicture_link"
+                  onclick="winChangePhoto.show()" 
+                  onmouseover="apf.setStyleClass(this.$ext, 'cpl_containerOver')" onmouseout="apf.setStyleClass(this.$ext, 'cpl_container', ['cpl_containerOver'])">
+                    Click to change your photo
+                </a:label>
+                <a:hbox edge="1 0 0 6" padding="3" align="start">
+                    <a:img id="orgIdImage" skin="idcard_img" value="icon/[@id]/86x86.png"></a:img>
+
+                    <a:vbox edge="12 0 0 0" padding="3">
+                        <a:button skin="idcard_button">Send WorkMail</a:button>
+                        <!--a:button skin="idcard_button">Start a Chat</a:button-->
+                        <a:button skin="idcard_button">Disconnect</a:button>
+                        <!--a:button skin="idcard_button">Block</a:button-->
+                    </a:vbox>
+                </a:hbox>
+            </a:bar>
+            <!--a:bar skin="widgetPanelNoToolbar">
+                <p class="tag_cloud"><span class="tagCloud14">worldwide</span> <span class="tagCloud16">health</span> <span class="tagCloud14">people</span>
+                <span class="tagCloud14">goodwill</span> <span class="tagCloud16">trends</span>
+                </p>
+            </a:bar-->
+            
+            <div style="padding: 20px 40px;">
+                <img src="style/images/logo_WHO.png" />
+            </div>
+            <a:bar skin="widgetPanelNoToolbar" width="240" margin="10 0 0 3" liveedit="[mdlOrg::@owner]">
+                <h3>CONTACT INFORMATION</h3>
+                <!--a:toolbar skin="toolbar_documents_gray" style="margin:9px -5px 0 -5px;">
+                    <a:bar>
+                        <a:hbox padding="0" edge="0 0 0 0">
+                            <a:button skin="toolbarbutton3" icon="documents_ico1.png" 
+                              class="docg_cap noico" onclick="profileTabs.setAttribute('activepage', 1)">
+                                SWITCH TO PROFILE DETAILS
+                            </a:button>
+                        </a:hbox>
+                    </a:bar>
+                </a:toolbar-->
+
+                <div class="orgContactInfo"><?lm
+                    local([details/section]) {
+                        each([element]){
+                            <h4>{worknetsApp.fieldsLut[[@name]]}</h4>
+                            <p>[text()]</p>
+                        }
+                    }
+                ?></div>
+            </a:bar>
+            <!--a:bar skin="widgetPanelNoToolbar" style="margin-top:10px;">
+                <h3>CONTACT INFORMATION</h3>
+                <div class="orgContactInfo">
+                    <h4>Address</h4>
+                    <p>Avenue Appia 20, 1211 Geneva 27,<br />Switserland</p>
+                    <h4>Phone</h4>
+                    <p>+ 41 22 791 21 11</p>
+                    <h4>Fax</h4>
+                    <p>+ 41 22 791 21 21</p>
+                    <h4>Website</h4>
+                    <p><a href="#">www.who.int</a></p>
+                </div>
+            </a:bar-->
+            <!--a:bar skin="widgetPanel" style="margin-top:10px;">
+                <h3>PUBLIC DOCUMENTS</h3>
+                <div class="xPanelButton"></div>
+                <a:toolbar skin="toolbar_documents_gray" style="margin:9px -10px 0 -10px;">
+                    <a:bar>
+                        <div>Dropdown</div>
+                    </a:bar>
+                </a:toolbar>
+                <a:hbox edge="10 0 0 0" padding="0">
+                    <a:tree
+                      id="lstWorknetMembers" skin="sessions_tree" caching="false"
+                        multiselect="false" model="testmembers" style="margin-top:5px; overflow: hidden;"
+                        autoselect="false" height="190" width="210">
+                        <a:each match="requests">
+                            <a:caption><?lm
+                                <div class="details">
+                                    <div class="imgBox {[status] == 'active' ? 'orange' : 'gray'}">
+                                        <img class="imgBig" src="[image]" alt="" width="25" height="25" />
+                                        <img class="imgSmall" src="[image2]" alt="" width="18" height="18" />
+                                    </div>
+                                    <a href="#contact">[name]</a>
+                                    <p>[dsc]</p>
+                                </div>
+                                <div class="status">
+                                    <div class="icon [status]"></div>
+                                </div>
+                            ?></a:caption>
+                        </a:each>
+                    </a:tree>
+                    <a:scrollbar 
+                      for    = "lstWorknetMembers" 
+                      width  = "17" 
+                      height = "190" />
+                </a:hbox>
+            </a:bar-->
+        </a:bar>
+        
+        <a:bar width="720">
+            <a:bar skin="tabHeader" width="700" height="118" liveedit="[mdlOrg::@owner]"><?lm
+                <h3>[details/section[@name='org']/element[@name='name']/text()]</h3>
+                <h4>[details/section[@name='org']/element[@name='tagline']/text()]</h4>
+            ?></a:bar>
+            <a:tab skin="th_tabs" style="margin-top:-30px;" width="710">
+                <a:page caption="About our Organization">
+                    <div class="searchFieldWallLine" />
+                    <a:bar skin="widgetCite" liveedit="[mdlOrg::@owner]"><?lm [details/summary] || "no summary found" ?></a:bar>
+                    <a:hbox width="720">
+                        <a:bar class="orgDetails" width="430" margin="0 15 0 0" liveedit="[mdlOrg::@owner]"><?lm
+                            local([details]) {
+                                each([section]) {
+                                    <h4 class="profileDetailsTitle h4Darker">{worknetsApp.fieldsLut[[@name]]}</h4>
+                                    <div class="rows">{
+                                    if([@type] == 'text') {
+                                        <div class="row">
+                                            [text()]
+                                        </div>
+                                    }
+                                    else {
+                                        each([element]){
+                                            <div class="row">
+                                                <div class="columL"><strong>{worknetsApp.fieldsLut[[@name]]}</strong></div>
+                                                <div class="columR">[text()]</div>
+                                            </div>
+                                        }
+                                    }
+                                    }</div>
+                                }
+                            }
+                        ?></a:bar>
+                        <!--
+                            <h4 class="profileDetailsTitle h4Darker">Summary</h4>
+                            <div class="rows">
+                                <div class="row">
+                                    <div class="columL">Main Mission</div>
+                                    <div class="columR">providing leadership on global health matters, shaping
+                                    the health research agenda, setting norms and stan
+                                    dards, articulating evidence-based policy options,
+                                    providing technical support to countries and monitor
+                                    ing and assessing health trends.</div>
+                                </div>
+        
+                                <div class="row">
+                                    <div class="columL">Product &amp; Services</div>
+                                    <div class="columR">Advice &amp; Organisation of global health matters</div>
+                                </div>
+        
+                                <div class="row">
+                                    <div class="columL">Causes &amp; Sponsor-ship</div>
+                                    <div class="columR">Phasellus viverra nulla ut metus varius laoreet.</div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="columL">Website</div>
+                                    <div class="columR"><a href="#">www.who.int</a></div>
+                                </div>
+                            </div>
+                            <h4 class="profileDetailsTitle h4Darker">Facts</h4>
+                            <div class="rows">
+                                <div class="row columnLSize1">
+                                    <div class="columL">Business</div>
+                                    <div class="columR">Global Health</div>
+                                </div>
+        
+                                <div class="row">
+                                    <div class="columL">Sector</div>
+                                    <div class="columR">World Domination</div>
+                                </div>
+        
+                                <div class="row">
+                                    <div class="columL">Employees</div>
+                                    <div class="columR">212</div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="columL">Inc Date</div>
+                                    <div class="columR">Januari 12, 1993</div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="columL">Inc. Number</div>
+                                    <div class="columR">24</div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="columL">VAT Number</div>
+                                    <div class="columR">345.3456.2345</div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="columL">Country</div>
+                                    <div class="columR">Switserland</div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="columL">Legal Status</div>
+                                    <div class="columR">Government Organization</div>
+                                </div>
+                            </div>
+                            <h4 class="profileDetailsTitle h4Darker">Some Interesting Stats</h4>
+                            <div class="row">
+                                <ul class="org">
+                                    <li>The gender ratio of this organization is 55% male and 45% female</li>
+                                    <li>On average each employee has 120,4 WorkNet connections</li>
+                                    <li>Languages: 50% Dutch, 100% english, 10% German, 5% Spanish</li>
+                                </ul>
+                            </div>
+                            <h4 class="profileDetailsTitle h4Darker">Current Activities</h4>
+                            <a:hbox edge="0 0 0 5" align="start" padding="10">
+                                <div style="width:46px;height:46px;">
+                                    <img src="style/images/white_globe.png" alt="" width="46" height="46" />
+                                </div>
+                                <div class="actionlist lstActionwall curActivites" style="display:block;max-height:1000px;">
+                                    <a class="wallPostTitle" href="#">Mr. George O&#39;Kane</a><br />
+                                    <p class="wallPostCaption">is speaking at the <em>UN World Conference</em></p>
+                                    <div class="wallPostCite">
+                                        <p>The 60th Annual UN World Conference will feature more than thirty speakers on the topics of viruses and &quot;vandalware&quot;,
+                                        computer law, and computer security.</p>
+                                
+                                        <p>Approximately twenty are well-known experts in the
+                                        field, and fifteen or more will be selected on the basis of
+                                        submitted papers.</p>
+                                    </div>
+                                </div>
+                            </a:hbox>
+                            <div class="verticalGrayLine" />
+                            <a:hbox edge="0 0 0 5" align="start" padding="10">
+                                <div style="width:46px;height:46px;">
+                                    <img src="style/images/white_globe.png" alt="" width="46" height="46" />
+                                </div>
+                                <div class="actionlist lstActionwall curActivites" style="display:block;max-height:1000px;">
+                                    <a class="wallPostTitle" href="#">The World Health Organization</a>
+                                    <p class="wallPostCaption">Will host a web-seminar on the current state of global viral control.</p>
+                                    <p class="wallPostLinks"><a href="#">Learn more</a> | <a href="#">Join Worknet</a></p>
+                                    <p class="wallPostDate">Event date: Oktober 12 2012</p>
+                                </div>
+                            </a:hbox>
+                            <h4 class="profileDetailsTitle h4Darker">Past Activities</h4>
+                            <a:hbox edge="0 0 0 5">
+                                <div class="actionlist lstActionwall curActivites" style="display:block;max-height:1000px;">
+                                    <a class="wallPostTitle2" href="#">The World Health Organization</a>
+                                    <p class="wallPostCaption">Joined the worknet <em>Internet Valley Inc</em>.</p>
+                                    <p class="wallPostPosted">1 month ago</p>
+                                </div>
+                            </a:hbox>
+                        -->
+                        <a:bar width="250">
+                            <a:bar skin="widgetPanel" style="margin-top: 17px;">
+                                <h3>EMPLOYEES (<?lm lstWorknetEmployees.length || "0" ?>)</h3>
+                                <!--div class="xPanelButton"></div-->
+                                <a:button skin="add_contact_wdgpnl" class="wp_addcontactbtn" icon="add_contact.png"
+                                  onclick="winInvitePeople.show()" visible="[mdlOrg::@owner]"></a:button>
+
+                                <a:toolbar skin="toolbar_documents_gray" style="margin:9px -5px 0 -5px;">
+                                    <a:bar>
+                                        <a:hbox padding="0" edge="0 8 0 8" pack="end">
+                                            <!--a:button skin="toolbarbutton3" icon="documents_ico1.png" class="docg_cap noico">SHOW MORE</a:button-->
+                                            <a:button skin="toolbarbutton3" submenu="viewmode_menu_n" class="docg_arrow" icon="documents_ico2.png" onmousedown="worknetsApp.widgetpanel.curList = lstWorknetEmployees"></a:button>
+                                            <a:button skin="toolbarbutton3" icon="documents_ico3.png" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_org1)"></a:button>
+                                        </a:hbox>
+                                    </a:bar>
+                                    <a:bar id="wp_searchbar_org1" skin="wp_searchbar" style="position:relative;top:-44px;" width="250" height="22">
+                                        <a:hbox edge="0 0 0 0">
+                                            <a:textbox skin="wp_searchbox" initial-message="Type here to Search" onkeyup="worknetsApp.widgetpanel.search(this, lstWorknetEmployees, 'members/member', ['name', 'dsc']); return false;"></a:textbox>
+                                            <a:filler />
+                                            <a:button margin="0 6 0 0" skin="whitelink" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_org1,lstWorknetEmployees)">Close</a:button>
+                                        </a:hbox>
+                                        <a:button skin="cleartextbtn" visible="false" top="5" left="162"
+                                          onclick="worknetsApp.widgetpanel.clearSearchbox(this, lstWorknetEmployees)"></a:button>
+                                    </a:bar>
+                                </a:toolbar>
+                                <a:hbox edge="5 0 0 0" padding="0" minheight="76" maxheight="190">
+                                    <a:list bindings="bndListStatus" vmlistbind="bndListStatus"
+                                      id="lstWorknetEmployees" skin="lstDblPic" class="status" caching="false"
+                                        multiselect="false" model="mdlOrg" style="margin-top:5px;"
+                                        autoselect="false" height="190" 
+                                        minheight="76" maxheight="190" width="220" 
+                                        onclick="worknetsApp.widgetpanel.listclick(event)"
+                                        empty-message="No employees found">
+                                        <a:each match="employees/person"></a:each>
+                                    </a:list> 
+                                    
+                                    <a:scrollbar id="scr"
+                                      for       = "lstWorknetEmployees" 
+                                      width     = "17" />
+                                </a:hbox>
+                            </a:bar>
+
+                            <a:bar skin="widgetPanel" style="margin-top:10px;">
+                                <h3>ASSOCIATIONS (<?lm lstWorknetAssociations.length || "0" ?>)</h3>
+                                <!--div class="xPanelButton"></div-->
+                                <a:toolbar skin="toolbar_documents_gray" style="margin:9px -5px 0 -5px;">
+                                    <a:bar>
+                                        <a:hbox padding="0" edge="0 8 0 8" pack="end">
+                                            <!--a:button skin="toolbarbutton3" icon="documents_ico1.png" class="docg_cap noico">SHOW MORE</a:button-->
+                                            <a:button skin="toolbarbutton3" submenu="viewmode_menu_n" class="docg_arrow" icon="documents_ico2.png" onmousedown="worknetsApp.widgetpanel.curList = lstWorknetAssociations"></a:button>
+                                            <a:button skin="toolbarbutton3" icon="documents_ico3.png" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_org2)"></a:button>
+                                        </a:hbox>
+                                    </a:bar>
+                                    <a:bar id="wp_searchbar_org2" skin="wp_searchbar" style="position:relative;top:-44px;" width="250" height="22">
+                                        <a:hbox edge="0 0 0 0">
+                                            <a:textbox skin="wp_searchbox" initial-message="Type here to Search" onkeyup="worknetsApp.widgetpanel.search(this, lstWorknetAssociations, 'partners/partner', 'name'); return false;"></a:textbox>
+                                            <a:filler />
+                                            <a:button margin="0 6 0 0" skin="whitelink" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_org2,lstWorknetAssociations)">Close</a:button>
+                                        </a:hbox>
+                                        <a:button skin="cleartextbtn" visible="false" top="5" left="162"
+                                          onclick="worknetsApp.widgetpanel.clearSearchbox(this, lstWorknetAssociations)"></a:button>
+                                    </a:bar>
+                                </a:toolbar>
+                                <a:hbox edge="5 0 0 0" padding="0" minheight="76" maxheight="190">
+                                    <a:list bindings="bndThumbs" vmlistbind="bndListNoDsc"
+                                      id="lstWorknetAssociations" skin="tn_thumbnail" caching="false"
+                                        multiselect="false" model="mdlOrg"
+                                        autoselect="false" height="190" 
+                                        minheight="76" maxheight="190" width="222" 
+                                        onclick="worknetsApp.widgetpanel.listclick(event)"
+                                        empty-message="No associations found">
+                                        <a:each match="partners/partner"></a:each>
+                                    </a:list>
+                                    <a:scrollbar height="190"
+                                      for    = "lstWorknetAssociations" 
+                                      width  = "17"
+                                    />
+                                </a:hbox>
+                            </a:bar>
+                        </a:bar>
+                    </a:hbox>
+                </a:page>
+                <!--a:page caption="Jobs">
+                    <div class="searchFieldWallLine" />
+                </a:page-->
+            </a:tab>
+        </a:bar>
+    </a:hbox>
+</div>

@@ -1,0 +1,730 @@
+Logs: 
+================================
+
+o3_cBarcode1.h: 
+-----------------
+found old glue file, old time: 129203684892359000
+readExt: o3_ext
+readFunLike: o3_get
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cBlob1.h: 
+-----------------
+found old glue file, old time: 129203684892669000
+readExt: o3_ext
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cConsole1_posix.h: 
+-----------------
+found old glue file, old time: 129203684892879000
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cConsole1_win32.h: 
+-----------------
+found old glue file, old time: 129203684893019000
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cO3.h: 
+-----------------
+found old glue file, old time: 129203684893909000
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_set
+
+o3_cScr.h: 
+-----------------
+found old glue file, old time: 129203684894599000
+
+o3_cScrBuf.h: 
+-----------------
+found old glue file, old time: 129203684894859000
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+
+o3_cStreamBase.h: 
+-----------------
+found old glue file, old time: 129203684895049000
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+
+o3_cStream_posix.h: 
+-----------------
+found old glue file, old time: 129203684895249000
+
+o3_cStream_win32.h: 
+-----------------
+found old glue file, old time: 129203684895449000
+readFunLike: o3_get
+
+o3_cFs1Base.h: 
+-----------------
+found old glue file, old time: 129203684896669000
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+
+o3_cFs1_posix.h: 
+-----------------
+found old glue file, old time: 129203684897119000
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_get
+
+o3_cFs1_win32.h: 
+-----------------
+found old glue file, old time: 129203684898099000
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_fun
+
+o3_cHttp1.h: 
+-----------------
+found old glue file, old time: 129203684898709000
+readExt: o3_ext
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_fun
+
+o3_cImage1.h: 
+-----------------
+found old glue file, old time: 129203684901149000
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_set
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_set
+readFunLike: o3_set
+readFunLike: o3_set
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_set
+readFunLike: o3_set
+readFunLike: o3_set
+readFunLike: o3_fun
+readFunLike: o3_fun
+
+o3_cJs1Base.h: 
+-----------------
+found old glue file, old time: 129203684901299000
+readFunLike: o3_fun
+
+o3_cJs1_posix.h: 
+-----------------
+found old glue file, old time: 129203684902259000
+readExt: o3_ext
+readFunLike: o3_get
+readFunLike: o3_fun
+
+o3_cJs1_win32.h: 
+-----------------
+found old glue file, old time: 129203684902829000
+readExt: o3_ext
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+
+o3_cMD5Hash1.h: 
+-----------------
+found old glue file, old time: 129203684903039000
+readExt: o3_ext
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+
+o3_cProcess1Base.h: 
+-----------------
+found old glue file, old time: 129203684903229000
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_fun
+readFunLike: o3_get
+
+o3_cProcess1_posix.h: 
+-----------------
+found old glue file, old time: 129203684903419000
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cProcess1_win32.h: 
+-----------------
+found old glue file, old time: 129203684904039000
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readFunLike: o3_get
+
+o3_cProtocol1_win32.h: 
+-----------------
+found old glue file, old time: 129203684904319000
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_get
+
+o3_cResource1_win32.h: 
+-----------------
+found old glue file, old time: 129203684904529000
+readExt: o3_ext
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+
+o3_cResourceBuilder1_win32.h: 
+-----------------
+found old glue file, old time: 129203684904899000
+readExt: o3_ext
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cRSA1.h: 
+-----------------
+found old glue file, old time: 129203684905129000
+readExt: o3_ext
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+
+o3_cScreen1Base.h: 
+-----------------
+found old glue file, old time: 129203684905269000
+readFunLike: o3_get
+readFunLike: o3_get
+
+o3_cScreen1_apple.h: 
+-----------------
+found old glue file, old time: 129203684905369000
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cScreen1_win32.h: 
+-----------------
+found old glue file, old time: 129203684905469000
+readExt: o3_ext
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+
+o3_cSHA1Hash1.h: 
+-----------------
+found old glue file, old time: 129203684905629000
+readExt: o3_ext
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+
+o3_cSocket1Base.h: 
+-----------------
+found old glue file, old time: 129203684906199000
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_fun
+readImmProp: o3_prop
+readImmProp: o3_get
+readImmProp: o3_get
+readImmProp: o3_get
+readImmProp: o3_get
+
+o3_cSocket1_libevent.h: 
+-----------------
+found old glue file, old time: 129203684906919000
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cSocket1_posix.h: 
+-----------------
+found old glue file, old time: 129203684907499000
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cSocket1_win32.h: 
+-----------------
+found old glue file, old time: 129203684908189000
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cTest1.h: 
+-----------------
+found old glue file, old time: 129203684908449000
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cTools1_win32.h: 
+-----------------
+found old glue file, old time: 129203684908899000
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_set
+
+o3_cButton1_win32.h: 
+-----------------
+found old glue file, old time: 129203684909179000
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readFunLike: o3_set
+
+o3_cStaticCtrl1_win32.h: 
+-----------------
+found old glue file, old time: 129203684909439000
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cWindow1Base.h: 
+-----------------
+found old glue file, old time: 129203684909579000
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+
+o3_cWindow1_apple.h: 
+-----------------
+found old glue file, old time: 129203684909719000
+readExt: o3_ext
+readFunLike: o3_fun
+
+o3_cWindow1_win32.h: 
+-----------------
+found old glue file, old time: 129203684910739000
+readExt: o3_ext
+readFunLike: o3_get
+readExt: o3_ext
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_set
+readFunLike: o3_fun
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_set
+readFunLike: o3_set
+
+o3_cXml1.h: 
+-----------------
+found old glue file, old time: 129203684911079000
+readExt: o3_ext
+readFunLike: o3_get
+readFunLike: o3_fun
+
+o3_cXmlAttr1.h: 
+-----------------
+found old glue file, old time: 129203684911199000
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_set
+
+o3_cXmlCDATASection1.h: 
+-----------------
+found old glue file, old time: 129203684911279000
+
+o3_cXmlCharacterData1.h: 
+-----------------
+found old glue file, old time: 129203684911479000
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+
+o3_cXmlComment1.h: 
+-----------------
+found old glue file, old time: 129203684911579000
+
+o3_cXmlDocument1.h: 
+-----------------
+found old glue file, old time: 129203684911829000
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+
+o3_cXmlElement1.h: 
+-----------------
+found old glue file, old time: 129203684912119000
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+
+o3_cXmlNamedNodeMap1.h: 
+-----------------
+found old glue file, old time: 129203684912299000
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_set
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+
+o3_cXmlNode1.h: 
+-----------------
+found old glue file, old time: 129203684912629000
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_set
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_get
+
+o3_cXmlNodeArray1.h: 
+-----------------
+found old glue file, old time: 129203684912769000
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+
+o3_cXmlNodeList1.h: 
+-----------------
+found old glue file, old time: 129203684912949000
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+
+o3_cXmlText1.h: 
+-----------------
+found old glue file, old time: 129203684913039000
+
+o3_cZip1.h: 
+-----------------
+found old glue file, old time: 129203684913429000
+readExt: o3_ext
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readExt: o3_ext
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_fun
+readFunLike: o3_get
+readFunLike: o3_fun
+readFunLike: o3_fun
+
+

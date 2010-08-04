@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:a="http://ajax.org/2005/aml" >
+    <head>
+        <title>OnEdit Demonstration together with Ajax.org Platform</title>
+        
+        <script src="apf_debug.js"></script>
+        <script type="text/javascript" src="onedit2.js"></script>
+        <script>
+            apf.onload = function(){
+                //onedit.init('8A66ECAC-63FD-4AFA-9D42-3034D18C88F3', {oninstallprompt:function(url){}});
+				onedit.init('AAAAAAAA-1111-BBBB-1111-CCCCCCCCCCCC', {oninstallprompt:function(url){}});
+            }
+        </script>
+    </head>
+
+    <body bgcolor="#f1f1f1" style="display:none">
+    	<a style='color:gray' href='install/onedit2.0.exe'>OnEdit
+    Windows</a><br/>
+    	<a style='color:gray' href='install/onedit2.0.dmg.zip'>OnEdit
+    	OSX</a><br/>
+        <a:skin src="skins.xml" media-path="../skinimg/" icon-path="../icns/" />
+        <a:loader>
+            <div id="loadscreen">
+                <span>Loading...</span>
+
+            </div>
+        </a:loader>
+        
+        <a:appsettings name   ="o3test"
+          disable-right-click = "true"
+          disable-f5          = "false"
+          auto-hide-loading   = "true"
+          allow-match        = "false"
+          baseurl             = "{apf.host ? apf.host + '/' : 'http://www.ajax.org/'}"
+          allow-blur          = "true"
+          initdelay           = "false">
+        </a:appsettings>
+
+        <a:window id="winError" width="450" height="300"
+          center      = "true"
+          modal       = "false"
+          icon        = "application.png"
+          buttons     = "min|max|close"
+          visible     = "true"
+          title       = "Ajax.org OnEdit Demo">
+            <a:datagrid anchors="0 0 0 0" onafterchoose="
+                onedit.open(this.queryValue('@name', 'selected'))
+              ">
+                <a:each match="[file]">
+                    <a:column 
+                      caption = "Filename" 
+                      width   = "70%"
+                      icon    = "[@icon]"
+                      value   = "{apf.getFilename([@name])}" />
+
+                    <a:column 
+                      caption = "Size" 
+                      width   = "15%" 
+                      value   = " " /> 
+                    <a:column 
+                      caption = "Date" 
+                      width   = "15%" 
+                      value   = " " /> 
+                </a:each>
+                <a:model>
+                    <data>
+                        <file name="http://www.ajax.org/o3test/dav_files/test.doc" icon="icoDOC.gif"/>
+                        <file name="http://www.ajax.org/o3test/dav_files/test2.doc" icon="icoDOC.gif"/>
+                        <file name="http://www.ajax.org/o3test/dav_files/test3.doc" icon="icoDOC.gif"/>
+                        <file name="http://www.ajax.org/o3test/dav_files/test.xls" icon="icoXLS.gif"/>
+                        <file name="http://www.ajax.org/o3test/dav_files/test.txt" icon="icoTXT.gif"/>
+
+                    </data>
+                </a:model>
+            </a:datagrid>
+        </a:window>
+    </body>
+</html>

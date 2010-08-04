@@ -1,0 +1,27 @@
+<a:hbox padding="0" edge="0 0 0 0" height="67" width="600">
+    <a:bar skin="sponsorbar" width="291" height="67">
+        <a:img width="50" height="50" top="8" left="9" 
+          src2="style/images/sponsor_default_image.png" 
+          src="style/images/sponsor_image1.png"
+          style="border:1px solid #ffffff;background:#b3b3b3;padding: 1px;" />
+        <div>
+            <div class="settings29">Linkis, onderdeel van Partos</div>
+            <a:hbox padding="0" edge="0 0 0 3" top="33" left="65" align="start">
+                <a:button skin="sponsorbar_btn">Policy</a:button> 
+                <a:divider skin="sponsorbar_btn_divider" margin="8 1 0 1" />
+                <a:button skin="sponsorbar_btn">FAQ</a:button>
+                <a:divider skin="sponsorbar_btn_divider" margin="8 1 0 1" />
+                <a:button skin="sponsorbar_btn">Contact</a:button>
+                <a:divider skin="sponsorbar_btn_divider" margin="8 1 0 1" />
+            </a:hbox>
+        </div>
+    </a:bar>
+    <a:button skin="whitelink" margin="4 0 0 4" onclick="winChangeHeaderBg.show()">Change background picture</a:button>
+</a:hbox>
+<!--a:hbox padding="0" edge="0" top="90" left="20">
+    <a:dropdown width="218" skin="mynotes" initial-message="My Notes">
+        <a:item>Note 1</a:item>
+        <a:item>Note 2</a:item>
+    </a:dropdown>
+    <a:button skin="mynotesdd_btn"></a:button>
+</a:hbox-->

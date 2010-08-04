@@ -1,0 +1,103 @@
+ codegenerator usage:
+ =====================
+	cd [o3 path]/tool/win32
+	o3.exe ../codegen.js
+ 
+	This will regenerate every glue for o3, in the o3/include folder
+	(whenever it finds a source file with o3_glue_gen() macro in it,
+	it will parse the file and generate glue for it)
+ 
+	By default you it will create codegenErr.txt and codegenLog.txt
+	for the error and log messages.
+ 
+	additional parameters:
+	- you can specify specific folders and files instead of generating 
+	  all the glues: 
+			o3.exe ../codegen.js ../../include/fs ../../include/image/o3_cImage1_win32.h
+	- flags:
+		'-l' : print the log messages after the codegen has finished
+		'-v' : print every log message during the process
+		'-trace' : tracing the javascript includes
+ 
+ 
+ tags:
+ ======
+    o3_get	- property getter trait
+		o3_get int prop()
+    o3_set	- property setter trait
+		o3_get int setProp()				
+    	
+	NOTE: the two example, prop and setProp will generate a property called prop
+	on the component, please note the naming convention, no prefix for the getter
+	set prefix for the setter. If one of the traits is missing then it will be a read
+	or write only property accordingly.
+	
+	as immediate properties:
+		o3_get int m_member;
+		o3_set int m_member;
+		o3_prop int m_member;  
+	
+	NOTE: naming convention is also important here, the c++ 'm_some_name' member 
+	variable will become 'someMember' property on the js object. The js name can 
+	be altered by the o3_name tag;
+			
+	o3_fun	- method trait, adds a method to the current component
+		virtual o3_fun siScr parseString(const char* str)
+
+	o3_ext - it is possible to add method trait to other components, as extension traits
+		static o3_ext("cO3") o3_fun siScr screen(iCtx* ctx)
+		
+
+	NOTE: for a javascript method there can belong several overload, during the script call
+	the right overload will be selected based on the argument counts and their type. More
+	details comming soon.	
+		
+    o3_enum	- create read only properties
+		o3_enum("nameOfEnum", value1, value2, value3 = 4, value4) 
+
+	o3_name - alters the name of the js property
+		o3_name("someName") o3_prop int m_member;
+		o3_name("someOtherName") o3_fun int ___custom_name__();
+
+ supported args:
+ ================
+    bool
+    int
+    size_t
+    int64_t
+    double
+    const char*
+    const wchar_t*
+    const Str&
+    const WStr&
+    const Buf&
+    iScr*
+    iSomething*
+ 
+    -optional:
+    int argc, Var* argv
+
+    -spec args: (independent from argc)
+    o3_tgt* - for extension traits before the 'this' pointer like: 
+		static int o3_ext("cO3") o3_fun int createStuff(o3_tgt iScr* pthis, int number)
+    siEx*	- if the function can raise exception 
+		virtual int o3_fun openFile(const char* path, siEx* ex=0)
+    iCtx*	- if the function need a reference to the context
+		
+
+ supported return types:
+ ========================
+    void
+    bool
+    int
+    size_t
+    int64_t
+    double
+    Str
+    WStr
+    Buf
+    siScr
+    siSomething
+    tVec<something>
+
+    Var

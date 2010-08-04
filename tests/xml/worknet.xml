@@ -1,0 +1,292 @@
+<a:include src="pages/widgetpanel.xml" />
+<a:menu id="menu3" skin="documents_menu" style="position:absolute;margin-top:-68px;margin-left:-118px;width:280px;height:202px;">
+    <div style="width:280px;height:202px;position:relative;background: url(style/images/youarehere-temp.png) no-repeat"></div>
+</a:menu>
+
+<div class="wn_main_section settings3">
+    <div id="worknetBanner" class="wn_header" style="background-image : url(style/images/header-worknet.jpg)">
+        <a:include src="pages/header.xml" />
+        <a:include src="pages/navibar.xml" />
+   </div>
+</div>
+<div id="worknet_blackbox" class="wn_main_section wn_header_black" model="[mdlWorknet::blackbox]"  liveedit="[mdlWorknet::@owner]">
+    <?lm
+        <div class="wnhb_header">[@header]
+            <!--div class="wnhb_manage"><a href="#">manage</a></div-->
+        </div>
+        <div class="wnhb_subheader">
+            [@description] <a href="#">[@link]</a>
+        </div>
+    ?>
+    <a:label class="cpl_small" skin="changepicture_link" left="10" top="11"
+      onclick="winChangePhoto.show()" 
+      onmouseover="apf.setStyleClass(this.$ext, 'cpl_containerOver')" onmouseout="apf.setStyleClass(this.$ext, 'cpl_container', ['cpl_containerOver'])">
+        Click to change
+    </a:label>
+    <a:img id="worknetIdImage" skin="logo65x65" value="icon/[@id]/65x65.png" left="9" top="10"></a:img>
+
+    <div class="wnhb_switch_profile">
+        <a:img skin="logo50x50" value="icon/[mdlProfile::@id]/50x50.png" left="11" top="7"></a:img>
+        <a:img skin="logo32x32" value="icon/[mdlProfile::orgs/org[1]/@id]/32x32.png" right="12" top="7"></a:img>
+    </div>
+</div>
+<!--div class="wn_main_section"-->
+    <!-- Documents Widget -->
+    <!--a:menu id="menu1" skin="documents_menu_new">
+        <a:toolbar skin="toolbar_documents_gray" style="margin-top:12px;">
+            <a:bar>
+                <a:hbox padding="0" edge="0 3 0 0">
+                    <a:button skin="toolbarbutton3" icon="documents_ico1.png" class="docg_cap">Upload</a:button>
+                    <a:filler />
+                    <a:button skin="toolbarbutton3" align="right" icon="documents_ico3.png"></a:button>
+                    <a:button skin="toolbarbutton3" class="docg_arrow" align="right" icon="documents_ico2.png"></a:button>
+                </a:hbox>
+            </a:bar>
+        </a:toolbar>
+        <a:datagrid width="394" height="145"
+          options         = "size|move"
+          caching         = "false"
+          prerender       = "false"
+          model           = "[mdlWorknet::files]"
+          empty-message   = "Empty Message."
+          loading-message = "Calculating...">
+            <a:expanded match="[node()[@expand]]" />
+            <a:column caption="Name" value="[@name]" width="100%" icon="{[@icon] || 'documents_folder.png'}" tree="true" />
+            <a:column caption="Last Modified" value="[@lastmod]" width="150" editor="textbox" />
+            <a:column caption="User" value="[@user]" width="50"/>
+            <a:each match="[dir|file]" />
+        </a:datagrid>
+    </a:menu>
+    
+    <a:menu id="menu2" skin="documents_menu">
+        <div style="width:385px;height:100px;position:relative;"></div>
+    </a:menu>
+    
+    <a:toolbar skin="toolbar_documents">
+        <a:menubar>
+            <a:button submenu="menu1" icon="documents_suitcase.png">WorkNet documents</a:button>
+            <a:button submenu="menu2" icon="documents_agenda.png">Agenda</a:button>
+        </a:menubar>
+    </a:toolbar-->
+<!--/div-->
+<div class="wn_main_section gradient_bg">
+    <a:hbox padding="10" edge="20 15 20 15" align="start">
+        <a:bar width="240">
+            <a:vbox padding="10">
+                <a:bar skin="citebox" height="255" liveedit="[mdlOrganization::@owner]">
+                    <p>Hello there,</p>
+
+                    <p style="margin:10px 0 0 0;">This worknet has one goal; Bring all visitors and organisators together and giving them a 
+                    platform to discuss ideas &amp; create documentation which will be used for future events, discussions and research.</p>
+
+                    <p style="margin:10px 0 0 0;">Stay creative</p>
+                </a:bar>
+                <!--a:bar skin="widgetPanelSession">
+                    <a:button skin="add_session" style="margin-bottom:10px;">Create new session</a:button>
+                    <a:tree 
+                      skin   = "sessions_tree"
+                      model  = "[mdlWorknet::sessions]"
+                      height = "300" 
+                      width  = "220">
+                        <a:each match="[open|active|closed|session]">
+                            <a:expanded match="[node()[@expand]]" />
+                            <a:caption match="[@name]" />
+                            <a:icon match="[@icon]"/>
+                        </a:each>
+                    </a:tree>
+                </a:bar-->
+                <a:bar skin="widgetPanel">
+                    <h3>UP COMING THINGS</h3>
+                    <a:toolbar skin="toolbar_documents_gray" style="margin:9px -10px 0 -10px;">
+                        <a:bar>
+                            <a:hbox padding="0" edge="0 8 0 8" pack="end">
+                                <a:button skin="toolbarbutton3" icon="documents_ico3.png" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_wn3)"></a:button>
+                            </a:hbox>
+                        </a:bar>
+                        <a:bar id="wp_searchbar_wn3" skin="wp_searchbar" style="position:relative;top:-44px;" width="250" height="22">
+                            <a:hbox edge="0 0 0 0">
+                                <a:textbox skin="wp_searchbox" initial-message="Type here to Search" onkeyup="worknetsApp.widgetpanel.search(this, lstWorknetMembers, 'members/member', ['name', 'dsc']); return false;"></a:textbox>
+                                <a:filler />
+                                <a:button margin="0 14 0 0" skin="whitelink" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_wn3,lstWorknetMembers)">Close</a:button>
+                            </a:hbox>
+                            <a:button skin="cleartextbtn" visible="false" top="5" left="162"
+                              onclick="worknetsApp.widgetpanel.clearSearchbox(this, lstWorknetCommingThings)"></a:button>
+                        </a:bar>
+                    </a:toolbar>
+                    <a:hbox padding="0" edge="9 0 0 0">
+                        <a:list bindings="bndListDate" vmlistbind="bndListDate" vmlistskin="lstGrDot"
+                          id="lstWorknetCommingThings" skin="lstGrDot" caching="false"
+                            multiselect="false" model="mdlWorknet" style="margin-top:5px;"
+                            autoselect="false" height="200" width="212" canrename="false">
+                            <a:each match="events/event"></a:each>
+                        </a:list>
+                        <a:scrollbar 
+                          for    = "lstWorknetCommingThings" 
+                          width  = "17" 
+                          height = "200" />
+                    </a:hbox>
+                </a:bar>
+            </a:vbox>
+        </a:bar>
+
+        <a:bar width="440" id="test">
+            <a:bar skin="widgetPanel" margin="0 0 14 0" style="overflow: visible">
+                <h3>COLLABORATIVE APPS</h3>
+                <!--div class="xPanelButton"></div-->
+                <a:toolbar skin="toolbar_documents_gray" style="margin:9px -5px 0 -5px;">
+                    <a:bar>
+                        <a:hbox padding="0" edge="0 8 0 3">
+                            <a:button skin="toolbarbutton3" icon="documents_ico1.png" class="docg_cap noico">FIND MORE APPS</a:button>
+                            <a:filler />
+                            <!--a:button skin="toolbarbutton3" align="right" icon="documents_ico3.png" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbarApps)"></a:button-->
+                            <a:button skin="toolbarbutton3" submenu="viewmode_menu_n" class="docg_arrow" icon="documents_ico2.png" 
+                              onmousedown="worknetsApp.widgetpanel.curList = lstWorknetApps"></a:button>
+                        </a:hbox>
+                    </a:bar>
+                    <!--a:bar id="wp_searchbarApps" skin="wp_searchbar" style="position:relative;top:-44px;" width="250" height="22">
+                        <a:hbox edge="0 0 0 0">
+                            <a:textbox skin="wp_searchbox" initial-message="Type here to Search" onkeyup="worknetsApp.widgetpanel.search(this, lstWorknetCommingThings, 'events/event', 'dsc'); return false;"></a:textbox>
+                            <a:button style="top:3px;left:-19px;" skin="cleartextbtn" visible="false" onclick="worknetsApp.widgetpanel.clearSearchbox(this, lstWorknetCommingThings)"></a:button>
+                            <a:button align="right" margin="0 6 0 0" skin="whitelink" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbarApps,lstWorknetCommingThings)">Close</a:button>
+                        </a:hbox>
+                    </a:bar-->
+
+                </a:toolbar>
+                <!--a:hbox padding="0" edge="5 0 5 0"-->
+                    <a:list bindings="bndThumbsApps" vmlistbind="bndListStatus" vmlistskin="lstDblPic"
+                      vmthumbbind="bndThumbsApps" vmthumbskin="tn_thumbnail_apps"
+                      id="lstWorknetApps" skin="tn_thumbnail_apps" caching="false"
+                      multiselect="false" model="mdlWorknet" style="margin:14px 0 5px 14px"
+                      autoselect="false" width="400" canrename="false"
+                      onclick="alert('launch app ' + (event.currentTarget.selected.selectSingleNode('name').text || ''))"
+                      empty-message="No apps found">
+                        <a:each match="[apps/app]">
+                        </a:each>
+                    </a:list>
+                    <!--a:scrollbar 
+                      for    = "lstWorknetApps" 
+                      width  = "17" 
+                      height = "200" /-->
+                <!--/a:hbox-->
+            </a:bar>
+            
+            <a:button skin="section_header" width="440">Activity Wall</a:button>
+            <a:list id="lstActionWall" skin="activityWall" caching="false"
+                    multiselect="false" model="mdlWorknet" style="margin-top:5px;"
+                    autoselect="false" empty-message="There are no wall messages">
+                <a:each match="[feed/feeditem[position() &lt; 6]]">
+                    <a:caption><?lm
+                        <div class="imgContainer">
+                            <img src="icon/[@from_id]/38x38.png" alt="" />
+                        </div>
+                        <div class="wallItemBody">
+                            <a class="wallTitle" href="#">[@from]</a>
+                            <p class="wallDescr">[text()]</p>
+                            <p class="wallMeta"><span class="originalTime" isotime="[@timesent]">{worknetsApp.util.human_date([@timesent])}</span> &bull; <a href="#">[@comnents]</a></p>
+                        </div>
+                        <div class="wall_pin"></div>
+                    ?></a:caption>
+                    <a:css match="[@sticky]" value="sticky"></a:css>
+                </a:each>
+            </a:list>
+
+            <a:button style="margin-top:5px;" skin="wallMore" width="440"
+              onclick="this.hide();lstActionWall.setProperty('each','[wall/feed-item]')"
+              visible="{lstActionWall.length &gt; 5  and [{lstActionWall.root}::@hasmore]}">Show More</a:button>
+        </a:bar>
+
+        <a:bar width="250">
+            <a:bar skin="widgetPanel">
+                <h3>MEMBERS (<?lm lstWorknetMembers.length || "0" ?>)</h3>
+                <!--div class="xPanelButton"></div-->
+                <a:button skin="add_contact_wdgpnl" class="wp_addcontactbtn" icon="add_contact.png" 
+                  onclick="winInvitePeople.show()" visible="[mdlWorknet::@owner]"></a:button>
+
+                <a:toolbar skin="toolbar_documents_gray" style="margin:9px -5px 0 -5px;">
+                    <a:bar>
+                        <a:hbox padding="0" edge="0 8 0 8" pack="end">
+                            <!--a:button skin="toolbarbutton3" icon="documents_ico1.png" class="docg_cap noico">SHOW MORE</a:button-->
+                            <a:button skin="toolbarbutton3" submenu="viewmode_menu_n" class="docg_arrow" icon="documents_ico2.png" onmousedown="worknetsApp.widgetpanel.curList = lstWorknetMembers"></a:button>
+                            <a:button skin="toolbarbutton3" icon="documents_ico3.png" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_wn1)"></a:button>
+                        </a:hbox>
+                    </a:bar>
+                    <a:bar id="wp_searchbar_wn1" skin="wp_searchbar" style="position:relative;top:-44px;" width="250" height="22">
+                        <a:hbox edge="0 0 0 0">
+                            <a:textbox skin="wp_searchbox" initial-message="Type here to Search" onkeyup="worknetsApp.widgetpanel.search(this, lstWorknetMembers, 'members/member', ['name', 'dsc']); return false;"></a:textbox>
+                            <a:filler />
+                            <a:button margin="0 6 0 0" skin="whitelink" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_wn1,lstWorknetMembers)">Close</a:button>
+                        </a:hbox>
+                        <a:button skin="cleartextbtn" visible="false" top="5" left="162"
+                          onclick="worknetsApp.widgetpanel.clearSearchbox(this, lstWorknetMembers)"></a:button>
+                    </a:bar>
+                </a:toolbar>
+                <a:hbox edge="5 0 0 0" padding="0" minheight="76" maxheight="190">
+                    <a:list bindings="bndListDblStatus" vmlistbind="bndListDblStatus" 
+                      vmthumbbind="bndThumbsConn" vmthumbskin="tn_thumbnail_3cols"
+                      id="lstWorknetMembers" skin="lstDblPic" class="status" caching="false"
+                      multiselect="false" model="mdlWorknet" 
+                      autoselect="false" height="190" 
+                      minheight="76" maxheight="190" width="220"
+                      onclick="worknetsApp.widgetpanel.listclick(event)"
+                      empty-message="No members found">
+                        <a:each match="members/person"></a:each>
+                    </a:list>
+                    <a:scrollbar id="rogsb"
+                      for    = "lstWorknetMembers" 
+                      width  = "17" />
+                </a:hbox>
+            </a:bar>
+            
+            <a:bar skin="widgetPanel" style="margin-top:10px;">
+                <h3>PARTNERS (<?lm lstWorknetPartners.length || "0" ?>)</h3>
+                <!--div class="xPanelButton"></div-->
+                <a:toolbar skin="toolbar_documents_gray" style="margin:9px -5px 0 -5px;">
+                    <a:bar>
+                        <a:hbox padding="0" edge="0 8 0 8" pack="end">
+                            <!--a:button skin="toolbarbutton3" icon="documents_ico1.png" class="docg_cap noico">SHOW MORE</a:button-->
+                            <a:button skin="toolbarbutton3" submenu="viewmode_menu_n" class="docg_arrow" icon="documents_ico2.png" onmousedown="worknetsApp.widgetpanel.curList = lstWorknetPartners"></a:button>
+                            <a:button skin="toolbarbutton3" icon="documents_ico3.png" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_wn2)"></a:button>
+                        </a:hbox>
+                    </a:bar>
+                    <a:bar id="wp_searchbar_wn2" skin="wp_searchbar" style="position:relative;top:-44px;" width="250" height="22">
+                        <a:hbox edge="0 0 0 0">
+                            <a:textbox skin="wp_searchbox" initial-message="Type here to Search" onkeyup="worknetsApp.widgetpanel.search(this, lstWorknetPartners, 'partners/partner', ['name','dsc']); return false;"></a:textbox>
+                            <a:filler />
+                            <a:button align="right" margin="0 6 0 0" skin="whitelink" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_wn2,lstWorknetPartners)">Close</a:button>
+                        </a:hbox>
+                        <a:button skin="cleartextbtn" visible="false" top="5" left="162"
+                          onclick="worknetsApp.widgetpanel.clearSearchbox(this, lstWorknetPartners)"></a:button>
+                    </a:bar>
+                </a:toolbar>
+                <a:hbox edge="5 0 0 0" padding="0" minheight="76" maxheight="190">
+                    <a:list bindings="bndListNoDsc" vmlistbind="bndListNoDsc"
+                      id="lstWorknetPartners" skin="lstDblPic" caching="false"
+                      multiselect="false" model="mdlWorknet"
+                      autoselect="false" height="190" 
+                      minheight="76" maxheight="190" width="220"
+                      onclick="worknetsApp.widgetpanel.listclick(event)"
+                      empty-message="No partners found">
+                        <a:each match="partners/org"></a:each>
+                    </a:list>
+                    <a:scrollbar 
+                      for    = "lstWorknetPartners" 
+                      width  = "17" />
+                </a:hbox>
+            </a:bar>
+        </a:bar>
+    </a:hbox>
+</div>
+<a:include src="pages/footer.xml" />
+<a:script>//<!--
+setInterval(function(){
+    var spans = lstActionWall.$ext.getElementsByTagName('span');
+    for (var i = 0; i < spans.length; i++) {
+        var span = spans[i];
+        if(span.className == 'originalTime') {
+            var isotime = span.getAttribute('isotime');
+            span.innerHTML = worknetsApp.util.human_date(isotime);
+        }
+    }
+}, 60000);
+
+--></a:script>

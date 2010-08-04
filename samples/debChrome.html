@@ -1,0 +1,358 @@
+<html>
+	<head>
+		<script type="text/javascript" src="d8.js"></script>
+        <script type="text/javascript" src="o3.js"></script>
+	</head>
+	<body>
+        <button onClick="testChrome()">start test</button>
+		<br></br>
+		<textarea name="log" id="log" cols="100" rows="25">
+		</textarea>
+	</body>
+	<script>
+        var o3obj;
+        // creating an o3 instance, we need the UID and the name of the product
+        // the o3.js file will take care of all the details
+        o3obj = o3.create("AAAAAAAA-1111-BBBB-1111-CCCCCCCCCCCC", { 
+            oninstallprompt : function(){ alert("can't find o3 plugin");}    
+        } );
+		
+		var seq_id=0;
+		var HANDSHAKE_MESSAGE = "ChromeDevToolsHandshake\r\n";
+		var CustomEvent = function() {
+			this.name = arguments[0];
+			var callback = null;
+			this.register = function(fun) {
+				callback = fun;
+			};
+			var internal = arguments[1];
+
+			this.trigger = function(arg) {				 
+				if(callback != null) {
+					callback(arg);
+				}
+				if(internal != null) {
+					internal();
+				}
+			};
+			return true;
+		};
+
+		var	client,
+			busy = false,			
+			connectionEstabilished = false,
+			received = '',
+			onHandshakeDone = new CustomEvent("handshakeDone", 
+				function(){connectionEstabilished=true;}
+			),
+			onrequestSend = new CustomEvent("requestSend", 
+				function(){busy=true;}
+			),
+			onrequestDone = new CustomEvent("requestDone", 
+				function(){busy=false; 
+				/*setTimeout("RequestHandler.handleNext()",1);*/ 
+				RequestHandler.handleNext();}
+			),
+			ondebuggerEvent = new CustomEvent("debuggerEvent");
+		
+		ondebuggerEvent.register(
+			function(responseObj){
+				log('debugger event: ' + responseObj.command + '\ndata: '
+					+ responseObj.data + '\n');}
+		);
+		
+		onHandshakeDone.register(
+			function(){setTimeout("start()",1);}
+		);
+		
+		function objectifyResponse(responseText){
+				var responseObj = null;
+				try {						
+					//headers = responseText.match(/\[w_-]+\:[^\n\r]+[\n\r]/g);			
+					var data,d = responseText.indexOf('\r\n\r\n'),
+					data = responseText.substring(d+4);
+					responseObj = eval('(' + data + ')');
+				}
+				catch(e){
+					debugger;
+				}
+				return responseObj;
+		}		
+		
+		function globalReceiveFunction(){			
+			var lastChunk = client.receivedText;
+			client.clearBuf();
+			received += lastChunk;
+			log("\nreceiving... \n" + lastChunk + "\n");
+			
+			if (!connectionEstabilished && 
+				received == HANDSHAKE_MESSAGE) 
+			{				
+				onHandshakeDone.trigger();
+				received = '';
+				return;
+			}
+			
+			// check if a full response is received	
+			var i,c,l,responseLength,fullResponse = false; 			
+			if ((i = received.indexOf('\r\n\r\n')) != -1) {
+				if ((c = received.indexOf('Content-Length:')) != -1) {
+					l = received.substring(c+15);
+					l = l.substring(0, l.indexOf('\r\n'));
+					responseLength = i+4+parseInt(l,10)
+					if (responseLength<=received.length) {
+						fullResponse = received.substring(0,responseLength);
+						received = received.substring(responseLength);
+					}
+						
+				}
+			}
+			
+			// handle a full response if there was one
+			if (fullResponse) {		
+				var responseObj = objectifyResponse(fullResponse);
+				if (!responseObj) {
+					alert("broken message!!!");
+					return;
+				}
+				
+				if (responseObj.command == client.requestObj.command) {
+					onrequestDone.trigger(responseObj);	
+				}
+				else {
+					ondebuggerEvent.trigger(responseObj);					
+				}
+			}				
+		}
+		
+		var RequestHandler = {
+			requestQueue : [],
+			push: function(requestObj){
+				this.requestQueue.push(requestObj);
+				if (!busy) 
+					this.handleNext();
+			},
+			handleNext: function() {
+				if(!this.requestQueue.length) {
+					log("\n-no more request\n");
+					return;
+				}
+				log("\n-sending next\n");
+				
+				var requestObj = client.requestObj = this.requestQueue.shift();				
+				onrequestSend.register(requestObj.onsend);
+				onrequestDone.register(requestObj.ondone);
+				onreceive = requestObj.onreceive;
+				log("\nsending...:\n" + requestObj.msg + "\n");
+				onrequestSend.trigger(requestObj);
+				client.send(requestObj.msg);			
+			}
+		}
+		
+		
+		function connectAndHandshake()
+		{									
+			client = o3obj.socketTCP();
+			client.onconnect = function()
+			{				
+				client.receive();				
+				client.send(HANDSHAKE_MESSAGE);
+			}
+			client.onreceive = globalReceiveFunction;	
+			client.connect('127.0.0.1', 9222);								
+		}
+
+		function protocolStringifier() {
+			var s='';
+			for(var i=0; i<this.headers.length; i++) {
+				s += this.headers[i] + "\r\n";
+			}
+			s += "\r\n";
+			s +=this.content;
+			return s;
+		}
+
+		function listTabs(ondone)
+		{	
+			var LIST_TABS = '{"command":"list_tabs"}',
+				contentLength = LIST_TABS.length,
+				protocolObj = {
+					headers: [],
+					content: LIST_TABS,
+					toString: protocolStringifier
+				};
+			
+			protocolObj.headers.push(
+				'Content-Length:' + contentLength,
+				'Tool:DevToolsService'
+			);	
+			
+			var requestObj = {			
+				msg: protocolObj.toString(), 
+				command: "list_tabs",
+				onsend: function(){},
+				ondone: ondone
+			};
+			
+			RequestHandler.push(requestObj);
+		}
+
+		function attach(tabID, ondone)
+		{	
+			var ATTACH_TABS = '{"command":"attach"}',
+				contentLength = ATTACH_TABS.length,
+				protocolObj = {
+					headers: [],
+					content: ATTACH_TABS,
+					toString: protocolStringifier
+				};
+			
+			protocolObj.headers.push(
+				'Content-Length:' + contentLength, 
+				'Tool:V8Debugger',
+				'Destination:' + tabID
+			);
+				
+			var requestObj = {			
+				msg: protocolObj.toString(), 
+				command: "attach",
+				onsend: function(){},
+				ondone: ondone
+			};
+			
+			RequestHandler.push(requestObj);
+		}
+		
+		function debuggerCmd(tabID, cmd, ondone)
+		{	
+			var debCmd = '{"command":"debugger_command","data":' 
+					+ cmd +'}',
+				contentLength = debCmd.length,
+				protocolObj = {
+					headers: [],
+					content: debCmd,
+					toString: protocolStringifier
+				};
+			
+			protocolObj.headers.push(
+				'Content-Length:' + contentLength, 
+				'Tool:V8Debugger',
+				'Destination:' + tabID
+			);
+				
+			var requestObj = {			
+				msg: protocolObj.toString(), 
+				command: "debugger_command",
+				onsend: function(){},
+				ondone: ondone
+			};
+						
+			RequestHandler.push(requestObj);
+		}
+
+		function breakpoint(tabID, line, ondone)
+		{
+			var v8req = {
+				seq:++seq_id,
+				type:"request",
+				command: "setbreakpoint",
+				arguments: {
+				  enabled: true,				  
+                  target: "file:\/\/\/C:\/Development\/o3krizsa\/samples\/debug.js",
+                  line: line,
+                  type: "script"                  
+				}
+			};
+			var req = SimpleObjectToJSON_(v8req)
+			debuggerCmd(tabID, req, ondone);
+		}		
+		
+		function source(tabID, ondone)
+		{
+			var v8req = {
+				seq:++seq_id,
+				type:"request",
+				command: "source",
+				arguments: {}
+			};
+			var req = SimpleObjectToJSON_(v8req)
+			debuggerCmd(tabID, req, ondone);
+		}
+
+		function scripts(tabID, ondone)		
+		{
+			var v8req = {
+				seq:++seq_id,
+				type:"request",
+				command: "scripts",
+				arguments: {
+					includeSource:false
+				}
+			};
+			var req = SimpleObjectToJSON_(v8req)
+			debuggerCmd(tabID, req, ondone);
+		}
+		
+		function evalDummy(tabID, ondone)
+		{
+			var debCmd = '{"command":"evaluate_javascript","data":"javascript:void(0);"',
+				contentLength = debCmd.length,
+				protocolObj = {
+					headers: [],
+					content: debCmd,
+					toString: protocolStringifier
+				};
+			
+			protocolObj.headers.push(
+				'Content-Length:' + contentLength, 
+				'Tool:V8Debugger',
+				'Destination:' + tabID
+			);
+				
+			var requestObj = {			
+				msg: protocolObj.toString(), 
+				command: "debugger_command",
+				onsend: function(){},
+				ondone: ondone
+			};
+						
+			RequestHandler.push(requestObj);
+		}
+		
+		function log(text) {
+			var prev;
+			if (document.all) {
+				prev = document.getElementById('log').innerText;
+				document.getElementById('log').innerText = prev + text;
+			} else {
+				prev = document.getElementById('log').textContent;
+				document.getElementById('log').textContent = prev + text;
+			}
+		}
+
+		function testChrome() {
+			connectAndHandshake();													
+		}	
+
+		function start() {
+			listTabs(onReceiveTabs);					
+		}	
+		
+		var tabid_;
+		function onReceiveTabs(responseObj) {
+			log("\nreceived tabs...\n");
+			tabid_ = responseObj.data[0][0];
+			attach(responseObj.data[0][0], onAttached);
+		}
+		
+		function onAttached(responseObj) {
+			log("\onAttach: " + responseObj.result + "\n");
+			breakpoint(tabid_, 2, function(p){alert("breakpoint received");});
+			evalDummy(tabid_, function(p){alert("eval received");});
+			RequestHandler.handleNext();
+			//source(tabid_, function(p){alert("fuck yeah!!!");});
+			//scripts(tabid_, function(p){alert("fuck yeah!!!");});
+		}
+				
+    </script>
+</html>

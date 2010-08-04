@@ -1,0 +1,312 @@
+In file included from ../../include/core/o3_core.h:41,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_cUnk.h:224: warning: ignoring #pragma warning 
+../../include/core/o3_cUnk.h:225: warning: ignoring #pragma warning 
+../../include/core/o3_cUnk.h:230: warning: ignoring #pragma warning 
+In file included from ../../include/shared/o3_zip_tools.h:21,
+                 from ../../include/core/o3_cO3.h:23,
+                 from ../../include/core/o3_core.h:49,
+                 from o3_sh_posix.cpp:21:
+../../external/include/lib_zlib.h:10: warning: ignoring #pragma warning 
+../../external/include/lib_zlib.h:11: warning: ignoring #pragma warning 
+In file included from ../../include/shared/o3_zip_tools.h:21,
+                 from ../../include/core/o3_cO3.h:23,
+                 from ../../include/core/o3_core.h:49,
+                 from o3_sh_posix.cpp:21:
+../../external/include/lib_zlib.h:4464: warning: ignoring #pragma warning 
+../../external/include/lib_zlib.h:4465: warning: ignoring #pragma warning 
+In file included from ../../include/core/o3_cStream.h:30,
+                 from ../../include/core/o3_core.h:51,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_scr_cStream_posix.h:2: warning: ignoring #pragma warning 
+../../include/core/o3_scr_cStream_posix.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/core/o3_cStream.h:30,
+                 from ../../include/core/o3_core.h:51,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_scr_cStream_posix.h:48: warning: ignoring #pragma warning 
+../../include/core/o3_scr_cStream_posix.h:49: warning: ignoring #pragma warning 
+In file included from ../../include/core/o3_core.h:54,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_scr_cScrBuf.h:2: warning: ignoring #pragma warning 
+../../include/core/o3_scr_cScrBuf.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/core/o3_core.h:54,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_scr_cScrBuf.h:100: warning: ignoring #pragma warning 
+../../include/core/o3_scr_cScrBuf.h:101: warning: ignoring #pragma warning 
+In file included from ../../include/core/o3_core.h:55,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_scr_cO3.h:2: warning: ignoring #pragma warning 
+../../include/core/o3_scr_cO3.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/core/o3_core.h:55,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_scr_cO3.h:90: warning: ignoring #pragma warning 
+../../include/core/o3_scr_cO3.h:91: warning: ignoring #pragma warning 
+../../include/core/o3_scr_cO3.h:93: warning: ignoring #pragma warning 
+../../include/core/o3_scr_cO3.h:94: warning: ignoring #pragma warning 
+../../include/core/o3_scr_cO3.h:215: warning: ignoring #pragma warning 
+../../include/core/o3_scr_cO3.h:216: warning: ignoring #pragma warning 
+In file included from ../../include/core/o3_core.h:56,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_scr_cStreamBase.h:2: warning: ignoring #pragma warning 
+../../include/core/o3_scr_cStreamBase.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/core/o3_core.h:56,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_scr_cStreamBase.h:126: warning: ignoring #pragma warning 
+../../include/core/o3_scr_cStreamBase.h:127: warning: ignoring #pragma warning 
+In file included from ../../include/js/o3_cJs1.h:30,
+                 from ../../include/js/o3_js.h:22,
+                 from o3_sh_posix.cpp:22:
+../../include/js/o3_scr_cJs1_posix.h:2: warning: ignoring #pragma warning 
+../../include/js/o3_scr_cJs1_posix.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/js/o3_cJs1.h:30,
+                 from ../../include/js/o3_js.h:22,
+                 from o3_sh_posix.cpp:22:
+../../include/js/o3_scr_cJs1_posix.h:68: warning: ignoring #pragma warning 
+../../include/js/o3_scr_cJs1_posix.h:69: warning: ignoring #pragma warning 
+In file included from ../../include/js/o3_cJs1.h:31,
+                 from ../../include/js/o3_js.h:22,
+                 from o3_sh_posix.cpp:22:
+../../include/js/o3_scr_cJs1Base.h:2: warning: ignoring #pragma warning 
+../../include/js/o3_scr_cJs1Base.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/js/o3_cJs1.h:31,
+                 from ../../include/js/o3_js.h:22,
+                 from o3_sh_posix.cpp:22:
+../../include/js/o3_scr_cJs1Base.h:58: warning: ignoring #pragma warning 
+../../include/js/o3_scr_cJs1Base.h:59: warning: ignoring #pragma warning 
+In file included from ../../include/console/o3_cConsole1.h:30,
+                 from ../../include/console/o3_console.h:21,
+                 from o3_sh_posix.cpp:24:
+../../include/console/o3_scr_cConsole1_posix.h:2: warning: ignoring #pragma warning 
+../../include/console/o3_scr_cConsole1_posix.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/console/o3_cConsole1.h:30,
+                 from ../../include/console/o3_console.h:21,
+                 from o3_sh_posix.cpp:24:
+../../include/console/o3_scr_cConsole1_posix.h:76: warning: ignoring #pragma warning 
+../../include/console/o3_scr_cConsole1_posix.h:77: warning: ignoring #pragma warning 
+In file included from ../../include/fs/o3_fs.h:23,
+                 from o3_sh_posix.cpp:26:
+../../include/fs/o3_scr_cFs1Base.h:2: warning: ignoring #pragma warning 
+../../include/fs/o3_scr_cFs1Base.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/fs/o3_fs.h:23,
+                 from o3_sh_posix.cpp:26:
+../../include/fs/o3_scr_cFs1Base.h:316: warning: ignoring #pragma warning 
+../../include/fs/o3_scr_cFs1Base.h:317: warning: ignoring #pragma warning 
+In file included from ../../include/fs/o3_cFs1.h:30,
+                 from ../../include/fs/o3_fs.h:26,
+                 from o3_sh_posix.cpp:26:
+../../include/fs/o3_scr_cFs1_posix.h:2: warning: ignoring #pragma warning 
+../../include/fs/o3_scr_cFs1_posix.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/fs/o3_cFs1.h:30,
+                 from ../../include/fs/o3_fs.h:26,
+                 from o3_sh_posix.cpp:26:
+../../include/fs/o3_scr_cFs1_posix.h:64: warning: ignoring #pragma warning 
+../../include/fs/o3_scr_cFs1_posix.h:65: warning: ignoring #pragma warning 
+In file included from ../../include/process/o3_cProcess1.h:29,
+                 from ../../include/process/o3_process.h:22,
+                 from o3_sh_posix.cpp:27:
+../../include/process/o3_scr_cProcess1Base.h:2: warning: ignoring #pragma warning 
+../../include/process/o3_scr_cProcess1Base.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/process/o3_cProcess1.h:29,
+                 from ../../include/process/o3_process.h:22,
+                 from o3_sh_posix.cpp:27:
+../../include/process/o3_scr_cProcess1Base.h:112: warning: ignoring #pragma warning 
+../../include/process/o3_scr_cProcess1Base.h:113: warning: ignoring #pragma warning 
+In file included from ../../include/process/o3_cProcess1.h:31,
+                 from ../../include/process/o3_process.h:22,
+                 from o3_sh_posix.cpp:27:
+../../include/process/o3_scr_cProcess1_posix.h:2: warning: ignoring #pragma warning 
+../../include/process/o3_scr_cProcess1_posix.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/process/o3_cProcess1.h:31,
+                 from ../../include/process/o3_process.h:22,
+                 from o3_sh_posix.cpp:27:
+../../include/process/o3_scr_cProcess1_posix.h:64: warning: ignoring #pragma warning 
+../../include/process/o3_scr_cProcess1_posix.h:65: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:27,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlNodeList1.h:2: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlNodeList1.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:27,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlNodeList1.h:76: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlNodeList1.h:77: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:28,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlNamedNodeMap1.h:2: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlNamedNodeMap1.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:28,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlNamedNodeMap1.h:94: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlNamedNodeMap1.h:95: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:29,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlNode1.h:2: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlNode1.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:29,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlNode1.h:196: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlNode1.h:197: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:30,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlAttr1.h:2: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlAttr1.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:30,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlAttr1.h:76: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlAttr1.h:77: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:31,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlNodeArray1.h:2: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlNodeArray1.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:31,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlNodeArray1.h:70: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlNodeArray1.h:71: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:32,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlElement1.h:2: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlElement1.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:32,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlElement1.h:118: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlElement1.h:119: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:33,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlCharacterData1.h:2: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlCharacterData1.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:33,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlCharacterData1.h:100: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlCharacterData1.h:101: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:34,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlText1.h:2: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlText1.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:34,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlText1.h:48: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlText1.h:49: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:35,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlComment1.h:2: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlComment1.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:35,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlComment1.h:48: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlComment1.h:49: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:36,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlCDATASection1.h:2: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlCDATASection1.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:36,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlCDATASection1.h:48: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlCDATASection1.h:49: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:37,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlDocument1.h:2: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlDocument1.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:37,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXmlDocument1.h:94: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXmlDocument1.h:95: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:38,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXml1.h:2: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXml1.h:3: warning: ignoring #pragma warning 
+In file included from ../../include/xml/o3_xml.h:38,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_scr_cXml1.h:68: warning: ignoring #pragma warning 
+../../include/xml/o3_scr_cXml1.h:69: warning: ignoring #pragma warning 
+In file included from ../../include/core/o3_core.h:42,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_cSysBase.h: In member function ‘virtual void* o3::cSysBase::alloc(o3::size_t)’:
+../../include/core/o3_cSysBase.h:323: warning: no return statement in function returning non-void
+../../include/core/o3_cSysBase.h: In member function ‘virtual void* o3::cSysBase::alloc(o3::size_t, const char*, int)’:
+../../include/core/o3_cSysBase.h:349: warning: comparison between signed and unsigned integer expressions
+../../include/core/o3_cSysBase.h:351: warning: comparison between signed and unsigned integer expressions
+../../include/core/o3_cSysBase.h: In member function ‘virtual void o3::cSysBase::free(void*, const char*, int)’:
+../../include/core/o3_cSysBase.h:411: warning: comparison between signed and unsigned integer expressions
+../../include/core/o3_cSysBase.h:417: warning: comparison between signed and unsigned integer expressions
+In file included from ../../include/core/o3_cSys.h:22,
+                 from ../../include/core/o3_core.h:43,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_cSys_posix.h: In member function ‘virtual void o3::cMessageLoop::wait(int)’:
+../../include/core/o3_cSys_posix.h:430: warning: unused variable ‘sum’
+In file included from ../../include/core/o3_cO3.h:22,
+                 from ../../include/core/o3_core.h:49,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_crypto.h: In function ‘void o3::Crypto::get_random(int, o3::uint8_t*)’:
+../../include/core/o3_crypto.h:135: warning: comparison between signed and unsigned integer expressions
+In file included from ../../include/shared/o3_zip_tools.h:21,
+                 from ../../include/core/o3_cO3.h:23,
+                 from ../../include/core/o3_core.h:49,
+                 from o3_sh_posix.cpp:21:
+../../external/include/lib_zlib.h: In function ‘o3::ZLib::block_state o3::ZLib::deflate_slow(o3::ZLib::deflate_state*, int)’:
+../../external/include/lib_zlib.h:2073: warning: comparison between signed and unsigned integer expressions
+../../external/include/lib_zlib.h: In function ‘int o3::ZLib::inflate_table(o3::ZLib::codetype, short unsigned int*, unsigned int, o3::ZLib::code**, unsigned int*, short unsigned int*)’:
+../../external/include/lib_zlib.h:2930: warning: comparison between signed and unsigned integer expressions
+../../external/include/lib_zlib.h:2949: warning: comparison between signed and unsigned integer expressions
+../../external/include/lib_zlib.h:2955: warning: comparison between signed and unsigned integer expressions
+../../external/include/lib_zlib.h:2964: warning: comparison between signed and unsigned integer expressions
+In file included from ../../include/core/o3_cO3.h:23,
+                 from ../../include/core/o3_core.h:49,
+                 from o3_sh_posix.cpp:21:
+../../include/shared/o3_zip_tools.h: In function ‘o3::siEx o3::zip_tools::readFileFromZip(const o3::Str&, o3::iStream*, o3::iStream*, const o3::zip_tools::CentralDir&)’:
+../../include/shared/o3_zip_tools.h:286: warning: comparison between signed and unsigned integer expressions
+../../include/shared/o3_zip_tools.h: In function ‘o3::siEx o3::zip_tools::archiveFile(o3::iFs*, o3::iStream*, const o3::Str&, o3::zip_tools::CentralHeader&)’:
+../../include/shared/o3_zip_tools.h:348: warning: comparison between signed and unsigned integer expressions
+In file included from ../../include/core/o3_core.h:49,
+                 from o3_sh_posix.cpp:21:
+../../include/core/o3_cO3.h: In constructor ‘o3::cLoadProgress::cLoadProgress()’:
+../../include/core/o3_cO3.h:54: warning: ‘o3::cLoadProgress::m_state’ will be initialized after
+../../include/core/o3_cO3.h:53: warning:   ‘o3::size_t o3::cLoadProgress::m_bytes_received’
+../../include/core/o3_cO3.h:35: warning:   when initialized here
+../../include/core/o3_cO3.h: In member function ‘void o3::cO3::onNotification(o3::iUnk*)’:
+../../include/core/o3_cO3.h:279: warning: statement has no effect
+../../include/core/o3_cO3.h: In member function ‘bool o3::cO3::unpackModule(const o3::Str&, o3::iStream*, bool)’:
+../../include/core/o3_cO3.h:454: warning: no return statement in function returning non-void
+In file included from ../../include/js/o3_cJs1.h:22,
+                 from ../../include/js/o3_js.h:22,
+                 from o3_sh_posix.cpp:22:
+../../include/js/o3_cJs1_posix.h: In static member function ‘static void o3::cJs1::finalize(v8::Persistent<v8::Value>, void*)’:
+../../include/js/o3_cJs1_posix.h:408: error: invalid use of member ‘o3::cJs1::m_counter’ in static member function
+../../include/js/o3_cJs1_posix.h:306: error: from this location
+../../include/js/o3_cJs1_posix.h:299: warning: unused variable ‘pthis’
+../../include/js/o3_cJs1_posix.h: In member function ‘virtual void* o3::cJs1::appWindow()’:
+../../include/js/o3_cJs1_posix.h:560: warning: no return statement in function returning non-void
+In file included from ../../include/fs/o3_fs.h:23,
+                 from o3_sh_posix.cpp:26:
+../../include/fs/o3_scr_cFs1Base.h: In static member function ‘static o3::siEx o3::cFs1Base::clsInvoke(o3::iScr*, o3::iCtx*, int, int, const o3::Var*, o3::Var*)’:
+../../include/fs/o3_scr_cFs1Base.h:235: warning: unused variable ‘type0’
+In file included from ../../include/process/o3_cProcess1.h:22,
+                 from ../../include/process/o3_process.h:22,
+                 from o3_sh_posix.cpp:27:
+../../include/process/o3_cProcess1_posix.h: In member function ‘void o3::cProcess1::task(o3::iUnk*)’:
+../../include/process/o3_cProcess1_posix.h:92: warning: unused variable ‘i’
+In file included from ../../include/xml/o3_xml.h:13,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_cXmlNodeList1.h: In member function ‘bool o3::cXmlNodeList1::__deleter__(int, o3::siEx*)’:
+../../include/xml/o3_cXmlNodeList1.h:49: warning: statement has no effect
+../../include/xml/o3_cXmlNodeList1.h: In member function ‘o3::siXmlNode o3::cXmlNodeList1::__getter__(o3::iCtx*, int, o3::siEx*)’:
+../../include/xml/o3_cXmlNodeList1.h:54: warning: statement has no effect
+In file included from ../../include/xml/o3_xml.h:14,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_cXmlNamedNodeMap1.h: In member function ‘bool o3::cXmlNamedNodeMap1::__deleter__(int, o3::siEx*)’:
+../../include/xml/o3_cXmlNamedNodeMap1.h:45: warning: statement has no effect
+../../include/xml/o3_cXmlNamedNodeMap1.h: In member function ‘o3::siXmlNode o3::cXmlNamedNodeMap1::__getter__(o3::iCtx*, int, o3::siEx*)’:
+../../include/xml/o3_cXmlNamedNodeMap1.h:50: warning: statement has no effect
+In file included from ../../include/xml/o3_xml.h:17,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_cXmlNodeArray1.h: In member function ‘o3::siXmlNode o3::cXmlNodeArray1::__getter__(o3::iCtx*, int, o3::siEx*)’:
+../../include/xml/o3_cXmlNodeArray1.h:47: warning: statement has no effect
+In file included from ../../include/xml/o3_xml.h:19,
+                 from o3_sh_posix.cpp:28:
+../../include/xml/o3_cXmlCharacterData1.h: In member function ‘virtual o3::Str o3::cXmlCharacterData1::substringData(int, int, o3::siEx*)’:
+../../include/xml/o3_cXmlCharacterData1.h:56: warning: statement has no effect
+../../include/xml/o3_cXmlCharacterData1.h: In member function ‘virtual void o3::cXmlCharacterData1::insertData(int, const char*, o3::siEx*)’:
+../../include/xml/o3_cXmlCharacterData1.h:80: warning: statement has no effect
+../../include/xml/o3_cXmlCharacterData1.h: In member function ‘virtual void o3::cXmlCharacterData1::deleteData(int, int, o3::siEx*)’:
+../../include/xml/o3_cXmlCharacterData1.h:95: warning: statement has no effect
+../../include/xml/o3_cXmlCharacterData1.h: In member function ‘virtual void o3::cXmlCharacterData1::replaceData(int, int, const char*, o3::siEx*)’:
+../../include/xml/o3_cXmlCharacterData1.h:110: warning: statement has no effect
+make: *** [all] Error 1

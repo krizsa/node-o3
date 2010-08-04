@@ -1,0 +1,21 @@
+<div class="wn_main_section_rounded">
+    <div class="wnmsr_left"></div>
+    <div class="wnmsr_middle"></div>
+    <div class="wnmsr_right"></div>
+</div>
+
+<a:bar skin="main_footer">
+    <a:hbox padding="5" edge="3 8 0 9">
+        <a:button skin="footer_btn">About Worknets</a:button>
+        <a:divider skin="footer_divider" />
+        <a:button skin="footer_btn">Privacy</a:button>
+        <a:divider skin="footer_divider" />
+        <a:button skin="footer_btn">Disclaimer</a:button>
+        <a:divider skin="footer_divider" />
+        <a:button skin="footer_btn">Careers</a:button>
+        <a:divider skin="footer_divider" />
+        <a:button skin="footer_btn">Contact</a:button>
+        <a:filler />
+        <a:label skin="footer_label">Worknets © 2010</a:label>
+    </a:hbox>
+</a:bar>

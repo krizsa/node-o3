@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:a="http://ajax.org/2005/aml" xmlns="http://www.w3.org/1999/xhtml"  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <head>
+    <!--?import namespace="v" implementation="#default#VML" ?-->
+  	<meta http-equiv="Content-Type" content="text/html; utf-8" />
+  	<title>Tablegen</title>  	
+	<script>//<![CDATA[
+		
+		var tree = {};
+				
+		function addcolor(k,color){
+			color = "" + color;
+			var c,i,t = tree,a,b; k = k.toLowerCase()+'q';
+			for(i=0;i<k.length;i++){
+				if( a = t[c = k.charAt(i)] )
+					t = (typeof(a) != 'object')?(t[c] = { 0:a }):a
+				else 
+					t = t[c] = (i+1 == k.length)?color:{};
+			}
+		}
+		
+		window.onload = function(){
+
+			function prune(t, d){
+				var col, p, v;
+				function count(t, d){
+					var n = 0, p, v;
+					for(p in t){
+						if(typeof(v = t[p]) == 'object') n += count( v, d+1 );
+						else n++, col = v;
+					}
+					return n;
+				}			
+				for(p in t) if(typeof(v = t[p]) == 'object'){
+					if(count(t[p])==1) t[p] = col;
+					else prune(t[p]);
+				}
+			}
+			prune(tree);
+			
+			var idx = 0, arr = [];
+			function genarray(t,id){
+				var lut = arr[id] = [];
+				for(var p in t){
+					var v = t[p];
+					if(typeof(v) == 'object'){ // sublut
+						genarray(v,lut[p.charCodeAt(0)-97] = ++idx);
+					}else{ // endpoint
+						lut[p.charCodeAt(0)-97] = v;
+					}
+				}
+			}
+			genarray(tree,0);
+			
+			// output code
+			var o = ['unsigned int css_lut['+arr.length+'][26] = {\n'], l = 1;
+			for(var i=0;i<arr.length;i++){
+				o[l++] = '\t{';
+				var t = arr[i];
+				for(var j=0;j<26;j++){
+					if(t[j]) o[l++] = t[j], o[l++] = ",";
+					else o[l++] = "0",o[l++] = ",";
+				}
+				l--;o[l++] = '},\n';
+			}
+			o[l-1] = '}\n};\n';
+			
+			logw(o.join(''));
+		}
+
+		var ts=[],ti;
+		function logw(txt){
+			var e = document.getElementById('dbgLog');
+			if(!e){
+			  if(txt===undefined)return txt;
+			  ts.push(txt);ts.push('\n');
+			  window.setTimeout("logw()",100);
+			  return txt;
+			}
+			if(txt===undefined){if(!ts)return txt;txt = ts.join('');ts=null;}
+			var t = txt+'';
+			e.insertAdjacentHTML("beforeend", t.replace(/\n/g, "<br/>").replace(/ /g, "&nbsp;").replace(/\t/g, "&nbsp;&nbsp;&nbsp;")+"<br/>");
+			e.scrollTop = e.scrollHeight;
+			return txt;
+		}
+		
+addcolor('aliceblue  ',0xfff0f8ff);
+addcolor('antiquewhite',0xfffaebd7);
+addcolor('aqua',0xff00ffff);
+addcolor('aquamarine',0xff7fffd4);
+addcolor('azure',0xfff0ffff);
+addcolor('beige',0xfff5f5dc);
+addcolor('bisque',0xffffe4c4);
+addcolor('black',0xff000000);
+addcolor('blanchedalmond',0xffffebcd );
+addcolor('blue',0xff0000ff);
+addcolor('blueviolet',0xff8a2be2);
+addcolor('brown',0xffa52a2a);
+addcolor('burlywood',0xffdeb887);
+addcolor('cadetblue',0xff5f9ea0);
+addcolor('chartreuse',0xff7fff00);
+addcolor('chocolate',0xffd2691e);
+addcolor('coral',0xffff7f50 );
+addcolor('cornflowerblue',0xff6495ed  );
+addcolor('cornsilk',0xfffff8dc);
+addcolor('crimson',0xffdc143c);
+addcolor('cyan',0xff00ffff);
+addcolor('darkblue',0xff00008b );
+addcolor('darkcyan',0xff008b8b );
+addcolor('darkgoldenrod',0xffb8860b  );
+addcolor('darkgray',0xffa9a9a9 );
+addcolor('darkgreen',0xff006400);
+addcolor('darkgrey',0xffa9a9a9 );
+addcolor('darkkhaki',0xffbdb76b);
+addcolor('darkmagenta',0xff8b008b);
+addcolor('darkolivegreen',0xff556b2f); 
+addcolor('darkorange',0xffff8c00);
+addcolor('darkorchid',0xff9932cc);
+addcolor('darkred',0xff8b0000 );
+addcolor('darksalmon',0xffe9967a);
+addcolor('darkseagreen',0xff8fbc8f);
+addcolor('darkslateblue',0xff483d8b );
+addcolor('darkslategray',0xff2f4f4f);
+addcolor('darkslategrey',0xff2f4f4f);
+addcolor('darkturquoise',0xff00ced1);
+addcolor('darkviolet',0xff9400d3);
+addcolor('deeppink',0xffff1493);
+addcolor('deepskyblue',0xff00bfff );
+addcolor('dimgray',0xff696969);
+addcolor('dimgrey',0xff696969);
+addcolor('dodgerblue',0xff1e90ff);
+addcolor('firebrick',0xffb22222);
+addcolor('floralwhite',0xfffffaf0);
+addcolor('forestgreen',0xff228b22);
+addcolor('fuchsia',0xffff00ff);
+addcolor('gainsboro',0xffdcdcdc);
+addcolor('ghostwhite',0xfff8f8ff);
+addcolor('gold',0xffffd700);
+addcolor('goldenrod',0xffdaa520);
+addcolor('gray',0xff808080 );
+addcolor('green',0xff008000);
+addcolor('greenyellow',0xffadff2f);
+addcolor('grey',0xff808080);
+addcolor('honeydew',0xfff0fff0 );
+addcolor('hotpink',0xffff69b4 );
+addcolor('indianred',0xffcd5c5c);
+addcolor('indigo',0xff4b0082 );
+addcolor('ivory',0xfffffff0 );
+addcolor('khaki',0xfff0e68c );
+addcolor('lavender',0xffe6e6fa );
+addcolor('lavenderblush',0xfffff0f5 );
+addcolor('lawngreen',0xff7cfc00);
+addcolor('lemonchiffon',0xfffffacd);
+addcolor('lightblue',0xffadd8e6);
+addcolor('lightcoral',0xfff08080);
+addcolor('lightcyan',0xffe0ffff);
+addcolor('lightgoldenrodyellow',0xfffafad2);
+addcolor('lightgray',0xffd3d3d3);
+addcolor('lightgreen',0xff90ee90);
+addcolor('lightgrey',0xffd3d3d3);
+addcolor('lightpink',0xffffb6c1);
+addcolor('lightsalmon',0xffffa07a);
+addcolor('lightseagreen',0xff20b2aa); 
+addcolor('lightskyblue',0xff87cefa);
+addcolor('lightslategray',0xff778899 );
+addcolor('lightslategrey',0xff778899 );
+addcolor('lightsteelblue',0xffb0c4de );
+addcolor('lightyellow',0xffffffe0);
+addcolor('lime',0xff00ff00);
+addcolor('limegreen',0xff32cd32);
+addcolor('linen',0xfffaf0e6 );
+addcolor('magenta',0xffff00ff );
+addcolor('maroon',0xff800000 );
+addcolor('mediumaquamarine',0xff66cdaa );
+addcolor('mediumblue',0xff0000cd);
+addcolor('mediumorchid',0xffba55d3);
+addcolor('mediumpurple',0xff9370db);
+addcolor('mediumseagreen',0xff3cb371 );
+addcolor('mediumslateblue',0xff7b68ee );
+addcolor('mediumspringgreen',0xff00fa9a );
+addcolor('mediumturquoise',0xff48d1cc);
+addcolor('mediumvioletred',0xffc71585);
+addcolor('midnightblue',0xff191970);
+addcolor('mintcream',0xfff5fffa);
+addcolor('mistyrose',0xffffe4e1);
+addcolor('moccasin',0xffffe4b5);
+addcolor('navajowhite',0xffffdead);
+addcolor('navy',0xff000080);
+addcolor('oldlace',0xfffdf5e6);
+addcolor('olive',0xff808000);
+addcolor('olivedrab',0xff6b8e23);
+addcolor('orange',0xffffa500);
+addcolor('orangered',0xffff4500);
+addcolor('orchid',0xffda70d6);
+addcolor('palegoldenrod',0xffeee8aa);
+addcolor('palegreen',0xff98fb98);
+addcolor('paleturquoise',0xffafeeee);
+addcolor('palevioletred',0xffdb7093);
+addcolor('papayawhip',0xffffefd5 );
+addcolor('peachpuff',0xffffdab9);
+addcolor('peru',0xffcd853f);
+addcolor('pink',0xffffc0cb);
+addcolor('plum',0xffdda0dd);
+addcolor('powderblue',0xffb0e0e6);
+addcolor('purple',0xff800080);
+addcolor('red',0xffff0000);
+addcolor('rgb',"0x1f000000");
+addcolor('rgba',"0x2f000000");
+addcolor('rosybrown',0xffbc8f8f);
+addcolor('royalblue',0xff4169e1);
+addcolor('saddlebrown',0xff8b4513);
+addcolor('salmon',0xfffa8072);
+addcolor('sandybrown',0xfff4a460);
+addcolor('seagreen',0xff2e8b57);
+addcolor('seashell',0xfffff5ee);
+addcolor('sienna',0xffa0522d);
+addcolor('silver',0xffc0c0c0);
+addcolor('skyblue',0xff87ceeb);
+addcolor('slateblue',0xff6a5acd);
+addcolor('slategray',0xff708090);
+addcolor('slategrey',0xff708090);
+addcolor('snow',0xfffffafa);
+addcolor('springgreen',0xff00ff7f);
+addcolor('steelblue',0xff4682b4);
+addcolor('tan',0xffd2b48c);
+addcolor('teal',0xff008080);
+addcolor('thistle',0xffd8bfd8);
+addcolor('tomato',0xffff6347);
+addcolor('turquoise',0xff40e0d0);
+addcolor('violet',0xffee82ee);
+addcolor('wheat',0xfff5deb3);
+addcolor('white',0xffffffff);
+addcolor('whitesmoke',0xfff5f5f5);
+addcolor('yellow',0xffffff00);
+addcolor('yellowgreen',0xff9acd32);		
+		
+	//]]>
+   </script>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body mode="xml" style="background-color:silver;display:block;cursor:default;">  	
+    <div id='dbgLog' style="width:100%;height:500px;overflow-y:scroll;overflow-x:scroll;white-space:break-word;background-color:black;color:gray;font-family:courier;font-size:8pt;">
+    </div>
+  </body>
+</html>

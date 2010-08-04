@@ -1,0 +1,386 @@
+<doc xmlns:a="http://ajax.org/2005/aml">
+<a:include src="pages/widgetpanel.xml" />
+<div class="wn_main_section settings3">
+    <div id="profileBanner" class="wn_header" style="background-image:url(style/images/header-personal-profile.jpg)">
+        <a:include src="pages/header.xml" />
+        <a:include src="pages/navibar.xml" />
+   </div>
+</div>
+
+<div class="wn_main_section gradient_bg" model="mdlProfile">
+    <a:hbox padding="10" edge="20 15 20 13" width="800">
+        <a:bar width="248">
+            <!-- check idcard_panel bar skin to get more info how about class names to switch the look -->
+            <a:bar id="profile_idcard" skin="idcard_panel" class="{[mdlProfile::@owner] == 'true' ? 'wn_idcard_loggedin_your' : 'wn_idcard_loggedin_someoneelse'}">
+                <a:label id="changepic_label1" class="cpl_idcard" skin="changepicture_link" 
+                  onclick="winChangePhoto.show()" 
+                  onmouseover="apf.setStyleClass(this.$ext, 'cpl_containerOver')" onmouseout="apf.setStyleClass(this.$ext, 'cpl_container', ['cpl_containerOver'])">
+                    Click to change your photo
+                </a:label>
+                <a:hbox edge="1 0 0 6" padding="3" align="start">
+                    <a:img id="profileIdImage" skin="idcard_img" value="icon/[@id]/86x86.png"></a:img>
+
+                    <a:vbox edge="12 0 0 0" padding="3" id="profile_idcard_menu1" visible="{[mdlProfile::@owner] == 'true'}">
+                        <a:button skin="idcard_button" onclick="winCreateWorknet.show()">Create a Worknet</a:button>
+                        <a:button skin="idcard_button" onclick="profileTabs.setAttribute('activepage', 1)">Edit Profile Details</a:button>
+                    </a:vbox>
+                    <!--a:button skin="idcard_button">Files</a:button>
+                        <a:button skin="idcard_button">Agenda</a:button>
+                        <a:button skin="idcard_button">Messages</a:button-->
+                    <a:vbox edge="12 0 0 0" padding="3" id="profile_idcard_menu2" visible="{[mdlProfile::@owner] == 'false'}">
+                        <a:button skin="idcard_button" onclick="commRDB.inviteInternal()">Connect</a:button>
+                        <a:button skin="idcard_button" onclick="commRDB.disconnect()" visible="false">Disconnect</a:button>
+                        <a:button skin="idcard_button" onclick="winSendMessage.show();taMsg.$focus();">Send a Message</a:button>
+                    </a:vbox>
+                </a:hbox>
+            </a:bar>
+            <a:bar skin="status_messagebox" class="settings17" style="margin-top: -4px;">
+                <div class="wnsmb_border">
+                    <a:textbox skin="status_textbox" initial-message="Where are you?" 
+                      onkeyup="onchangeWhereMsg(this,event)"
+                      value="[wheremsg]">
+                    </a:textbox>
+                </div>
+                <a:label id="lblWhereDate" skin="status_label" class="settings18">Last change: [wheremsg/@lastchange]</a:label>
+            </a:bar>
+            <a:bar skin="widgetPanel" width="240" margin="10 0 0 2">
+                <h3>CONTACT INFORMATION</h3>
+                <a:toolbar skin="toolbar_documents_gray" style="margin:9px -5px 0 -5px;">
+                    <a:bar>
+                        <a:hbox padding="0" edge="0 0 0 0">
+                            <a:button skin="toolbarbutton3" icon="documents_ico1.png" 
+                              class="docg_cap noico" onclick="profileTabs.setAttribute('activepage', 1)">
+                                SWITCH TO PROFILE DETAILS
+                            </a:button>
+                        </a:hbox>
+                    </a:bar>
+                </a:toolbar>
+
+                <div class="orgContactInfo"><?lm
+                    local([details/public/section[@name='work']]) {
+                        each([element]){
+                            <!--div onmouseover="toggleControls(this)" onmouseout="toggleControls(this)">
+                                <a:hbox edge="0 0 0 0"--> 
+                                    <h4>{worknetsApp.fieldsLut[[@name]]}</h4>
+                                    <!--a:filler/>
+                                    <a:hbox edge="0 0 0 0" visible="true"> 
+                                        <a:button skin="contactinfo_btn" class="movedown"></a:button>
+                                        <a:button skin="contactinfo_btn" class="moveup"></a:button>
+                                        <a:button skin="contactinfo_btn" class="add"></a:button>
+                                        <a:button skin="contactinfo_btn" class="delete"></a:button>
+                                    </a:hbox>
+                                </a:hbox-->
+                                <p>[text()]</p>
+                            <!--/div-->
+                        }
+                    }
+                ?></div>
+            </a:bar>
+            <!-- This buttons can be removed - are only for tests -->
+            <!--a:button onclick="worknetsApp.user.setMode('user')">User profile</a:button>
+            <a:button onclick="worknetsApp.user.setMode('else')">Else profile</a:button-->
+            
+            <!--a:bar skin="widgetPanel" style="margin-top:10px;">
+                <h3>PUBLIC DOCUMENTS</h3>
+                <div class="xPanelButton"></div>
+                <a:toolbar skin="toolbar_documents_gray" style="margin:9px -10px 0 -10px;">
+                    <a:bar>
+                        <div>Dropdown</div>
+                    </a:bar>
+                </a:toolbar>
+                <a:hbox edge="10 0 0 0" padding="0">
+                    <a:tree
+                      id="lstWorknetMembers" skin="sessions_tree" caching="false"
+                        multiselect="false" model="testmembers" style="margin-top:5px; overflow: hidden;"
+                        autoselect="false" height="190" width="210">
+                        <a:each match="feed-item">
+                            <a:caption><![CDATA[
+                                <div class="details">
+                                    <div class="imgBox {[status] == 'active' ? 'orange' : 'gray'}">
+                                        <img class="imgBig" src="[image]" alt="" width="25" height="25" />
+                                        <img class="imgSmall" src="[image2]" alt="" width="18" height="18" />
+                                    </div>
+                                    <a href="#contact">[name]</a>
+                                    <p>[dsc]</p>
+                                </div>
+                                <div class="status">
+                                    <div class="icon [status]"></div>
+                                </div>
+                            ]]></a:caption>
+                        </a:each>
+                    </a:tree>
+                    <a:scrollbar 
+                      for    = "lstWorknetMembers" 
+                      width  = "17" 
+                      height = "190" />
+                </a:hbox>
+            </a:bar-->
+        </a:bar>
+        
+        <a:bar width="700" style="overflow: visible">
+            <a:bar skin="tabHeader" width="700" height="118" style="margin-top:0px;"><?lm
+                <h3>[details/public/section[@name='work']/element[@name='full_name']]</h3>
+                <h4>You are now looking at your Personal Profile. </h4>
+            ?></a:bar>
+            <!--
+                                ([public/section[@name='general_info']/element[@name='name_on_profile']] || "Your profile name"),
+                    ([public/section[@name='work']/element[@name='position']] || "Your position")
+            -->
+            <a:hbox edge="0 0 0 0" class="mainContent">
+                <a:tab id="profileTabs" skin="th_tabs" width="440" margin="0 4 0 0">
+                    <a:page caption="Activity Wall">
+                        <a:bar skin="activityPanel" width="430" height="80" style="margin: -21px 0 0 0;">
+                            <a:vbox edge="4 5 0 5">
+                                <a:textbox id="tbActivityMsg" skin="status_textarea" height="30"
+                                  initial-message="Share thoughts, ideas, updates or announcements" />
+                                <a:hbox edge="2 0 0 0" padding="6" pack="end">
+                                    <!--a:button submenu="mnuIncFiles" skin="navitxtbutton" class="small" 
+                                      icon="anchor.png" width="100">Include files</a:button>
+                                    <a:filler />
+                                    <span class="settings32">Visible to:</span>
+                                    <a:button submenu="mnuVisible" skin="navitxtbutton" 
+                                      class="small" width="56">anyone</a:button-->
+                                    <a:button class="ui-btn-green" width="70" height="27" margin="5 0 0 0"
+                                      onclick="worknetsApp.addActivityWallMsg()" disabled="{!lstActionWall.root}">Share</a:button>
+                                </a:hbox>
+                            </a:vbox>
+                        </a:bar>
+                        <div class="searchFieldWallLine" />
+                        <a:bar class="orgDetails" width="430" margin="0 10 0 0">
+                            <a:list id="lstActionWall" skin="activityWall" caching="false"
+                              multiselect="false" model="mdlProfile" style="margin-top:5px;"
+                              autoselect="false" empty-message="Be the one to add a comment">
+                                <a:each match="[feed/feeditem[position() &lt; 6]]">
+                                    <a:caption><?lm
+                                        <div class="imgContainer">
+                                            <img src="icon/[@from_id]/38x38.png" alt="" />
+                                        </div>
+                                        <div class="wallItemBody">
+                                            <a class="wallTitle" href="\#[@from_id]">[@from]</a>
+                                            <p class="wallDescr">[text()]</p>
+                                            <p class="wallMeta"><span class="originalTime" isotime="[@timesent]">{worknetsApp.util.human_date([@timesent])}</span> &bull; <a href="#">[@comments] comments</a></p>
+                                        </div>
+                                    ?></a:caption>
+                                </a:each>
+                            </a:list>
+                            <a:button style="margin-top:5px;" skin="wallMore" width="430"
+                              onclick="this.hide();lstActionWall.setProperty('each','[feed/feeditem]')"
+                              visible="{lstActionWall.length &gt; 5 and [{lstActionWall.root}::@hasmore]}">Show More</a:button>
+                        </a:bar>
+                    </a:page>
+                    <a:page caption="Profile details" class="tabline_small">
+                        <div class="searchFieldWallLine" />
+                        <a:bar id="profile_profiledetails" class="orgDetails" model="mdlProfile" liveedit="[mdlProfile::@owner]"><?lm
+                            local([details/public]) {
+                                <!--h2>PUBLIC INFORMATION</h2>
+                                <h3>visible to everyone</h3-->{
+                                    each([section]) {
+                                        <h4 class="profileDetailsTitle">{worknetsApp.fieldsLut[[@name]]}</h4>
+                                        <div class="rows">{
+                                        if([@type] == 'text') {
+                                            <div class="row">
+                                                [text()]
+                                            </div>
+                                        }
+                                        else {
+                                            each([element]){
+                                                <div class="row">
+                                                    <div class="columL"><strong>{worknetsApp.fieldsLut[[@name]]}</strong></div>
+                                                    <div class="columR">[text()]</div>
+                                                </div>
+                                            }
+                                        }
+                                        }</div>
+                                    }
+                                    <!--div style="margin-top: 15px; border-bottom: #cccccc 2px dotted"></div-->
+                                }
+                            }
+                            local([details/private]) {
+                                <!--h2>PRIVATE INFORMATION</h2>
+                                <h3>By default invisible to the public</h3-->{
+                                    each([section]) {
+                                        <h4 class="profileDetailsTitle">{worknetsApp.fieldsLut[[@name]]}</h4>
+                                        <div class="rows">{
+                                        if([@type] == 'text') {
+                                            <div class="row">
+                                                [text()]
+                                            </div>
+                                        }
+                                        else {
+                                            each([element]){
+                                                <div class="row">
+                                                    <div class="columL"><strong>{worknetsApp.fieldsLut[[@name]]}</strong></div>
+                                                    <div class="columR">[text()]</div>
+                                                </div>
+                                            }
+                                        }
+                                        }</div>
+                                    }
+                                }
+                            }
+                        ?></a:bar>
+                    </a:page>
+                </a:tab>
+                
+                <a:bar width="250" style="margin-top:32px;">
+                    <a:bar skin="widgetPanel" width="250">
+                        <h3>WORKNETS (<?lm lstProfileWorknets.length || "0" ?>)</h3>
+                        <!--div class="xPanelButton"></div-->
+                        <a:toolbar skin="toolbar_documents_gray" style="margin:9px -5px 0 -5px;">
+                            <a:bar>
+                                <a:hbox padding="0" edge="0 8 0 8" pack="end">
+                                    <!--a:button skin="toolbarbutton3" icon="documents_ico1.png" class="docg_cap noico">SHOW MORE</a:button-->
+                                    <a:button skin="toolbarbutton3" submenu="viewmode_menu_n" class="docg_arrow" icon="documents_ico2.png" onmousedown="worknetsApp.widgetpanel.curList = lstProfileWorknets"></a:button>
+                                    <a:button skin="toolbarbutton3" icon="documents_ico3.png" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_pr1)"></a:button>
+                                </a:hbox>
+                            </a:bar>
+                            <a:bar id="wp_searchbar_pr1" skin="wp_searchbar" style="position:relative;top:-44px;" width="250" height="22">
+                                <a:hbox edge="0 0 0 0">
+                                    <a:textbox skin="wp_searchbox" initial-message="Type here to Search" onkeyup="worknetsApp.widgetpanel.search(this, lstProfileWorknets, 'worknets/worknet', 'name'); return false;"></a:textbox>
+                                    <a:filler />
+                                    <a:button margin="0 6 0 0" skin="whitelink" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_pr1,lstProfileWorknets)">Close</a:button>                        
+                                </a:hbox>
+                                <a:button skin="cleartextbtn" visible="false" top="5" left="162"
+                                  onclick="worknetsApp.widgetpanel.clearSearchbox(this, lstProfileWorknets)"></a:button>
+                            </a:bar>
+
+                        </a:toolbar>
+                        <a:hbox edge="5 0 0 0" padding="0" minheight="76" maxheight="190">
+                            <a:list id="lstProfileWorknets"
+                              skin    = "lstDblPic"
+                              width   = "220"
+                              caching = "false"
+                              model   = "mdlProfile"
+                              height  = "190"
+                              autoselect  = "false"
+                              minheight   = "76"
+                              maxheight   = "190"
+                              bindings    = "bndListNoDsc"
+                              vmlistbind  = "bndListNoDsc"
+                              multiselect = "false"
+                              onclick     = "worknetsApp.widgetpanel.listclick(event)"
+                              empty-message="No worknets found">
+                                <a:each match="worknets/worknet" />
+                            </a:list>
+                            <a:scrollbar 
+                              for    = "lstProfileWorknets" 
+                              width  = "17" />
+                        </a:hbox>
+                    </a:bar>
+                    <a:bar skin="widgetPanel" style="margin-top:10px;" width="250">
+                        <h3>ORGANIZATIONS (<?lm lstProfileOrganizations.length || "0" ?>)</h3>
+                        <!--div class="xPanelButton"></div-->
+                        <a:toolbar skin="toolbar_documents_gray" style="margin:9px -5px 0 -5px;">
+                            <a:bar>
+                                <a:hbox padding="0" edge="0 8 0 8" pack="end">
+                                    <!--a:button skin="toolbarbutton3" icon="documents_ico1.png" class="docg_cap noico">SHOW MORE</a:button-->
+                                    <a:button skin="toolbarbutton3" submenu="viewmode_menu_n" class="docg_arrow" icon="documents_ico2.png" onmousedown="worknetsApp.widgetpanel.curList = lstProfileOrganizations"></a:button>
+                                    <a:button skin="toolbarbutton3" icon="documents_ico3.png" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_pr2)"></a:button>
+                                </a:hbox>
+                            </a:bar>
+                            <a:bar id="wp_searchbar_pr2" skin="wp_searchbar" style="position:relative;top:-44px;" width="250" height="22">
+                                <a:hbox edge="0 0 0 0">
+                                    <a:textbox skin="wp_searchbox" initial-message="Type here to Search" onkeyup="worknetsApp.widgetpanel.search(this, lstProfileOrganizations, 'organizations/organization', ['name','dsc']); return false;"></a:textbox>
+                                    <a:filler />
+                                    <a:button margin="0 6 0 0" skin="whitelink" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_pr2,lstProfileOrganizations)">Close</a:button>
+                                </a:hbox>
+                                <a:button skin="cleartextbtn" visible="false" top="5" left="162"
+                                  onclick="worknetsApp.widgetpanel.clearSearchbox(this, lstProfileOrganizations)"></a:button>
+                            </a:bar>
+                        </a:toolbar>
+                        
+                        <a:hbox edge="5 0 0 0" padding="0" minheight="76" maxheight="190">
+                            <a:list bindings="bndListNoDsc" vmlistbind="bndListNoDsc"
+                              id="lstProfileOrganizations" skin="lstDblPic" caching="false"
+                                multiselect="false" model="mdlProfile"
+                                autoselect="false" height="190" 
+                                minheight="76" maxheight="190" width="220" 
+                                onclick="worknetsApp.widgetpanel.listclick(event)"
+                                empty-message="No organizations found">
+                                <a:each match="orgs/org"></a:each>
+                            </a:list>
+                            <a:scrollbar 
+                              for    = "lstProfileOrganizations" 
+                              width  = "17" />
+                        </a:hbox>
+                    </a:bar>
+
+                    <a:bar skin="widgetPanel" style="margin-top:10px;" width="250">
+                        <h3>CONTACTS (<?lm lstProfileContacts.length || "0" ?>)</h3>
+                        <!--div class="xPanelButton"></div-->
+                        <a:button skin="add_contact_wdgpnl" class="wp_addcontactbtn" icon="add_contact.png"
+                          onclick="winInvitePeople.show()" visible="[mdlProfile::@owner]"></a:button>
+                        
+                        <a:toolbar skin="toolbar_documents_gray" style="margin:9px -5px 0 -5px;">
+                            <a:bar>
+                                <a:hbox padding="0" edge="0 8 0 8" pack="end">
+                                    <!--a:button skin="toolbarbutton3" icon="documents_ico1.png" class="docg_cap noico">SHOW MORE</a:button-->
+                                    <a:button skin="toolbarbutton3" submenu="viewmode_menu_n" class="docg_arrow" icon="documents_ico2.png" onmousedown="worknetsApp.widgetpanel.curList = lstProfileContacts"></a:button>
+                                    <a:button skin="toolbarbutton3" icon="documents_ico3.png" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_pr3)"></a:button>
+                                </a:hbox>
+                            </a:bar>
+                            <a:bar id="wp_searchbar_pr3" skin="wp_searchbar" style="position:relative;top:-44px;" width="250" height="22">
+                                <a:hbox edge="0 0 0 0">
+                                    <a:textbox skin="wp_searchbox" initial-message="Type here to Search" onkeyup="worknetsApp.widgetpanel.search(this, lstProfileContacts, 'contacts/contact', 'name'); return false;"></a:textbox>
+                                    <a:filler />
+                                    <a:button margin="0 6 0 0" skin="whitelink" onclick="worknetsApp.widgetpanel.toggleSearchbar(wp_searchbar_pr3,lstProfileContacts)">Close</a:button>
+                                </a:hbox>
+                                <a:button skin="cleartextbtn" visible="false" top="5" left="162"
+                                  onclick="worknetsApp.widgetpanel.clearSearchbox(this, lstProfileContacts)"></a:button>
+                            </a:bar>
+                        </a:toolbar>
+                        
+                        <a:hbox edge="5 0 0 0" padding="0" minheight="76" maxheight="190">
+                            <a:list bindings="bndListStatusNoDsc" vmlistbind="bndListStatusNoDsc"
+                              id="lstProfileContacts" skin="lstDblPic" class="status" caching="false"
+                                multiselect="false" model="mdlProfile"
+                                autoselect="false" height="190" 
+                                minheight="76" maxheight="190" width="220" 
+                                onclick="worknetsApp.widgetpanel.listclick(event)"
+                                empty-message="No contacts found">
+                                <a:each match="contacts/contact"></a:each>
+                            </a:list> 
+                            <a:scrollbar 
+                              for    = "lstProfileContacts" 
+                              width  = "17" />
+                        </a:hbox>
+                    </a:bar>
+                </a:bar>
+            </a:hbox>
+        </a:bar>
+    </a:hbox>
+</div>
+<a:include src="pages/footer.xml" />
+<a:script>//<!--
+    function onchangeWhereMsg(el,e) {
+        // on Enter save message
+        if(e.keyCode == 13) {
+            var cur = new Date();
+            var lastchange = ("July" || cur.getMonth()+1) + " " + cur.getDate() + ", " + cur.getYear() + " " +cur.getHours() + ":" + cur.getMinutes();
+            var node = mdlProfile.data.selectSingleNode("wheremsg");
+            
+            node.text = el.getValue();
+            node.setAttribute("lastchange", lastchange)
+            lblWhereDate.setProperty('caption','Last change: ' + lastchange);
+            apf.cancelBubble(e);
+        };
+    }
+/*
+    function toggleControls(el) {
+        var controls;
+        (controls=el.childNodes[0].childNodes[2]).style.display = (controls.style.display == 'none'?'inline-block':'none');
+        //controls.$ext.style.top = apf.getAbsolutePosition(el)[1] + "px";
+    }
+*/
+setInterval(function(){
+    var spans = lstActionWall.$ext.getElementsByTagName('span');
+    for (var i = 0; i < spans.length; i++) {
+        var span = spans[i];
+        if(span.className == 'originalTime') {
+            var isotime = span.getAttribute('isotime');
+            span.innerHTML = worknetsApp.util.human_date(isotime);
+        }
+    }
+}, 60000);
+--></a:script>
+</doc>

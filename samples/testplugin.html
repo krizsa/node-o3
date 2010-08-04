@@ -1,0 +1,102 @@
+<html>
+	<head>
+        <script type="text/javascript" src="o3.js"></script>
+	</head>
+	<body>
+        <button onClick="createTestDir()">start test</button>
+        <button onClick="removeTestDir()">remove test dir</button>
+	</body>
+	<script>
+        var o3obj;
+        // creating an o3 instance, we need the UID and the name of the product
+        // the o3.js file will take care of all the details
+        o3obj = o3.create("8A66ECAC-63FD-4AFA-9D42-3034D18C88F4", { 
+            oninstallprompt : function(){ alert("can't find o3 plugin");},
+            product : 'O3Demo'     
+        } );
+
+        function createTestDir() {
+            // no that we have an o3 instance, let's create a file system root node
+            // NOTE: on windows this file node will point to the temp folder,
+            // IE in protected mode does not allow to write files to any other location
+            // except via a file save as dialog    
+            var fsRoot = o3obj.fs;
+            if (fsRoot) {
+                // let's create another file node from the root, a file node represents a path
+                // in the file system, so we dont know yet if it is a directory a file or 
+                // does not even exists...
+                var dir = fsRoot.get('testDir');
+                
+                if (dir.exists) {
+                    // if the file/dir with this path already exists, warn the user
+                    alert("test directory already exists please remove it first");
+                    return;
+                }
+                
+                // if there is no file/dir with this path (root_path/testDir) let's create 
+                // a directory on the file system
+                dir.createDir();
+                
+                // now we will create three more file nodes
+                var file1 = dir.get('file1'), // points to (root_path/testDir/file1)
+                    file2 = dir.get('file2'), // points to (root_path/testDir/file2)
+                    file3 = dir.get('file3'); // points to (root_path/testDir/file3)
+                
+                // if we simply set their data property, the files will be created
+                // and they content will be the corresponding string 
+                // NOTE: the parent folders wil be created on the file system, if they 
+                // did not exist automaticaly (testDir in this case...)
+                file1.data = 'some content1';
+                file2.data = 'some content2';
+                file3.data = 'some content3';
+                
+                var msg = 'The content of the created files are: \n', 
+                    // listing a directory is simple as:
+                    children = dir.children, 
+                    // we can check how many child nodes it has:
+                    noOfChildren = children.length,
+                    child;
+                    
+                for(var i=0; i<noOfChildren; i++) {
+                    // and we can access the child nodes simply:
+                    child = children[i];
+                    // let's check some basic properties on the file nodes,
+                    // reading the data property on the file node is
+                    // reading the data from the file itself, if we want to
+                    // read binary data, the blob property has to be used instead
+                    msg += child.name + ' : ' + child.data + '\n'; 
+                }
+                
+                // there is even more...
+                // we can listen to a file, and get a notification callback when the
+                // file has been changed    
+                file1.onchange = function(filenode){
+                    alert("file has been modified");
+                    // let's stop listening to the file after the first notification
+                    filenode.onchange = 0;
+                }  
+                
+                alert(msg);
+                               
+                // change the file so the change notification will be triggered
+                file1.data = "let's change the content";
+                
+                // we can even open the file as a stream and manipluate it
+                // through the stream object
+                var stream = file3.open("wa");
+                stream.pos = 12;
+                stream.write('333');
+                stream.close();                                
+            }
+        }
+        
+        function removeTestDir() {
+            var fsRoot = o3obj.fs;
+            if (fsRoot) {
+                var dir = fsRoot.get('testDir');
+                dir.remove(true);
+            }
+        }
+        
+    </script>
+</html>

@@ -1,0 +1,273 @@
+<div id="hp_header">
+    <a href="#"><div id="logo"></div></a>
+</div>
+<div class="middle_panel">
+    <div class="content">
+        <div id="sec1">
+            <h2>WorkNets in a nutshell</h2>
+            <p>WorkNets makes group collaborations easy and powerful. Dedicated environments provide 
+            Worknets with all the tools for achieving common goals. Create content together, 
+            host online meetings, see what is going on as it happens on the activity wall and make 
+            sharing documents simple and accessible.</p>
+            <p>Getting things done together was never this simple. Try it today!</p>
+            <a:vbox edge="25 0 0 15" padding="0">
+                <a:hbox padding="10" edge="0" pack="start">
+                    <a:button width="111" skin="rbutton" class="hp_rwhite2button" onclick="scrollToLearnMore()">Learn more</a:button>
+                    <span class="settings25">or</span>
+                    <a:button width="179" skin="rbutton" onclick="pg.set(2)">Sign up for our Beta</a:button>
+                </a:hbox>
+            </a:vbox>
+        </div>
+        
+        <a:pages id="pg" skin="loginform" top="19" right="21" width="320" height="320" onbeforeswitch="loginMsg.caption=''">
+            <a:page id="pgLogin" validgroup="vgSignIn">
+                <h3>Have an Account? Just Sign in.</h3>
+                <span class="link" onclick="pg.set(2)">No account yet? Sign up now, it only takes a minute</span>
+                <a:vbox padding="3" edge="20 0 0 0">
+                    <h4>Email address or Username</h4>
+                    <a:textbox id="sni_txt1"
+                      required   = "true"
+                      type       = "username"
+                      invalidmsg = "A Email address or Username is required to sign in"></a:textbox>
+                </a:vbox>
+                <a:vbox padding="3" edge="8 0 0 0"> 
+                    <a:hbox>
+                        <h4>Password</h4>
+                        <a:filler />
+                        <span class="link" margin="4 6 0 0" onclick="pg.set(1)">forgot your password?</span>
+                    </a:hbox>
+                    <a:secret id="sni_txt2" 
+                      type       = "password"
+                      class      = "padlock"
+                      required   = "true"
+                      invalidmsg = "A Password is required to sign in"></a:secret>
+                    <a:hbox edge="10 0 0 0" padding="25">
+                        <a:label id="loginMsg"
+                          width="145" />
+                        <a:button 
+                          id      = "sni_btn1" 
+                          skin    = "hp_button"
+                          width   = "108"
+                          align   = "right"
+                          default = "true"
+                          action  = "login" target="pgLogin">Sign in</a:button>
+                    </a:hbox>
+                </a:vbox>
+                <a:label id="loginError"
+                  skin    = "lberrorbox"
+                  left    = "8"
+                  visible = "false"
+                  bottom  = "0" />
+            </a:page>
+            <a:page trans-in="push-bottom" trans-out="push-bottom" validgroup="vgForget"> 
+                <h3>Forgot your password?</h3>
+                <span>Please type your email address or username below.
+                Your password will be resend to the email address
+                associated with your account.</span>
+                <a:vbox padding="3" edge="20 0 0 0">
+                    <h4>Email address or Username</h4>
+                    <a:textbox id="fgt_txt1" initial-message="Make sure it&#39;s correct and accessible"
+                      required="true" invalidmsg="Hm.. We didn't recognize this Email Address or Username. Are you sure it's correct?"></a:textbox>
+                </a:vbox>
+                <a:hbox edge="10 0 0 0" pack="end">
+                    <a:button id="fgt_btn2" skin="text_button" width="50" onclick="pg.set(0)">Back</a:button>
+                    <a:button id="fgt_btn1" skin="hp_button" class="hp_blue" width="146" onclick="if (vgForget.validate()) {pg.set(1)}">Resend Password</a:button>
+                </a:hbox>
+            </a:page>
+            <a:page trans-in="push-top" trans-out="push-top" validgroup="vgSignUp1"> 
+                <h3>Sign up for Worknets</h3>
+                <span>WorkNets is currently in beta which means 
+                features might be missing, incomplete or buggy.</span>
+                <a:vbox padding="3" edge="8 0 0 0">
+                    <a:hbox>
+                        <h4>Email address</h4>
+                        <a:filler />
+                        <span margin="4 0 0 0">Triple check please</span>
+                    </a:hbox>
+                    <a:textbox id="rqt_txt1" initial-message="Make sure you have access to it"
+                      required="true" datatype="a:email" invalidmsg="'Please enter a valid email address"></a:textbox>
+                </a:vbox>
+                <a:vbox padding="3" edge="8 0 0 0">
+                    <a:hbox>
+                        <h4>Password</h4>
+                        <a:filler />
+                        <span margin="4 6 0 0">a copy will be send by email</span>
+                    </a:hbox>
+                    <a:secret id="rqt_txt2"
+                      type       = "password"
+                      class      = "padlock"
+                      required   = "true"
+                      invalidmsg = "Password is required to sign u"></a:secret>
+                </a:vbox>
+                <a:vbox padding="3" edge="8 0 0 0">
+                    <a:hbox padding="15" edge="0">
+                        <h4>Your Name</h4>
+                        <span margin="4 0 0 0"></span>
+                    </a:hbox>
+                    <a:hbox edge="0" padding="5">
+                        <a:textbox id="rqt_txt3" initial-message="First name" width="98"
+                          required="true" invalidmsg="'First name' is required to sign up"></a:textbox>
+                        <a:textbox id="rqt_txt4" initial-message="Last name" width="174"
+                          required="true" invalidmsg="'Last name' is required to sign up"></a:textbox>
+                    </a:hbox>
+                </a:vbox>
+                <a:hbox edge="15 0 0 0" pack="end">
+                    <a:button id="rqt_btn2" skin="text_button" width="50" onclick="pg.set(0)">Back</a:button>
+                    <a:button id="rqt_btn1" skin="hp_button" class="hp_white" width="110" onclick="if (vgSignUp1.validate()) {pg.set(3)}">Next</a:button>
+                </a:hbox>
+            </a:page>
+            <a:page trans-in="push-right" trans-out="push-right" validgroup="vgSignUp2">
+                <h3>Review your Username</h3>
+                <a:vbox padding="3" edge="8 0 0 0">
+                    <a:textbox width="277" id="rqt_txt5" initial-message="first-part-of-email"
+                      required="true" invalidmsg="Username is required to sign up"></a:textbox>
+                    <a:bar skin="hp_messagebox" height="77" style="margin-top: -4px;">
+                        <span class="hpmb_content">Including @username in message notifies
+                        fellow members of your activity making
+                        meetup requests or task delegation a breeze.</span>
+                    </a:bar>
+                </a:vbox>
+                <a:hbox edge="0 0 0 0" pack="end" bottom="0" right="0">
+                    <a:button id="rqt_btn4" skin="text_button" width="50" onclick="pg.set(2)">Back</a:button>
+                    <a:button id="rqt_btn3" 
+                    skin    = "hp_button"
+                    class   = "hp_white hp_green_caption"
+                    width   = "150"
+                    onclick = "
+                      if (vgSignUp2.validate()) {
+                          pg.set(4)
+                      }
+                    ">Send access request</a:button>
+                </a:hbox>
+            </a:page>
+            <a:page trans-in="push-right"> 
+                <h3>Welcome to Worknets!</h3>
+                <div class="hp_statusmsg" style="margin-top: 20px;">
+                    You are now ready to Sign in!<br/>
+                    <br/>
+                    Your login information has been sent to your mailbox for safe keeping.<br/>
+                    <br/>
+                    We expect you will love using Worknets as much as we do.<br/>
+                    If you see room for improvement don't be shy to let us know.<br/>
+                </div>
+                
+                <a:hbox edge="0 0 0 0" bottom="0" right="0" pack="end">
+                    <a:button id="rqt_btn3" skin="hp_button" class="hp_white" width="118" onclick="pg.set(2)">Sign in now</a:button>
+                </a:hbox>
+            </a:page>
+            <a:page trans-in="push-right"> 
+                <h3>All done!<br/>
+                <br/>
+                Please check your inbox for your Username and Password</h3>
+                <div class="hp_statusmsg" style="margin-top: 20px;color:#937c64;">
+                    If you didn't get our email within 10 minutes please check your spam folders
+                </div>
+                
+                <a:hbox edge="0 0 0 0" bottom="0" right="0" pack="end">
+                    <a:button id="rqt_btn3" skin="hp_button" class="hp_white" width="150" onclick="pg.set(2)">Back to Sign in</a:button>
+                </a:hbox>
+            </a:page>
+        </a:pages> 
+
+        <div id="sec2"></div>
+    </div>
+</div>
+<div class="wn_main_section social_panel">
+    <iframe 
+      src               = "http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fexample.com%2Fpage%2Fto%2Flike&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" 
+      scrolling         = "no" 
+      frameborder       = "0" 
+      style             = "border:none; overflow:hidden; width:450px; height:35px;margin:10px 0 0 50px;" 
+      allowTransparency = "true"></iframe>
+    
+    <a:hbox top="0" right="0" edge="5 40 0 0" padding="10" align="center">
+        <div>Meet us at:</div>
+        <a:button skin="social" class="linkedin"></a:button>
+        <a:button skin="social" class="tweeter"></a:button>
+        <a:button skin="social" class="facebook"></a:button>
+    </a:hbox>
+    <div class="hp_divider" style="margin:17px 38px 21px 38px;" id="learnmorepos"></div>
+</div>
+<div class="wn_main_section content_panel">
+    <a:hbox padding="0" edge="0 0 0 0">
+        <a:vbox padding="0" edge="0 10 0 0" width="655">
+            <a:hbox padding="30" edge="0 0 0 38">
+                <div class="settings27">
+                    <h3>Why use it?</h3>
+                    <p>This is your elevator pitch! (the learn More)</p>
+                    <p>Use WorkNets as a simple, smart way to facilitate collaborations online. 
+                    Between businesses, organizations and people.</p>
+                    <p>Organize events, accomplish projects, utilize relations, co-edit files, align activities, 
+                    exchange and utilize resources. </p>
+                    <p>A WorkNet enables shared objectives to be achieved faster, better and more efficient.</p>
+                </div>
+                <div class="settings28">
+                    <h3>For who is this?</h3>
+                    <p>Both the profit- and non-profit world can benefit of using WorkNets as 
+                    their main communication and work tool.</p>
+                    <p>Partnerships, alliances, platforms, communities of practice, Working groups, 
+                    Multi stakeholder processes, Joint Ventures. </p>
+                </div>
+            </a:hbox>
+            <div class="hp_divider" margin="0 0 0 28" style="width:442px;padding:26px 0 0 0;"></div>
+            <div class="settings26">
+                <h3>What makes WorkNets different?</h3>
+                <p>WorkNets strongly focus on enabling the We's instead of the Me's, creating common contexts. 
+                Where Intra- and Extranets are fixed to one organization forever, WorkNets are fixed to an 
+                objective, not one participant in particular, and can be handed over.</p>
+                <p>Taking Web 2.0 beyond Social Media to facilitate Professional Collaboration: Organizations 
+                can take part and WorkNets can be interconnected. An open infrastructure creating new exciting 
+                possibilities and additions all the time.</p>
+            </div>
+        </a:vbox>
+        <div width="285">
+            <div id="sec7" width="280">
+                <div class="white_section icon1">
+                    <h5>Work together &amp; stay informed</h5>
+                    <p>These are your 3 main unique selling points highlighted. 
+                    Stay informed about what happends in your organization and network. 
+                    Manage, Delegate Responsabilities and Host Online Workgroups.</p>
+                </div>
+                <div class="white_section icon2">
+                    <h5>Customize the way it looks</h5>
+                    <p>Manage, Delegate Responsabilities and Host Online Workgroups.</p>
+                </div>
+                <div class="white_section icon3">
+                    <h5>Find more tools in our Appstore</h5>
+                    <p>Extend your Worknet with the right tools for you and your audiance! 
+                    The integrated App Store lets you do this with ease.</p>
+                </div>
+            </div>
+        </div>
+    </a:hbox>
+</div>
+<div class="wn_main_section hp_old_worknets">
+    <a href="http://www.worknets.com/index_old.html" target="_blank">Old Worknets</a>
+</div>
+<a:script><![CDATA[
+    function scrollToLearnMore(){
+        var targetY = apf.getAbsolutePosition(learnmorepos.$ext)[1];
+        var target     = document.documentElement,
+            lastScroll = target.scrollTop,
+            control    = {stop: false},
+            options    = {
+                type     : "scrollTop",
+                from     : lastScroll,
+                to       : targetY + lastScroll,
+                steps    : 5,
+                control  : control,
+                anim     : apf.tween.easeInOutCubic, // apf.tween.easeInCubic,
+                onbeforeeach : function(){
+                    var curScroll = target.scrollTop;
+                    if (curScroll != lastScroll) {
+                        control.stop = true;
+                        return false;
+                    }
+                },
+                oneach : function(){
+                    lastScroll = target.scrollTop;
+                }
+            };
+        apf.tween.single(document.documentElement, options);
+    }
+]]></a:script>

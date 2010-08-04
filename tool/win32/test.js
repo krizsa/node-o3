@@ -1,0 +1,1 @@
+o3.print(o3.cwd.path);

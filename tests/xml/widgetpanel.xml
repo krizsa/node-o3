@@ -1,0 +1,175 @@
+<a:bindings id="bndThumbs">
+    <a:caption><?lm
+        <div class="details singleImg">
+            <div class="imgBox [status]">
+                <img class="imgBig" src="icon/[@id]/44x44.png" alt="" width="44" height="44" />
+            </div>
+            <div style="display:inline;height: 100%;position: absolute; margin-left: -3px;">
+                <strong style="display:inline-block;height:100%;vertical-align:middle"></strong>
+                <span class="caption [@status]">[@name]</span>
+            </div>
+        </div>
+    ?></a:caption>
+</a:bindings>
+
+<a:bindings id="bndThumbsConn">
+    <a:caption><?lm
+        <div class="details connCards">
+            <div class="imgBox [@status]">
+                <img class="imgBig" src="icon/[@id]/25x25.png" alt="" width="25" height="25" />
+                <img class="imgSmall" src="icon/[@org_id]/18x18.png" alt="" width="18" height="18" />
+            </div>
+            <div class="status">
+                <div class="icon [@status]"></div>
+            </div>
+            <span class="caption [@status]">[@name]</span>
+        </div>
+    ?></a:caption>
+</a:bindings>
+
+<a:bindings id="bndThumbsApps">
+    <a:caption><?lm
+        <div style="text-align: center">
+            <div class="imgBox" style="background-image: url(icon/[@id]/68x68.png)"> </div>
+            <div class="ta_state"> </div>
+            <span class="caption [@status]">{[@name].toUpperCase()}</span>
+            <div class="appinfobox"> 
+                <span class="appinfobox_name">{[@name].toUpperCase()}</span>
+                <div class="appinfobox_list">
+                    <p class="green"><span>Active session</span><span class="right">[@sessions]</span></p>
+                    <p class="gray"><span>Active users</span><span class="right">[@users]</span></p>
+                    <p class="green"><span>Active documents</span><span class="right">[@documents]</span></p>
+                </div>
+                <span class="appinfobox_start">CLICK TO START</span>
+            </div>
+        </div>
+    ?></a:caption>
+</a:bindings>
+
+<a:bindings id="bndList">
+   <a:caption><?lm
+        <div class="details singleImg">
+            <div class="imgBox">
+                <img class="imgBig" src="icon/[@id]/25x25.png" alt="" width="25" height="25" />
+            </div>
+            <span class="caption">[@name]</span>
+        </div>
+    ?></a:caption>
+</a:bindings>
+
+<a:bindings id="bndListNoDsc">
+   <a:caption><?lm
+        <div class="details singleImg Linh">
+            <div class="imgBox">
+                <img class="imgBig" src="icon/[@id]/25x25.png" alt="" width="25" height="25" />
+            </div>
+            <span class="caption only">[@name]</span>
+        </div>
+    ?></a:caption>
+</a:bindings>
+
+<a:bindings id="bndListStatus">
+    <a:caption><?lm
+        <div class="details singleImg">
+            <div class="imgBox">
+                <img class="imgBig" src="icon/[@id]/25x25.png" alt="" width="25" height="25" />
+            </div>
+            <span class="caption">[@name]</span>
+            <p>[dsc]</p>
+        </div>
+        <div class="status">
+            <div class="icon [status]"></div>
+        </div>
+    ?></a:caption>
+</a:bindings>
+
+<a:bindings id="bndListStatusNoDsc">
+    <a:caption><?lm
+        <div class="details singleImg">
+            <div class="imgBox">
+                <img class="imgBig" src="icon/[@id]/38x38.png" alt="" width="38" height="38" />
+            </div>
+            <span class="caption only">[@name]</span>
+        </div>
+        <div class="status">
+            <div class="icon [status]"></div>
+        </div>
+    ?></a:caption>
+</a:bindings>
+
+<a:bindings id="bndListDblStatus">
+    <a:caption><?lm
+        <div class="details">
+            <div class="imgBox">
+                <img class="imgBig" src="icon/[@id]/25x25.png" alt="" width="25" height="25" />
+                <img class="imgSmall" src="icon/[@id]/18x18.png" alt="" width="18" height="18" />
+            </div>
+            <span class="caption dblpic">[@name]</span>
+            <p>[dsc]</p>
+        </div>
+        <div class="status">
+            <div class="icon [@status]"></div>
+        </div>
+    ?></a:caption>
+</a:bindings>
+
+<a:bindings id="bndListDate">
+    <a:caption><?lm
+        <span>[date]</span>
+        <strong>[time_type]</strong>
+        <p>[dsc]</p>
+    ?></a:caption>
+</a:bindings>
+
+<!--a:menu id="viewmode_menu_all" anim="!apf.isIE" skin="viewmode_menu" onitemclick="worknetsApp.widgetpanel.changeviewmode(event)">
+    <a:item value="listview">List view</a:item>
+    <a:item value="thumbnailview">Thumbnail view</a:item>
+    <a:divider/>
+    <a:item value="sortname">Sort by name</a:item>
+    <a:item value="sortstatus">Sort by online/offline</a:item>
+    <a:item value="sortactivity">Sort by amount of activity</a:item>
+</a:menu>
+
+<a:menu id="viewmode_menu_ns" anim="!apf.isIE" skin="viewmode_menu" onitemclick="worknetsApp.widgetpanel.changeviewmode(event)">
+    <a:item value="listview">List view</a:item>
+    <a:item value="thumbnailview">Thumbnail view</a:item>
+    <a:divider/>
+    <a:item value="sortname">Sort by name</a:item>
+    <a:item value="sortstatus">Sort by online/offline</a:item>
+</a:menu-->
+
+<a:menu id="viewmode_menu_n" ondisplay="setMenuValues(event)" anim="!apf.isIE" skin="viewmode_menu" onitemclick="worknetsApp.widgetpanel.changeviewmode(event)">
+    <a:item id="itmList" type="radio" value="listview">List view</a:item>
+    <a:item id="itmThumb" type="radio" value="thumbnailview">Thumbnail view</a:item>
+    <a:divider/>
+    <a:item id="itmSortName" type="radio" value="sortname">Sort by name</a:item>
+</a:menu>
+
+<a:script>//<!--
+    function setMenuValues(e) {
+        // set viewmode
+        switch(worknetsApp.widgetpanel.curList.skin) {
+            case "lstDblPic":
+            case "lstGrDot":
+                itmList.setProperty("selected",true);
+                itmThumb.setProperty("selected",false);
+                break;
+            case "tn_thumbnail":
+            case "tn_thumbnail_apps":
+            case "tn_thumbnail_3cols":
+                itmList.setProperty("selected",false);
+                itmThumb.setProperty("selected",true);
+                break;
+        }
+        
+        // set sort method
+        switch(worknetsApp.widgetpanel.curList.sort) {
+            case "[@name]":
+                itmSortName.setProperty("selected",true);
+                break;
+            case "[@status]":
+                itmSortStatus.setProperty("selected",true);
+                break;
+        }
+    }
+//--></a:script>

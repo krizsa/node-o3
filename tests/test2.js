@@ -1,0 +1,1 @@
+o3.print("blah");
