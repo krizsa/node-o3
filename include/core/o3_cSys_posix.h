@@ -536,7 +536,7 @@ struct cSys : cSysBase {
     o3_end_class()
 
 	cSys():cSysBase()
-		,m_v8inited(false)
+		,m_v8inited(true)
 		,m_overall(0)
 	{
 

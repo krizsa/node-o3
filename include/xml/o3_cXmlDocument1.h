@@ -18,7 +18,7 @@
 #ifndef J_C_XML_DOCUMENT_H
 #define J_C_XML_DOCUMENT_H
 
-#include <malloc.h>
+//#include <malloc.h>
 
 namespace o3 {
     struct cXmlDocument1 : cXmlNode1, iXmlDocument {   
@@ -31,7 +31,9 @@ namespace o3 {
         {
 			//printf("dest doc %p %p", m_doc, this);
             xmlFreeDoc(m_doc);
-			malloc_trim(0);
+			//xmlMemoryDump();
+
+			//malloc_trim(0);
             
 			m_node_map->remove(m_node);
 			m_node = 0;

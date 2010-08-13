@@ -298,6 +298,9 @@ struct cJs1 : cJs1Base {
 
     static void finalize(Persistent<Value> value, void* parameter)
     {
+		if (!value.IsNearDeath())
+			return;
+
         cJs1* pthis = (cJs1*) parameter;
         Handle<Object> object = value->ToObject();
         iScr* scr = (iScr*) cast(object->GetInternalField(0));
@@ -308,6 +311,12 @@ struct cJs1 : cJs1Base {
             //pthis->m_objects.remove(*object);        
 		}
     }
+
+	static void cleanup(Persistent<Value> value, void *parameter)
+	{
+		cJs1* pthis = (cJs1*) parameter;
+		pthis->release();
+	}
 
 	void weakReferenceCallback(Persistent<Value> value, void *parameter)
 	{
@@ -320,7 +329,6 @@ struct cJs1 : cJs1Base {
 		}
 	}
 
-    Persistent<Context> m_context;
     Persistent<ObjectTemplate> m_template;
     tMap<Object*, Object*> m_objects;
     tMap<iScr*, Handle<Object> > m_wrappers;
@@ -397,15 +405,14 @@ struct cJs1 : cJs1Base {
     }
 
 public:
-    cJs1(Persistent<Context>& v8ctx, iMgr* mgr, int argc, char** argv, char** envp)
-    :   m_context(v8ctx)
+    cJs1(Handle<Object> target, iMgr* mgr, int argc, char** argv, char** envp)
     {
         o3_trace2 trace;
-        Context::Scope context_scope(m_context);
         HandleScope handle_scope;
         Local<ObjectTemplate> handle;
-        Local<External> data;
-        Handle<Object> object;
+        Local<External> data;       
+		Handle<Object> object;
+		Persistent<Object> object2;
 
         handle = ObjectTemplate::New();
         m_template = Persistent<ObjectTemplate>::New(handle);
@@ -420,42 +427,17 @@ public:
         m_template->SetIndexedPropertyHandler(indexedGetter, indexedSetter,
                                               indexedQuery, indexedDeleter,
                                               indexedEnumerator, data);
-        object = createObject(o3_new(cO3)(this, argc, argv, envp));
-        m_context->Global()->Set(String::New("o3"), object);
-		
+
+		object = createObject(o3_new(cO3)(this, argc, argv, envp));		
+		object2 = Persistent<Object>::New(object);
+		object2.MakeWeak(this, cleanup);
+		target->Set(String::New("root"), object2);
 	}
 
-	cJs1(iMgr* mgr, int argc, char** argv, char** envp)
-		:   m_context(Context::New())
-	{
-		o3_trace2 trace;
-		Context::Scope context_scope(m_context);
-		HandleScope handle_scope;
-		Local<ObjectTemplate> handle;
-		Local<External> data;
-		Handle<Object> object;
-
-		handle = ObjectTemplate::New();
-		m_template = Persistent<ObjectTemplate>::New(handle);
-		m_mgr = mgr;
-		m_loop = g_sys->createMessageLoop();
-		m_template->SetInternalFieldCount(1);
-		data = External::New(this);
-		m_template->SetCallAsFunctionHandler(invocation, data);
-		m_template->SetNamedPropertyHandler(namedGetter, namedSetter,
-			namedQuery, namedDeleter,
-			namedEnumerator, data);
-		m_template->SetIndexedPropertyHandler(indexedGetter, indexedSetter,
-			indexedQuery, indexedDeleter,
-			indexedEnumerator, data);
-		object = createObject(o3_new(cO3)(this, argc, argv, envp));
-		m_context->Global()->Set(String::New("o3"), object);
-	}
 
     ~cJs1()
     {
         o3_trace2 trace;
-        Context::Scope context_scope(m_context);
         HandleScope handle_scope;
 
         for (tMap<Object*, Object*>::Iter i = m_objects.begin();
@@ -468,7 +450,6 @@ public:
         }
 
         m_template.Dispose();
-        m_context.Dispose();
     }
 
     o3_begin_class(cJs1Base)
@@ -479,11 +460,12 @@ public:
     static o3_ext("cO3") o3_get siScr js(iCtx* ctx)
     {
         o3_trace3 trace;
-        Var js = ctx->value("js");
+        //Var js = ctx->value("js");
 
-        if (js.type() == Var::TYPE_VOID)
-            js = ctx->setValue("js", (iScr*) o3_new(cJs1)(ctx->mgr(), 0, 0, 0));
-        return js.toScr();
+        //if (js.type() == Var::TYPE_VOID)
+        //    js = ctx->setValue("js", (iScr*) o3_new(cJs1)(ctx->mgr(), 0, 0, 0));
+        //return js.toScr();
+		return siScr();
     }
 
     void* alloc(size_t size)
@@ -531,7 +513,6 @@ public:
     o3_fun Var eval(const char* str, siEx* ex)
     {
         o3_trace3 trace;
-        Context::Scope context_scope(m_context);
         HandleScope handle_scope;
         TryCatch try_catch;
         v8::Handle<Script> script;

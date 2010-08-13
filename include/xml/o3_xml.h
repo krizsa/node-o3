@@ -1,8 +1,7 @@
-#ifndef O3_APPLE
+
 #define LIBXML_SAX1_ENABLED 1
 #define LIBXML_XPATH_ENABLED 1
 #define LIBXML_OUTPUT_ENABLED 1
-#endif // O3_APPLE
 
 #include <libxml/parser.h>
 #include <libxml/xpath.h>

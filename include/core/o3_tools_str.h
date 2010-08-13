@@ -94,7 +94,8 @@ inline int strCaseCompare(const wchar_t* str, const wchar_t* str1, size_t n)
 #ifdef O3_WIN32
 	return ::_wcsnicmp(str, str1, n);
 #else
-	return ::wcsncasecmp(str, str1, n);
+	o3_assert(false);
+	return -1; //::wcsncasecmp(str, str1, n);
 #endif
 
 }

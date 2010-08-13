@@ -58,6 +58,8 @@ namespace o3 {
 		);
 
         o3_fun siXmlNode replaceNode(iCtx* ctx, iXmlNode* new_child) {
+			if (!new_child)
+				return siXmlNode();
             return parentNode(ctx)->replaceChild(new_child, this);
         }
 
@@ -156,6 +158,9 @@ namespace o3 {
         virtual o3_fun siXmlNode replaceChild(iXmlNode* new_child,
                 iXmlNode* old_child) {
             o3_trace3 trace;
+			if (!new_child || !new_child)
+				return siXmlNode();
+
             cXmlNode1* new_child2 = (cXmlNode1*) new_child;
             cXmlNode1* old_child2 = (cXmlNode1*) old_child;
 
@@ -167,7 +172,10 @@ namespace o3 {
         
         virtual o3_fun siXmlNode removeChild(iXmlNode* old_child) {
             o3_trace3 trace;
-            cXmlNode1* old_child2 = (cXmlNode1*) (old_child);            
+			if (!old_child)
+				return siXmlNode();
+
+            cXmlNode1* old_child2 = (cXmlNode1*) (old_child);
 
             old_child2->m_owner_node = 0;
             xmlUnlinkNode(old_child2->m_node);
@@ -176,6 +184,16 @@ namespace o3 {
         
         virtual o3_fun siXmlNode appendChild(iCtx* ctx, iXmlNode* new_child) {
             o3_trace3 trace;
+
+			if (!new_child)
+				return siXmlNode();
+
+			siXmlNode removed;
+			if (siXmlNode parent = new_child->parentNode(ctx)) {
+				removed = parent->removeChild(new_child);
+				new_child = removed.ptr();
+			}
+
             cXmlNode1* new_child2 = (cXmlNode1*) new_child;
 
             new_child2->m_owner_node = m_owner_node ? m_owner_node : this;

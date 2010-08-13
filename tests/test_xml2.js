@@ -1,3 +1,6 @@
+var o3 = require('../build/default/o3').root;
+
+
 function assert(condition, message) {
 	return condition ? false : ("ERROR: " + message + '\n');
 }
@@ -245,6 +248,12 @@ var testXml2 = function() {
 	}
 	
 	this.tests = {	
+		'remove':function(){
+			var node;
+			node = selectNodeWithAttr(mxml.documentElement, "model", "mdlProfile");
+			node.parentNode.removeChild(node);
+			return true;
+		},
 		'attrRipCloneReappend':function(){
 			var node;
 			node = selectNodeWithAttr(mxml.documentElement, "model", "mdlProfile");
@@ -278,7 +287,8 @@ var testXml2 = function() {
 					return ret;	
 			}
 			return true;
-		},
+		}
+		
 	}
 	
 };
@@ -292,7 +302,7 @@ var sys=require('sys'),
 sys.debug("Starting ...");
 
 
-function runTest(num) {
+function runTest(num) {	
 	o3.print("round: " + count + "-----------------\n");
 	if (num)
 		rounds = num;
