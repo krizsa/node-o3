@@ -15,7 +15,7 @@
  * this library; if not, write to the Free Software Foundation, Inc., 51
  * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-
+var o3 = require('../build/default/o3').root;
 o3.loadModule("image");
 o3.loadModule("console");
 
@@ -291,7 +291,7 @@ function drawStar(ctx,r){
   ctx.fill();
   ctx.restore();
 }
-
+function run(){
 if (1)
 {
 	var img4 = o3.image(150,150, "argb");
@@ -357,7 +357,30 @@ if (1)
 	img4.savePng(o3.cwd.get("aa-test2.png"));
 
 };
+}
 
-'';
+var sys=require('sys'),
+	count = 0,
+	id,rounds;
+
+sys.debug("Starting ...");
+
+
+function runTest(num) {	
+	o3.print("round: " + count + "-----------------\n");
+	if (num)
+		rounds = num;
+	count = count+1; 
+	if (count == 1) {
+		id = setInterval(runTest, 1000);
+	}
+	else if (count === rounds) {
+		clearInterval(id);
+	}	
+	run();
+}
+
+runTest(500);
+
 
 

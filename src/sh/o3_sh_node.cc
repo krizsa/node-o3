@@ -23,6 +23,7 @@
 #include <xml/o3_xml.h>
 //#include <socket/o3_socket.h>
 #include <fs/o3_fs.h>
+#include <image/o3_image.h>
 
 using namespace o3;
 using namespace v8;
@@ -39,6 +40,7 @@ init (Handle<Object> target)
   mgr->addExtTraits(cConsole1::extTraits());
   mgr->addExtTraits(cXml1::extTraits());
   mgr->addExtTraits(cFs1::extTraits());
+  mgr->addExtTraits(cImage1::extTraits());	
 
   iCtx* ctx = o3_new(cJs1)(target, mgr, 0, 0, 0);
   ctx->addRef(); // will be released by a clenup callback in the cJs1

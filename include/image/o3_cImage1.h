@@ -616,6 +616,7 @@ namespace o3
 
 			if (setjmp(png_jmpbuf(png_ptr)))
 			{
+				png_destroy_write_struct(&png_ptr,0);
 				cEx::fmt(ex,"[write_png_file] Error during writing bytes");
 				return 0;
 			};
@@ -691,11 +692,13 @@ namespace o3
 
 			if (setjmp(png_jmpbuf(png_ptr)))
 			{
+				png_destroy_write_struct(&png_ptr,&info_ptr);
 				cEx::fmt(ex,"[write_png_file] Error during end of write");
 				return 0;
 			};
 
 			png_write_end(png_ptr, NULL);
+			png_destroy_write_struct(&png_ptr,&info_ptr);
 
 			/* cleanup heap allocation */
 			

@@ -6,11 +6,11 @@ namespace o3
 	{
 		using namespace ZLib;
 
-		typedef void FAR   *voidpf;
+		typedef void *voidpf;
 		typedef void *voidp;
 		typedef unsigned int uInt ;
 		typedef unsigned char  Byte;  /* 8 bits */
-		typedef Byte  FAR Bytef;
+		typedef Byte Bytef;
 
 		#define png_snprintf _snprintf   /* Added to v 1.2.19 */
 		#define png_snprintf2 _snprintf

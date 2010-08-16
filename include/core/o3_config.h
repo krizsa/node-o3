@@ -18,6 +18,8 @@
 #ifndef O3_CONFIG_H
 #define O3_CONFIG_H
 
+#define __O3__
+
 #if defined(__APPLE__)
 #define O3_APPLE
 #elif defined(__linux__)

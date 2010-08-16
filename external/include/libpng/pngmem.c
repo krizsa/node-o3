@@ -508,7 +508,8 @@ png_malloc_default(png_structp png_ptr, png_alloc_size_t size)
    if (size != (size_t)size)
       ret = NULL;
    else
-      ret = malloc((size_t)size);
+	   ret = g_sys->alloc((size_t)size);
+      //ret = malloc((size_t)size);
 # endif
 #endif
 
@@ -552,7 +553,8 @@ png_free_default(png_structp png_ptr, png_voidp ptr)
 # if defined(_MSC_VER) && defined(MAXSEG_64K)
    hfree(ptr);
 # else
-   free(ptr);
+   //free(ptr);
+	g_sys->free(ptr);
 # endif
 #endif
 }
