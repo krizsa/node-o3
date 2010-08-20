@@ -60,7 +60,7 @@ namespace o3 {
         o3_fun siXmlNode replaceNode(iCtx* ctx, iXmlNode* new_child) {
 			if (!new_child)
 				return siXmlNode();
-            return parentNode(ctx)->replaceChild(new_child, this);
+            return parentNode(ctx)->replaceChild(ctx, new_child, this);
         }
 
         o3_get Str xml() {
@@ -141,10 +141,13 @@ namespace o3 {
             return wrapNode(ctx, (xmlNodePtr) m_node->doc, m_owner_node ? m_owner_node : this);
         }
         
-        virtual o3_fun siXmlNode insertBefore(iXmlNode* new_child,
+        virtual o3_fun siXmlNode insertBefore(iCtx* ctx, iXmlNode* new_child,
                 iXmlNode* ref_child) {
             o3_trace3 trace;
-            cXmlNode1* new_child2 = (cXmlNode1*) new_child;
+
+			siXmlNode nc = prepareForInsert(ctx, new_child); 
+
+            cXmlNode1* new_child2 = (cXmlNode1*) nc.ptr();
             cXmlNode1* ref_child2 = (cXmlNode1*) ref_child;
 
             new_child2->m_owner_node = m_owner_node ? m_owner_node : this;
@@ -152,16 +155,20 @@ namespace o3 {
                 xmlAddPrevSibling(ref_child2->m_node, new_child2->m_node);
             else
                 xmlAddChild(m_node, new_child2->m_node);
-            return new_child2;
+            
+			xmlDocDump(stdout, m_node->doc);
+			return new_child2;
         }
         
-        virtual o3_fun siXmlNode replaceChild(iXmlNode* new_child,
+        virtual o3_fun siXmlNode replaceChild(iCtx* ctx, iXmlNode* new_child,
                 iXmlNode* old_child) {
             o3_trace3 trace;
 			if (!new_child || !new_child)
 				return siXmlNode();
 
-            cXmlNode1* new_child2 = (cXmlNode1*) new_child;
+			siXmlNode nc = prepareForInsert(new_child, ctx);
+
+            cXmlNode1* new_child2 = (cXmlNode1*) nc.ptr();
             cXmlNode1* old_child2 = (cXmlNode1*) old_child;
 
             new_child2->m_owner_node = m_owner_node ? m_owner_node : this;
@@ -188,17 +195,12 @@ namespace o3 {
 			if (!new_child)
 				return siXmlNode();
 
-			siXmlNode removed;
-			if (siXmlNode parent = new_child->parentNode(ctx)) {
-				removed = parent->removeChild(new_child);
-				new_child = removed.ptr();
-			}
+			siXmlNode nc = prepareForInsert(ctx, new_child); 
 
-            cXmlNode1* new_child2 = (cXmlNode1*) new_child;
-
+			cXmlNode1* new_child2 = (cXmlNode1*) nc.ptr();
             new_child2->m_owner_node = m_owner_node ? m_owner_node : this;
             siXmlAttr attr;
-			if ((attr = new_child).valid()) {
+			if ((attr = nc).valid()) {
 				siXmlElement(this)->removeAttribute(ctx, attr->name());
 			}
 			
@@ -215,12 +217,15 @@ namespace o3 {
             o3_trace3 trace;
 			xmlNodePtr root;
             
+			siXmlDocument doc = ownerDocument(ctx);
+			o3_assert(doc);
+	
             if (deep)
-                root = xmlCopyNode(m_node, 1);
+                root = xmlDocCopyNode(m_node, doc->docPtr(), 1);
             else
-                root = xmlCopyNode(m_node, 2);
+                root = xmlDocCopyNode(m_node, doc->docPtr(), 2);
 
-            return wrapNode(ctx, root, 0);
+            return wrapNode(ctx, root, siXmlNode(doc));
 		}
 
 		o3_get Str namespaceURI() 
@@ -239,6 +244,30 @@ namespace o3 {
         {            
             return m_owner_node;
         }
+
+		siXmlNode prepareForInsert(  iCtx* ctx, iXmlNode* new_child,) 
+		{
+			// nodes from other documents can be inserted, in this case
+			// first we have to detach the node from its previous tree,
+			// or if its not in a tree then just copy the node into the 
+			// current context, otherwise the original document will be
+			// corrupted
+
+			siXmlNode ret = new_child;
+			siXmlDocument other_doc = new_child->ownerDocument(ctx); 		
+			siXmlDocument doc = ownerDocument(ctx);
+			siXmlNode removed;
+			siXmlNode nc;
+			if (siXmlNode parent = new_child->parentNode(ctx)) {
+				removed = parent->removeChild(new_child);
+				ret = removed.ptr();
+			} else if (other_doc->docPtr() != doc->docPtr()) {
+				xmlNodePtr copy = xmlDocCopyNode(
+					((cXmlNode1*) new_child)->m_node,doc->docPtr(),1);
+				ret = wrapNode(ctx,copy,siXmlNode(doc));				 
+			}
+			return ret;
+		}
 
         xmlNodePtr m_node;
         siXmlNode  m_owner_node;

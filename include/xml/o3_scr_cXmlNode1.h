@@ -154,12 +154,12 @@ siEx cXmlNode1::clsInvoke(iScr* pthis, iCtx* ctx, int index, int argc,
          case 20:
             if (argc != 2)
                return o3_new(cEx)("Invalid argument count. ( insertBefore )");
-            *rval = siXmlNode(pthis1->insertBefore(siXmlNode (argv[0].toScr()),siXmlNode (argv[1].toScr())));
+            *rval = siXmlNode(pthis1->insertBefore(ctx,siXmlNode (argv[0].toScr()),siXmlNode (argv[1].toScr())));
             break;
          case 21:
             if (argc != 2)
                return o3_new(cEx)("Invalid argument count. ( replaceChild )");
-            *rval = siXmlNode(pthis1->replaceChild(siXmlNode (argv[0].toScr()),siXmlNode (argv[1].toScr())));
+            *rval = siXmlNode(pthis1->replaceChild(ctx,siXmlNode (argv[0].toScr()),siXmlNode (argv[1].toScr())));
             break;
          case 22:
             if (argc != 1)

@@ -131,8 +131,8 @@ namespace o3 {
         virtual siXmlNamedNodeMap attributes() = 0;
         virtual siXmlDocument ownerDocument(iCtx* ctx) = 0;
         
-		virtual siXmlNode insertBefore(iXmlNode* ref_child, iXmlNode* new_child) = 0;
-        virtual siXmlNode replaceChild(iXmlNode* new_child, iXmlNode* old_child) = 0;
+		virtual siXmlNode insertBefore(iCtx* ctx, iXmlNode* ref_child, iXmlNode* new_child) = 0;
+        virtual siXmlNode replaceChild(iCtx* ctx, iXmlNode* new_child, iXmlNode* old_child) = 0;
         virtual siXmlNode removeChild(iXmlNode* old_child) = 0;
         virtual siXmlNode appendChild(iCtx* ctx, iXmlNode* new_child) = 0;
         
