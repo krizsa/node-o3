@@ -137,7 +137,26 @@ namespace o3 {
         default:
             return o3_new(cXmlNode1)(node, owner_node, &node_map);
         }
-    }    
+    }
+
+	void swapNode(iCtx* ctx, iXmlNode* old_node, xmlNodePtr new_node, iXmlNode* new_owner_node) {
+		if (!old_node || !new_node)
+			return;
+
+		siXml ixml = ctx->value("xml").toScr();
+		cXml1* xml = (cXml1*) ixml.ptr();
+		NodeMap& node_map = xml->m_node_map;
+		xmlNodePtr old = ((cXmlNode1*)old_node)->m_node;
+		NodeMap::Iter found = node_map.find(old);
+		if (found != node_map.end()) {
+			siXmlNode ret = (*found).val;
+			cXmlNode1* cret = (cXmlNode1*) ret.ptr();
+			cret->m_node = new_node;
+			cret->m_owner_node = new_owner_node;
+			node_map.remove(old);
+			node_map[new_node] = cret;
+		}
+	}
 }
 
 #endif // J_C_XML_H

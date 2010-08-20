@@ -156,5 +156,5 @@ namespace o3 {
 	};
 
     siXmlNode wrapNode(iCtx* ctx, xmlNodePtr node, iXmlNode* owner_node);
-
+	void swapNode(iCtx* ctx, iXmlNode* old_node, xmlNodePtr new_node, iXmlNode* new_owner_node);
 }

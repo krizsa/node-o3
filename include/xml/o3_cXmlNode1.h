@@ -156,7 +156,7 @@ namespace o3 {
             else
                 xmlAddChild(m_node, new_child2->m_node);
             
-			xmlDocDump(stdout, m_node->doc);
+			//xmlDocDump(stdout, m_node->doc);
 			return new_child2;
         }
         
@@ -166,7 +166,7 @@ namespace o3 {
 			if (!new_child || !new_child)
 				return siXmlNode();
 
-			siXmlNode nc = prepareForInsert(new_child, ctx);
+			siXmlNode nc = prepareForInsert(ctx, new_child);
 
             cXmlNode1* new_child2 = (cXmlNode1*) nc.ptr();
             cXmlNode1* old_child2 = (cXmlNode1*) old_child;
@@ -245,7 +245,7 @@ namespace o3 {
             return m_owner_node;
         }
 
-		siXmlNode prepareForInsert(  iCtx* ctx, iXmlNode* new_child,) 
+		siXmlNode prepareForInsert(iCtx* ctx, iXmlNode* new_child) 
 		{
 			// nodes from other documents can be inserted, in this case
 			// first we have to detach the node from its previous tree,
@@ -259,11 +259,11 @@ namespace o3 {
 			siXmlNode removed;
 			siXmlNode nc;
 			if (siXmlNode parent = new_child->parentNode(ctx)) {
-				removed = parent->removeChild(new_child);
-				ret = removed.ptr();
+				ret = parent->removeChild(new_child);
 			} else if (other_doc->docPtr() != doc->docPtr()) {
 				xmlNodePtr copy = xmlDocCopyNode(
 					((cXmlNode1*) new_child)->m_node,doc->docPtr(),1);
+				swapNode(ctx, new_child, copy, siXmlNode(doc));
 				ret = wrapNode(ctx,copy,siXmlNode(doc));				 
 			}
 			return ret;
