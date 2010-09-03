@@ -219,7 +219,7 @@ struct cJs1 : cJs1Base {
         return pthis->toValue(rval);
     }
 
-    static Handle<Boolean> indexedQuery(uint32_t index,
+    static Handle<Integer> indexedQuery(uint32_t index,
                                         const AccessorInfo& info)
     {
         cJs1* pthis = (cJs1*) cast(info.Data());
@@ -229,13 +229,15 @@ struct cJs1 : cJs1Base {
         Var rval((iAlloc*) pthis);
 
         if (query < 0)
-            return Local<Boolean>();
+            return Local<Integer>();
         if (siEx ex = scr->invoke(pthis, ACCESS_CALL, query, 1, &arg, &rval)) {
             ThrowException(String::New(ex->message()));
-            return Handle<Boolean>();
+            return Handle<Integer>();
         }
-        return Boolean::New(rval.toBool());
-    }
+        //return Boolean::New(rval.toBool());
+		return rval.toBool() ? v8::Integer::New(v8::None)
+			: v8::Handle<v8::Integer>();
+	}
 
     static Handle<Boolean> indexedDeleter(uint32_t index,
                                           const AccessorInfo& info)
